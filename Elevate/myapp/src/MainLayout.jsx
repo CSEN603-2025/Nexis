@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './pages/scadDashboard.css';
+import './scadDashboard.css';
 
   const navItems = [
     { icon: "fa-home", label: "Dashboard" ,path: "/scaddashboard"},

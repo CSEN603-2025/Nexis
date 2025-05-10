@@ -4,7 +4,7 @@ import "./scadDashboard.css"; // Import the CSS file
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-function Dashboard() {
+function ScadDashboard() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [searchTerm, setSearchTerm] = useState("");
@@ -800,4 +800,4 @@ function Dashboard() {
       )}
       </div>
       );}
-      export default Dashboard;
+      export default ScadDashboard;
