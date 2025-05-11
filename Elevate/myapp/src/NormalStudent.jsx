@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { 
     FaMoon, 
@@ -22,15 +23,27 @@ import {
     FaCalendar, 
     FaFileAlt, 
     FaStar, 
-    FaAward 
+    FaAward,
+    FaTimes 
   } from 'react-icons/fa';
 import './NormalStudent.css';
 
 const NormalStudent = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "Menna Ashraf Khaled Helmy Elsayed",
+    studentId: "W2201027",
+    email: "menna.elsayed@student.guc.edu.eg",
+    studyProgram: "Media Engineering & Technology",
+    currentSemester: "Spring 2025",
+    academicAdvisor: "Dr. Mohamed El-Shafel",
+    enrollmentDate: "September 2022",
+    expectedGraduation: "June 2026"
+  });
+  const [editFormData, setEditFormData] = useState({ ...formData });
 
   useEffect(() => {
-    // Check for saved theme preference or use preferred color scheme
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
@@ -45,8 +58,26 @@ const NormalStudent = () => {
     localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
   };
 
+  const handleEditClick = () => {
+    setEditFormData({ ...formData });
+    setShowEditModal(true);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveChanges = () => {
+    setFormData({ ...editFormData });
+    setShowEditModal(false);
+  };
+
+  const handleCancelEdit = () => {
+    setShowEditModal(false);
+  };
+
   useEffect(() => {
-    // Animate progress bar on scroll into view
     const progressFill = document.querySelector('.progress-fill');
     
     const observer = new IntersectionObserver((entries) => {
@@ -100,46 +131,40 @@ const NormalStudent = () => {
           
           <div className="quick-links">
             <h4 style={{marginTop: 0, color: 'var(--primary)'}}>Quick Links</h4>
-            
-            <a href="#" className="link-item">
-              <FaBriefcase className="link-icon" />
-              <span>Internship Dashboard</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaFileUpload className="link-icon" />
-              <span>Report Submissions</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaTasks className="link-icon" />
-              <span>Evaluation Forms</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaBuilding className="link-icon" />
-              <span>Company Portal</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaBook className="link-icon" />
-              <span>Resources Library</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaCalendarAlt className="link-icon" />
-              <span>Schedule</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaEnvelope className="link-icon" />
-              <span>Messages</span>
-            </a>
-            
-            <a href="#" className="link-item">
-              <FaCog className="link-icon" />
-              <span>Settings</span>
-            </a>
+            <div className="quick-links-list">
+              <a href="/Search" className="link-item">
+                <FaBriefcase className="link-icon" />
+                <span>Internship Dashboard</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaFileUpload className="link-icon" />
+                <span>Report Submissions</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaTasks className="link-icon" />
+                <span>Evaluation Forms</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaBuilding className="link-icon" />
+                <span>Company Portal</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaBook className="link-icon" />
+                <span>Resources Library</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaCalendarAlt className="link-icon" />
+                <span>Schedule</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaEnvelope className="link-icon" />
+                <span>Messages</span>
+              </a>
+              <a href="#" className="link-item">
+                <FaCog className="link-icon" />
+                <span>Settings</span>
+              </a>
+            </div>
           </div>
         </aside>
         
@@ -150,7 +175,7 @@ const NormalStudent = () => {
                 <FaUserGraduate style={{marginRight: '0.75rem', color: 'var(--accent)'}} />
                 Personal Information
               </h2>
-              <button className="action-button">
+              <button className="action-button" onClick={handleEditClick}>
                 <FaEdit style={{marginRight: '0.5rem'}} />
                 Edit Profile
               </button>
@@ -159,46 +184,139 @@ const NormalStudent = () => {
             <div className="info-grid">
               <div className="info-item">
                 <div className="info-label">Full Name</div>
-                <div className="info-value">Menna Ashraf Khaled Helmy Elsayed</div>
+                <div className="info-value">{formData.fullName}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Student ID</div>
-                <div className="info-value">W2201027</div>
+                <div className="info-value">{formData.studentId}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Email</div>
-                <div className="info-value">menna.elsayed@student.guc.edu.eg</div>
+                <div className="info-value">{formData.email}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Study Program</div>
-                <div className="info-value">Media Engineering & Technology</div>
+                <div className="info-value">{formData.studyProgram}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Current Semester</div>
-                <div className="info-value">Spring 2025</div>
+                <div className="info-value">{formData.currentSemester}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Academic Advisor</div>
-                <div className="info-value">Dr. Mohamed El-Shafel</div>
+                <div className="info-value">{formData.academicAdvisor}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Enrollment Date</div>
-                <div className="info-value">September 2022</div>
+                <div className="info-value">{formData.enrollmentDate}</div>
               </div>
               
               <div className="info-item">
                 <div className="info-label">Expected Graduation</div>
-                <div className="info-value">June 2026</div>
+                <div className="info-value">{formData.expectedGraduation}</div>
               </div>
             </div>
           </div>
-          
+
+          {/* Edit Profile Modal */}
+          {showEditModal && (
+            <div className="modal-overlay">
+              <div className={`edit-modal ${darkMode ? 'dark-mode' : ''}`}>
+                <div className="modal-header">
+                  <h2 className="modal-title">
+                    <FaEdit style={{marginRight: '0.75rem', color: 'var(--accent)'}} />
+                    Edit Profile
+                  </h2>
+                  <button className="modal-close" onClick={handleCancelEdit}>
+                    <FaTimes />
+                  </button>
+                </div>
+                
+                <div className="modal-content">
+                  <div className="form-group">
+                    <label htmlFor="fullName">Full Name</label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      value={editFormData.fullName}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={editFormData.email}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="studyProgram">Study Program</label>
+                    <input
+                      type="text"
+                      id="studyProgram"
+                      name="studyProgram"
+                      value={editFormData.studyProgram}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="currentSemester">Current Semester</label>
+                    <input
+                      type="text"
+                      id="currentSemester"
+                      name="currentSemester"
+                      value={editFormData.currentSemester}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="academicAdvisor">Academic Advisor</label>
+                    <input
+                      type="text"
+                      id="academicAdvisor"
+                      name="academicAdvisor"
+                      value={editFormData.academicAdvisor}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="expectedGraduation">Expected Graduation</label>
+                    <input
+                      type="text"
+                      id="expectedGraduation"
+                      name="expectedGraduation"
+                      value={editFormData.expectedGraduation}
+                      onChange={handleEditChange}
+                    />
+                  </div>
+                </div>
+                
+                <div className="modal-footer">
+                  <button className="modal-button cancel" onClick={handleCancelEdit}>
+                    Cancel
+                  </button>
+                  <button className="modal-button save" onClick={handleSaveChanges}>
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="metrics-grid">
             <div className="metric-card">
               <FaCalendarAlt style={{color: 'var(--accent)', fontSize: '1.5rem'}} />

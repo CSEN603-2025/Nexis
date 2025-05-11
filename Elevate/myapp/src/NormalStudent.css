@@ -152,7 +152,7 @@ html, body, #root {
     width: 100%;
     padding: 1.5rem;
     margin: 0;
-    min-height: 0;
+   
   }
   
  
@@ -189,14 +189,25 @@ html, body, #root {
   }
   
   .quick-links {
-    background-color: var(--card);
-    border-radius: 16px;
-    box-shadow: var(--card-shadow);
-    padding: 1.5rem;
-    flex-grow: 1;
-    transition: var(--transition);
-    width: 100%;
+   background-color: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  width: 100%;
+  flex: 1; /* Take remaining space */
+  min-height: 0; 
+  overflow-y: auto; 
   }
+  .quick-links-list {
+  display: flex;
+  flex-direction: column;
+  
+  width: 100%;
+  /* No height restrictions - will grow as needed */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
   
   .quick-links:hover {
     box-shadow: var(--card-shadow-hover);
@@ -204,18 +215,22 @@ html, body, #root {
   
   .link-item {
     display: flex;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(var(--text), 0.1);
-    color: var(--text);
-    text-decoration: none;
-    transition: var(--transition);
-    width: 100%;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  transition: var(--transition);
+  width: 100%;
+  /* Remove bottom margin since we're using gap now */
+  margin-bottom: 0;
+    
   }
   
   .link-item:hover {
-    color: var(--primary);
-    transform: translateX(4px);
+     background-color: rgba(var(--primary), 0.1);
+  color: var(--primary);
+  transform: translateX(4px);
   }
   
   .link-icon {
@@ -223,11 +238,12 @@ html, body, #root {
     height: 24px;
     margin-right: 0.75rem;
     color: var(--primary);
+    font-size: 1.2rem;
   }
   
   .main-content {
     width: 100%;
-    min-height: calc(100vh - 110px);
+    
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -517,10 +533,13 @@ html, body, #root {
     }
     
     .sidebar {
-      position: static;
-      height: auto;
-      max-height: 400px; /* Adjust as needed */
-      margin-bottom: 1.5rem;
+     position: relative; /* Changed from sticky */
+  top: auto; /* Remove sticky positioning */
+  height: auto; /* Let content determine height */
+  display: flex;
+  flex-direction: column;
+  /* Remove all overflow restrictions */
+  overflow: visible;; 
     }
     .main-content {
         min-height: auto;
@@ -564,9 +583,273 @@ html, body, #root {
   }
 
   .sidebar {
-    position: sticky;
-    top: 80px;
-    height: calc(100vh - 110px);
-    display: flex;
+ position: sticky;
+  top: 80px; /* Below header */
+  height: calc(100vh - 110px); /* Full height minus header */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: all 0.3s ease;
+}
+
+.edit-modal {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 90%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.dark-mode .edit-modal {
+  background-color: rgba(30, 30, 40, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid rgba(var(--primary-rgb), 0.15);
+}
+
+.dark-mode .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background-color: rgba(var(--primary-rgb), 0.1);
+  color: var(--primary);
+}
+
+.modal-content {
+  padding: 1.75rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid rgba(var(--primary-rgb), 0.15);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--text-primary);
+  font-size: 1rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+}
+
+.dark-mode .form-group input {
+  background-color: rgba(30, 30, 40, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group input:hover {
+  border-color: rgba(var(--primary-rgb), 0.5);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.dark-mode .form-group input:hover {
+  background-color: rgba(40, 40, 50, 0.7);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-mode .form-group input:focus {
+  background-color: rgba(50, 50, 60, 0.8);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.25rem 1.75rem;
+  border-top: 1px solid rgba(var(--primary-rgb), 0.15);
+  gap: 1rem;
+}
+
+.dark-mode .modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-button {
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.modal-button.cancel {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+}
+
+.dark-mode .modal-button.cancel {
+  background-color: rgba(30, 30, 40, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-button.cancel:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .modal-button.cancel:hover {
+  background-color: rgba(50, 50, 60, 0.6);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.modal-button.save {
+  background-color: var(--primary);
+  border: 1.5px solid var(--primary);
+  color: white;
+}
+
+.modal-button.save:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(var(--primary-rgb), 0.25);
+}
+
+.modal-button.save:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(var(--primary-rgb), 0.2);
+
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Additional responsive styling */
+@media (max-width: 600px) {
+  .edit-modal {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-header {
+    padding: 1.25rem;
+  }
+  
+  .modal-content {
+    padding: 1.25rem;
+  }
+  
+  .modal-footer {
+    padding: 1rem 1.25rem;
     flex-direction: column;
   }
+  
+  .modal-button {
+    width: 100%;
+    padding: 0.85rem;
+    text-align: center;
+  }
+  
+  .modal-button.cancel {
+    order: 2;
+  }
+  
+  .modal-button.save {
+    order: 1;
+  }
+}
+
+/* Additional animation for form elements */
+.form-group {
+  animation: formElementSlideIn 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.15s; }
+.form-group:nth-child(3) { animation-delay: 0.2s; }
+.form-group:nth-child(4) { animation-delay: 0.25s; }
+.form-group:nth-child(5) { animation-delay: 0.3s; }
+.form-group:nth-child(6) { animation-delay: 0.35s; }
+
+@keyframes formElementSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

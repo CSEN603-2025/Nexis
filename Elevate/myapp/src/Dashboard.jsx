@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faChartLine, faTasks, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
+import {  faMicrophone, faDesktop, faPhoneSlash,faCrown, } from '@fortawesome/free-solid-svg-icons';
+import {
+  faQuestionCircle,
+  faCalendarPlus,
+  faCheck,
+  faTimes,
+  faSave,
+  faPlay,
+  faShareAlt,
+  faCalendarAlt,
+  faClock,
+  faUserTie,
+  faInfoCircle,
+  faFileAlt,
+  faCertificate,
+  faDownload,faSun, faMoon
+} from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return savedTheme === 'dark' || (!savedTheme && prefersDark);
-  });
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState('guidance');
 
   useEffect(() => {
@@ -27,11 +42,11 @@ const Dashboard = () => {
       <header className="header">
         <a href="#" className="logo">
           <span className="logo-icon">↑</span>
-          Elevate <span className="pro-badge"><i className="fas fa-crown"></i> PRO</span>
+          Elevate <span className="pro-badge"><FontAwesomeIcon icon={faCrown} />&nbsp; PRO</span>
         </a>
         <div className="header-controls">
           <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
-            <i className={isDarkMode ? 'fas fa-sun' : 'fas fa-moon'}></i>
+            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} className="theme-icon" />
           </button>
           <img
             src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff"
@@ -50,7 +65,7 @@ const Dashboard = () => {
               className="avatar"
             />
             <h3>
-              Menna Elsayed <span className="pro-badge"><i className="fas fa-crown"></i> PRO</span>
+              Menna Elsayed <span className="pro-badge"><FontAwesomeIcon icon={faCrown} />&nbsp;  PRO</span>
             </h3>
             <p style={{ color: 'var(--text-secondary)' }}>Media Engineering & Technology</p>
             <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -67,29 +82,24 @@ const Dashboard = () => {
             <h4 style={{ marginTop: 0, color: 'var(--primary)' }}>PRO Quick Links</h4>
             <a href="#" className="link-item" onClick={() => handleTabClick('guidance')}>
               <i className="fas fa-video link-icon"></i>
+              <FontAwesomeIcon icon={faVideo} className="link-icon" />
               <span>Career Guidance</span>
             </a>
             <a href="#" className="link-item" onClick={() => handleTabClick('analytics')}>
               <i className="fas fa-chart-line link-icon"></i>
+              <FontAwesomeIcon icon={faChartLine} className="link-icon" />
               <span>Profile Analytics</span>
             </a>
             <a href="#" className="link-item" onClick={() => handleTabClick('assessments')}>
               <i className="fas fa-tasks link-icon"></i>
+              <FontAwesomeIcon icon={faTasks} className="link-icon" />
               <span>Assessments</span>
             </a>
             <a href="#" className="link-item" onClick={() => handleTabClick('workshops')}>
               <i className="fas fa-chalkboard-teacher link-icon"></i>
+              <FontAwesomeIcon icon={faChalkboardTeacher} className="link-icon" />
               <span>Workshops</span>
             </a>
-            <div style={{ marginTop: '1.5rem', background: 'rgba(var(--primary), 0.05)', padding: '1rem', borderRadius: '8px' }}>
-              <h5 style={{ margin: '0 0 0.5rem', color: 'var(--primary)' }}>Upcoming PRO Event</h5>
-              <p style={{ margin: 0, fontSize: '0.9rem' }}>
-                <strong>Tech Industry Panel</strong><br />Tomorrow, 3:00 PM
-              </p>
-              <button className="action-button" style={{ width: '100%', marginTop: '0.75rem', padding: '0.5rem' }}>
-                <i className="fas fa-calendar-plus"></i> Join
-              </button>
-            </div>
           </div>
         </aside>
 
@@ -98,10 +108,12 @@ const Dashboard = () => {
             <div className="card-header">
               <h2 className="card-title">
                 <i className="fas fa-crown"></i>
+                <FontAwesomeIcon icon={faCrown} />&nbsp;
                 PRO Dashboard
               </h2>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button className="action-button" style={{ padding: '0.5rem 1rem' }}>
+                  <FontAwesomeIcon icon={faQuestionCircle} />
                   <i className="fas fa-question-circle"></i> PRO Help
                 </button>
               </div>
@@ -136,23 +148,29 @@ const Dashboard = () => {
 
             <div className={`tab-content ${activeTab === 'guidance' ? 'active' : ''}`} id="guidance">
               <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>Schedule Career Guidance Session</h3>
+              <br></br>
               <div className="video-call-container" style={{ marginBottom: '1.5rem' }}>
                 <div className="video-main">
                   <div style={{ textAlign: 'center' }}>
                     <i className="fas fa-video" style={{ fontSize: '3rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}></i>
+                    <FontAwesomeIcon icon={faVideo}  />
                     <p>Your video session will appear here</p>
                   </div>
                   <div className="video-controls">
                     <button className="video-control-btn">
+                      <FontAwesomeIcon icon={faVideo} />
                       <i className="fas fa-video"></i>
                     </button>
                     <button className="video-control-btn">
+                      <FontAwesomeIcon icon={faMicrophone} />
                       <i className="fas fa-microphone"></i>
                     </button>
                     <button className="video-control-btn">
+                      <FontAwesomeIcon icon={faDesktop} />
                       <i className="fas fa-desktop"></i>
                     </button>
                     <button className="video-control-btn end-call">
+                      <FontAwesomeIcon icon={faPhoneSlash} />
                       <i className="fas fa-phone-slash"></i>
                     </button>
                   </div>
@@ -180,7 +198,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <button className="action-button" style={{ width: '100%', marginTop: '1.5rem' }}>
-                    <i className="fas fa-calendar-plus"></i> Schedule Appointment
+                    <i className="fas fa-calendar-plus"></i> <FontAwesomeIcon icon={faCalendarPlus} /> &nbsp; Schedule Appointment
                   </button>
                   <div style={{ marginTop: '1.5rem', background: 'rgba(var(--primary), 0.05)', padding: '1rem', borderRadius: '8px' }}>
                     <h5 style={{ margin: '0 0 0.5rem', color: 'var(--primary)' }}>Upcoming Appointment</h5>
@@ -189,10 +207,10 @@ const Dashboard = () => {
                     </p>
                     <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
                       <button className="action-button" style={{ padding: '0.25rem 0.75rem', fontSize: '0.8rem', flex: 1 }}>
-                        <i className="fas fa-check"></i> Confirm
+                        <i className="fas fa-check"></i><FontAwesomeIcon icon={faCheck} />&nbsp; Confirm
                       </button>
                       <button className="action-button secondary" style={{ padding: '0.25rem 0.75rem', fontSize: '0.8rem', flex: 1 }}>
-                        <i className="fas fa-times"></i> Reschedule
+                        <i className="fas fa-times"></i><FontAwesomeIcon icon={faTimes} /> Reschedule
                       </button>
                     </div>
                   </div>
@@ -223,7 +241,7 @@ const Dashboard = () => {
                     placeholder="Take notes during your session..."
                   ></textarea>
                   <button className="action-button" style={{ width: '100%', marginTop: '0.75rem' }}>
-                    <i className="fas fa-save"></i> Save Notes
+                    <i className="fas fa-save"></i> <FontAwesomeIcon icon={faSave} />&nbsp; Save Notes
                   </button>
                 </div>
               </div>
@@ -231,6 +249,7 @@ const Dashboard = () => {
 
             <div className={`tab-content ${activeTab === 'analytics' ? 'active' : ''}`} id="analytics">
               <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>Your Profile Analytics</h3>
+              <br></br>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
                 <div className="card">
                   <h4 style={{ marginTop: 0, color: 'var(--primary)' }}>Profile Views</h4>
@@ -358,6 +377,7 @@ const Dashboard = () => {
 
             <div className={`tab-content ${activeTab === 'assessments' ? 'active' : ''}`} id="assessments">
               <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>Online Assessments</h3>
+              <br></br>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
                 <div className="card">
                   <h4 style={{ marginTop: 0, color: 'var(--primary)' }}>Available Assessments</h4>
@@ -368,7 +388,7 @@ const Dashboard = () => {
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>60 min • Programming, Problem Solving</div>
                       </div>
                       <button className="action-button" style={{ padding: '0.5rem 1rem' }}>
-                        <i className="fas fa-play"></i> Start
+                        <i className="fas fa-play"></i> <FontAwesomeIcon icon={faPlay} />&nbsp; Start
                       </button>
                     </div>
                     <div className="assessment-card">
@@ -377,7 +397,7 @@ const Dashboard = () => {
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>45 min • Communication, Teamwork</div>
                       </div>
                       <button className="action-button" style={{ padding: '0.5rem 1rem' }}>
-                        <i className="fas fa-play"></i> Start
+                        <i className="fas fa-play"></i><FontAwesomeIcon icon={faPlay} />&nbsp; Start
                       </button>
                     </div>
                     <div className="assessment-card">
@@ -386,7 +406,7 @@ const Dashboard = () => {
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>30 min • Media Engineering</div>
                       </div>
                       <button className="action-button" style={{ padding: '0.5rem 1rem' }}>
-                        <i className="fas fa-play"></i> Start
+                        <i className="fas fa-play"></i><FontAwesomeIcon icon={faPlay} />&nbsp; Start
                       </button>
                     </div>
                   </div>
@@ -425,7 +445,7 @@ const Dashboard = () => {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
                   <button className="action-button">
-                    <i className="fas fa-share-alt"></i> Share Scores on Profile
+                    <i className="fas fa-share-alt"></i><FontAwesomeIcon icon={faShareAlt} />&nbsp; Share Scores on Profile
                   </button>
                 </div>
               </div>
@@ -433,10 +453,12 @@ const Dashboard = () => {
 
             <div className={`tab-content ${activeTab === 'workshops' ? 'active' : ''}`} id="workshops">
               <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>Career Workshops</h3>
+              <br></br>
               <div style={{ marginBottom: '1.5rem' }}>
                 <div className="workshop-card">
                   <div className="workshop-thumbnail">
                     <i className="fas fa-chalkboard-teacher"></i>
+                    <FontAwesomeIcon icon={faChalkboardTeacher} />
                   </div>
                   <div className="workshop-details">
                     <div>
@@ -445,24 +467,24 @@ const Dashboard = () => {
                         Explore various career opportunities in the technology sector and learn how to position yourself for success.
                       </p>
                       <div className="workshop-meta">
-                        <span><i className="fas fa-calendar-alt"></i> May 10, 2025</span>
-                        <span><i className="fas fa-clock"></i> 3:00 PM - 5:00 PM</span>
-                        <span><i className="fas fa-user-tie"></i> Dr. Ahmed Samir</span>
+                        <span><i className="fas fa-calendar-alt"></i><FontAwesomeIcon icon={faCalendarAlt} />&nbsp; May 10, 2025</span>
+                        <span><i className="fas fa-clock"></i><FontAwesomeIcon icon={faClock} />&nbsp; 3:00 PM - 5:00 PM</span>
+                        <span><i className="fas fa-user-tie"></i><FontAwesomeIcon icon={faUserTie} />&nbsp; Dr. Ahmed Samir</span>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                       <button className="action-button">
-                        <i className="fas fa-calendar-plus"></i> Register
+                        <i className="fas fa-calendar-plus"></i><FontAwesomeIcon icon={faCalendarPlus} />&nbsp; Register
                       </button>
                       <button className="action-button secondary">
-                        <i className="fas fa-info-circle"></i> Details
+                        <i className="fas fa-info-circle"></i><FontAwesomeIcon icon={faInfoCircle} />&nbsp; Details
                       </button>
                     </div>
                   </div>
                 </div>
                 <div className="workshop-card">
                   <div className="workshop-thumbnail">
-                    <i className="fas fa-file-alt"></i>
+                    <i className="fas fa-file-alt"><FontAwesomeIcon icon={faFileAlt} />&nbsp;</i>
                   </div>
                   <div className="workshop-details">
                     <div>
@@ -471,17 +493,17 @@ const Dashboard = () => {
                         Learn how to craft a standout resume and optimize your LinkedIn profile to attract recruiters.
                       </p>
                       <div className="workshop-meta">
-                        <span><i className="fas fa-calendar-alt"></i> May 17, 2025</span>
-                        <span><i className="fas fa-clock"></i> 10:00 AM - 12:00 PM</span>
-                        <span><i className="fas fa-user-tie"></i> HR Specialist</span>
+                        <span><i className="fas fa-calendar-alt"></i><FontAwesomeIcon icon={faCalendarAlt} />&nbsp; May 17, 2025</span>
+                        <span><i className="fas fa-clock"></i><FontAwesomeIcon icon={faClock} />&nbsp; 10:00 AM - 12:00 PM</span>
+                        <span><i className="fas fa-user-tie"></i><FontAwesomeIcon icon={faUserTie} />&nbsp; HR Specialist</span>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                       <button className="action-button">
-                        <i className="fas fa-calendar-plus"></i> Register
+                        <i className="fas fa-calendar-plus"></i><FontAwesomeIcon icon={faCalendarPlus} />&nbsp; Register
                       </button>
                       <button className="action-button secondary">
-                        <i className="fas fa-info-circle"></i> Details
+                        <i className="fas fa-info-circle"></i><FontAwesomeIcon icon={faInfoCircle} />&nbsp; Details
                       </button>
                     </div>
                   </div>
@@ -491,27 +513,27 @@ const Dashboard = () => {
                 <h4 style={{ marginTop: 0, color: 'var(--primary)' }}>Your Workshop Certificates</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
                   <div className="certificate-card">
-                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i>
+                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i><FontAwesomeIcon icon={faCertificate} />
                     <div style={{ fontWeight: 'bold' }}>Interview Skills</div>
                     <div style={{ fontSize: '0.8rem' }}>Completed: Apr 5, 2025</div>
                     <button className="action-button" style={{ width: '100%', marginTop: '1rem', background: 'white', color: 'var(--primary)' }}>
-                      <i className="fas fa-download"></i> Download
+                      <i className="fas fa-download"></i><FontAwesomeIcon icon={faDownload} />&nbsp; Download
                     </button>
                   </div>
                   <div className="certificate-card">
-                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i>
+                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i><FontAwesomeIcon icon={faCertificate} />
                     <div style={{ fontWeight: 'bold' }}>Networking Strategies</div>
                     <div style={{ fontSize: '0.8rem' }}>Completed: Mar 15, 2025</div>
                     <button className="action-button" style={{ width: '100%', marginTop: '1rem', background: 'white', color: 'var(--primary)' }}>
-                      <i className="fas fa-download"></i> Download
+                      <i className="fas fa-download"></i><FontAwesomeIcon icon={faDownload} />&nbsp; Download
                     </button>
                   </div>
                   <div className="certificate-card">
-                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i>
+                    <i className="fas fa-certificate" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}></i><FontAwesomeIcon icon={faCertificate} />
                     <div style={{ fontWeight: 'bold' }}>Personal Branding</div>
                     <div style={{ fontSize: '0.8rem' }}>Completed: Feb 28, 2025</div>
                     <button className="action-button" style={{ width: '100%', marginTop: '1rem', background: 'white', color: 'var(--primary)' }}>
-                      <i className="fas fa-download"></i> Download
+                      <i className="fas fa-download"></i><FontAwesomeIcon icon={faDownload} />&nbsp; Download
                     </button>
                   </div>
                 </div>
