@@ -1,0 +1,459 @@
+.evaluation-forms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.evaluation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.evaluation-header h1 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.role-badge {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* SCAD Office Features */
+.scad-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.feature-card p {
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.assignment-stats, .issue-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.stat {
+  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.stat.warning {
+  background: #fff8e1;
+  color: #ffa000;
+}
+
+.stat.danger {
+  background: #fdecea;
+  color: #d32f2f;
+}
+
+/* Filters */
+.evaluation-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.search-filter {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-filter input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-filter svg {
+  position: absolute;
+  left: 0.5rem;
+  color: #7f8c8d;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+
+.filter-group select, .filter-group input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Evaluations List */
+.evaluations-list {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 500;
+  color: #2c3e50;
+  position: sticky;
+  top: 0;
+}
+
+.student-info, .company-info, .date-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.student-info svg, .company-info svg, .date-info svg {
+  color: #7f8c8d;
+  font-size: 1.25rem;
+}
+
+.student-name {
+  font-weight: 500;
+}
+
+.student-id {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.approved {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-badge.rejected {
+  background: #fdecea;
+  color: #d32f2f;
+}
+
+.status-badge.pending {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.view-details-btn {
+  background: #f8f9fa;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.view-details-btn:hover {
+  background: #e9ecef;
+}
+
+/* Expanded View */
+.expanded-view {
+  background: #f8f9fa;
+}
+
+.expanded-view td {
+  padding: 0;
+}
+
+.expanded-content {
+  padding: 1.5rem;
+}
+
+.expanded-content h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.documents-section, .checks-section, .assignment-section, .evaluation-form-section, .previous-evaluation {
+  margin-bottom: 2rem;
+}
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.file-icon {
+  font-size: 1.5rem;
+}
+
+.file-icon.pdf {
+  color: #e74c3c;
+}
+
+.file-icon.word {
+  color: #2c3e50;
+}
+
+.file-icon.excel {
+  color: #27ae60;
+}
+
+.file-icon.image {
+  color: #e67e22;
+}
+
+.view-btn {
+  margin-left: auto;
+  background: #e3f2fd;
+  color: #1976d2;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.check-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.check-result {
+  padding: 0.75rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.check-result.success {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.check-result.warning {
+  background: #fff8e1;
+  color: #ffa000;
+}
+
+.check-result.danger {
+  background: #fdecea;
+  color: #d32f2f;
+}
+
+.assignment-form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.assignment-form select {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.assign-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.assign-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.evaluation-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.evaluation-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.evaluation-form .form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.evaluation-form label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.evaluation-form select, .evaluation-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.evaluation-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-evaluation-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.submit-evaluation-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.previous-evaluation .evaluation-details {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.previous-evaluation p {
+  margin: 0.5rem 0;
+}
+
+.feedback {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.flagged-notice {
+  background: #fff8e1;
+  color: #ffa000;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #7f8c8d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .evaluation-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-filter {
+    min-width: 100%;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .assignment-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .scad-features {
+    grid-template-columns: 1fr;
+  }
+}
