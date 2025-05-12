@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
+import ReportSubmissions from './ReportSubmissions';
  
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/student" element={<NormalStudent />} />
         <Route path='/prol' element={<internship />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/report-submissions' element={<ReportSubmissions />} />
       </Routes>
     </BrowserRouter>
   );

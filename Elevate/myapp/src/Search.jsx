@@ -206,7 +206,7 @@ const Search = () => {
                       <FaBriefcase className="link-icon" />
                       <span>Internship Dashboard</span>
                     </a>
-                    <a href="#" className="link-item">
+                    <a href="/report-submissions" className="link-item">
                       <FaFileUpload className="link-icon" />
                       <span>Report Submissions</span>
                     </a>
