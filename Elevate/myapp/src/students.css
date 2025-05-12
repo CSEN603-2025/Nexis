@@ -1,0 +1,476 @@
+/* Dashboard.css */
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header styles */
+  .top-header {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+  
+  .icon-button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #0d9488;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  /* Main container styles */
+  .main-container {
+    display: flex;
+    flex: 1;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 240px;
+    background-color: #fff;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s;
+    padding: 1rem 0;
+    height: calc(100vh - 73px);
+    position: sticky;
+    top: 73px;
+  }
+  
+  .sidebar.collapsed {
+    width: 70px;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin: 0.25rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .nav-item:hover {
+    background-color: #f5f7fa;
+  }
+  
+  .nav-item.active {
+    background-color: #0d9488;
+    color: white;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+  
+  .nav-icon {
+    width: 1.25rem;
+    text-align: center;
+  }
+  
+  /* Content styles */
+  .content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+  
+  /* Companies specific styles */
+  .companies-container {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .companies-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1;
+  }
+  
+  .card-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .filter-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    
+  }
+  
+  .search-box {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+  }
+  
+  .search-input {
+    padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    outline: none;
+    width: 250px;
+  }
+  
+  .industry-filter {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    outline: none;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-primary {
+    background-color: #0d9488;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0d9488;
+  }
+  
+  .btn-secondary {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .companies-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .companies-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    color: #6b7280;
+    font-weight: 500;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .companies-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .company-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .company-logo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .company-name {
+    font-weight: 500;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+  
+  .actions-cell {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .action-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .action-btn:hover {
+    background-color: #f3f4f6;
+  }
+  
+  tr.selected-row {
+    background-color: #f3f4f6;
+  }
+  
+  tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  /* Company details panel */
+  .company-details-panel {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    
+    background-color: #fff;
+  }
+  .companies-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  .panel-header {
+    padding: 32 px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .panel-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .close-btn:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .panel-body {
+    padding: 1.25rem;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .company-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .company-profile h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .description {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+  
+  .detail-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .detail-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .label {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .value {
+    font-weight: 500;
+  }
+  
+  .website-link {
+    color: #0d9488;
+    text-decoration: none;
+  }
+  
+  .website-link:hover {
+    text-decoration: underline;
+  }
+  
+  .panel-footer {
+    padding: 1.25rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+  .view-profile-button {
+    background-color: #0d9488;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .back-button{
+    background-color: #0d9488;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+  
+  .status-flagged {
+    background-color: #dfb600;
+    color: white;
+  }
+  
+  .status-accepted {
+    background-color: #34d399;
+    color: white;
+  }
+  
+  .status-pending {
+    background-color: #e0f91d;
+    color: white;
+  }
+  
+  .status-rejected {
+    background-color: #ef4444;
+  
+    color: white;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
