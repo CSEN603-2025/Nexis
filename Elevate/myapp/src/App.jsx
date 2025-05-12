@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import StudentDashboard from './StudentDashboard';
-import ScadDashboard from './scadDashboard';
+import ScadDashboard from './scaddashboard';
 import Reports from './Reports';
 import StudentProfile from './students';
 import Internships from './internships';
