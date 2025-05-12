@@ -2,6 +2,11 @@ import './internship-portal.css';
 // Add this at the top of your file (if missing)
 import 'antd/dist/reset.css'; // For Ant Design v5+
 import { useNavigate } from 'react-router-dom';
+import CompanyEvaluations from './CompanyEvaluations';
+import InternshipListing from './InternshipListing';
+import Applications from './Applications';
+import Interns from './Interns';
+
 import React, { useState } from 'react';
 import {
  Input, Modal,Layout, Menu, Avatar, Badge, Button, Tag, List, ConfigProvider,Typography, Row, Col, Card, Table,Space,Form,Select,DatePicker
@@ -26,6 +31,16 @@ const messages = [
 
 
 const Company = () => {
+
+const handleStatusChange = (key, newStatus) => {
+  console.log('Key:', key, 'New Status:', newStatus);
+  setInternsData((prevData) =>
+    prevData.map((intern) =>
+      intern.key === key ? { ...intern, status: newStatus } : intern
+    )
+  );
+};
+   const [showEvaluations, setShowEvaluations] = useState(false);
      const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [darkMode, setDarkMode] = useState(false);
@@ -139,15 +154,6 @@ const handlePostSubmit = (values) => {
   
 
 
-const handleStatusUpdate = (key) => {
-  setData(prevData => 
-    prevData.map(item => 
-      item.key === key 
-        ? { ...item, status: 'Completed' } 
-        : item
-    )
-);
-};
   const handlePostNewClick = () => {
     setIsFormVisible(true);
   };
@@ -278,7 +284,7 @@ case 'internship-posts':
             label="posted date"
             rules={[{ required: true, message: 'Please input the date!' }]}
           >
-            <Input />
+             <Input type="date" />
           </Form.Item>
 
 
@@ -439,42 +445,37 @@ case 'internship-posts':
           { title: "Duration", dataIndex: "duration", key: "duration" },
           { title: "Paid", dataIndex: "paid", key: "paid" },
           { title: "Posted Date", dataIndex: "postedDate", key: "postedDate" },
-          { title: "Applications", dataIndex: "applications", key: "applications" },
+          { title: "Applications Submitted", dataIndex: "applications", key: "applications" },
           { 
             title: "Actions", 
             key: "actions", 
             render: (_, record) => (
               <Space size="middle">
                 <Button 
-                  type="text" 
-                  icon={<EyeOutlined />} 
+                  type="primary"
+                style={{ backgroundColor: '#0d9488' }} 
                   onClick={() => handleView(record.key)}
-                />
-                <Button 
-                  type="text" 
-                  icon={<EditOutlined />} 
-                  onClick={() => handleEdit(record.key)}
-                />
-<Button 
-  type="text" 
-  icon={<DeleteOutlined />}
-  onClick={() => {
-    console.log("Delete clicked for:", record.key);
-    Modal.confirm({
-      title: 'Confirm Delete',
-      content: 'Are you sure you want to delete this internship?',
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
-      onOk: () => {
-        console.log("Confirmed deletion of key:", record.key);
-        handleDelete(record.key);
-      }
-    });
-  }}
-  danger
-/>
+                >
+                 View Details   
+                 </Button>
 
+                  <Button 
+                  type="primary"
+                style={{ backgroundColor: '#0d9488' }} 
+                  onClick={() => handleEdit(record.key)}
+                >
+                Edit  
+                 </Button>
+
+
+     <Button 
+                  type="primary"
+                style={{ backgroundColor: '#0d9488' }} 
+                  onClick={() => handleDelete(record.key)}
+                >
+                Delete 
+                 </Button>
+  
         </Space>
       ),
     },
@@ -521,17 +522,14 @@ case 'internship-posts':
               <Col span={8}>
                 <Card title="Active Internship Posts">
                   <Title level={2}>3</Title>
-                  <a href="#">View All Posts</a>
                 </Card>
 
                 <Card title="Pending Applications" style={{ marginTop: 16 }}>
                   <Title level={2}>8</Title>
-                  <a href="#">Review Applications</a>
                 </Card>
 
                 <Card title="Current Interns" style={{ marginTop: 16 }}>
                   <Title level={2}>2</Title>
-                  <a href="#">Manage Interns</a>
                 </Card>
 
                 <Card title="Documents & Verification" style={{ marginTop: 16 }}>
@@ -544,331 +542,18 @@ case 'internship-posts':
             </Row>
           </div>
         );
-
-        case 'interns':
-             const internsData = [
-    {
-      key: '1',
-      name: 'Alex Johnson',
-      id: 'W2201045',
-      position: 'Software Engineering Intern',
-      date: '2025-04-20',
-      status: 'Current',
-    },
-    {
-      key: '2',
-      name: 'Jamie Smith',
-      id: 'W2201089',
-      position: 'Software Engineering Intern',
-      date: '2025-04-19',
-      status: 'Current',
-    },
-    {
-      key: '3',
-      name: 'Taylor Wilson',
-      id: 'W2201023',
-      position: 'Marketing Assistant',
-      date: '2025-04-18',
-      status: 'Current',
-    },
-    {
-      key: '4',
-      name: 'Morgan Lee',
-      id: 'W2201067',
-      position: 'Data Analyst Intern',
-      date: '2025-04-15',
-      status: 'Current',
-    },
-  ];
- const filteredData = internsData.filter(intern => {
-    const matchesSearch = intern.name.toLowerCase().includes(searchText.toLowerCase()) || 
-                         intern.position.toLowerCase().includes(searchText.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || intern.status.toLowerCase() === statusFilter.toLowerCase();
-    return matchesSearch && matchesStatus;
-  });
-
-    const handleStatusChange = (key, newStatus) => {
-    setInternsData(prevData => 
-      prevData.map(intern => 
-        intern.key === key ? { ...intern, status: newStatus } : intern
-      )
-    );
-};
- const columns = [
-    {
-      title: 'Student Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Student ID',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
-      title: 'Position',
-      dataIndex: 'position',
-      key: 'position',
-    },
-    {
-      title: 'Applied Date',
-      dataIndex: 'date',
-      key: 'date',
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status) => {
-        let color = '';
-        switch (status) {
-          case 'Pending': color = 'orange'; break;
-          case 'Reviewing': color = 'blue'; break;
-          case 'Accepted': color = 'green'; break;
-          case 'Current': color = 'cyan'; break;
-          case 'Completed': color = 'gray'; break;
-          default: color = 'default';
-        }
-        return <Tag color={color}>{status}</Tag>;
-      },
-    },
-    {
- title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status, record) => (
-        <Select 
-          value={status}
-          style={{ width: 120 }}
-          onChange={(value) => handleStatusChange(record.key, value)}
-        >
-          <Option value="Current">Current</Option>
-          <Option value="Completed">Completed</Option>
-        </Select>
-      ),
-    },
-  ];
- return (
-<div style={{ padding: '20px' }}>
-      <Title level={2}>Interns</Title>
-      
-      {/* Search and Filter Row */}
-      <div style={{ 
-        display: 'flex', 
-        gap: '16px', 
-        marginBottom: '16px',
-        alignItems: 'center'
-      }}>
-        <Input.Search
-          placeholder="Search by name or position"
-          allowClear
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          style={{ width: 200 }}
-        />
         
-        <Select 
-          defaultValue="Status" 
-          style={{ width: 150 }}
-          onChange={value => setStatusFilter(value)}
-        >
-          <Option value="Current">Current</Option>
-          <Option value="Completed">Completed</Option>
-        </Select>
-      </div>
-
-      <Table
-        dataSource={filteredData}
-        columns={columns}
-        pagination={false}
-      />
-    </div>
-  );
+case 'interns':
+    return <Interns />;
 case 'applications':
-  const [applicationsData, setApplicationsData] = useState([
-    {
-      key: '1',
-      name: 'Alex Johnson',
-      id: 'W2201045',
-      position: 'Software Engineering Intern',
-      date: '2025-04-20',
-      status: 'Pending',
-    },
-    {
-      key: '2',
-      name: 'Jamie Smith',
-      id: 'W2201089',
-      position: 'Software Engineering Intern',
-      date: '2025-04-19',
-      status: 'Reviewing',
-    },
-    {
-      key: '3',
-      name: 'Taylor Wilson',
-      id: 'W2201023',
-      position: 'Marketing Assistant',
-      date: '2025-04-18',
-      status: 'Accepted',
-    },
-    {
-      key: '4',
-      name: 'Morgan Lee',
-      id: 'W2201067',
-      position: 'Data Analyst Intern',
-      date: '2025-04-15',
-      status: 'Current',
-    },
-    {
-      key: '5',
-      name: 'Casey Brown',
-      id: 'W2201012',
-      position: 'UX/UI Design Intern',
-      date: '2025-03-25',
-      status: 'Completed',
-    },
-  ]);
-
- 
-
+    return <Applications />;
   
-  const handleViewProfile = (key) => {
-    console.log('Viewing profile for application:', key);
-  };
+case 'evaluations':
+ return <CompanyEvaluations />;
 
-
-
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorBgContainer: '#ffffff',
-          colorBgElevated: '#ffffff',
-          colorBorderSecondary: '#f0f0f0',
-        },
-        components: {
-          Table: {
-            headerBg: '#ffffff',
-            headerColor: '#000000',
-            borderColor: '#f0f0f0',
-            cellPaddingBlock: 12,
-          },
-          Select: {
-            colorBgContainer: '#ffffff',
-          },
-        },
-      }}
-    >
-      <div style={{ 
-        padding: '20px',
-        backgroundColor: '#ffffff',
-        minHeight: '100vh',
-        position: 'relative',
-        zIndex: 1,
-      }}>
-        <Title level={2} style={{ color: '#000000' }}>Applications</Title>
-        
-        <div style={{ 
-          marginBottom: 16,
-          marginTop: 8,
-          backgroundColor: '#ffffff',
-          padding: 12,
-          borderRadius: 8,
-          border: '1px solid #f0f0f0',
-        }}>
-          <Space>
-            <Select 
-              defaultValue="all"
-              style={{ width: 150 }}
-              onChange={value => setStatusFilter(value)}
-            >
-              <Option value="all">All Statuses</Option>
-              <Option value="pending">Pending</Option>
-              <Option value="reviewing">Reviewing</Option>
-              <Option value="accepted">Accepted</Option>
-              <Option value="current">Current</Option>
-              <Option value="completed">Completed</Option>
-            </Select>
-          </Space>
-        </div>
-
-        <Table
-          dataSource={filteredData}
-          columns={[
-            {
-              title: 'Student Name',
-              dataIndex: 'name',
-              key: 'name',
-            },
-            {
-              title: 'Student ID',
-              dataIndex: 'id',
-              key: 'id',
-            },
-            {
-              title: 'Position',
-              dataIndex: 'position',
-              key: 'position',
-            },
-            {
-              title: 'Applied Date',
-              dataIndex: 'date',
-              key: 'date',
-            },
-            {
-              title: 'Status',
-              dataIndex: 'status',
-              key: 'status',
-              render: (status) => {
-                let color = '';
-                switch (status) {
-                  case 'Pending': color = 'orange'; break;
-                  case 'Reviewing': color = 'blue'; break;
-                  case 'Accepted': color = 'green'; break;
-                  case 'Current': color = 'cyan'; break;
-                  case 'Completed': color = 'gray'; break;
-                  case 'Rejected': color = 'red'; break;
-                  case 'Finalized': color = 'purple'; break;
-                  default: color = 'default';
-                }
-                return <Tag color={color}>{status}</Tag>;
-              },
-            },
-            {
-              title: 'Actions',
-              key: 'actions',
-              render: (_, record) => (
-                <Space size="middle">
-                  <Button 
-                    type="text" 
-                    icon={<EyeOutlined />} 
-                    onClick={() => handleViewProfile(record.key)}
-                    title="View Profile"
-                  />
-                  <Select
-                    placeholder="Update Status"
-                    style={{ width: 150 }}
-                    onChange={(value) => handleStatusChange(record.key, value)}
-                    dropdownMatchSelectWidth={false}
-                  >
-                    <Option value="final">Finalized</Option>
-                    <Option value="accept">Accepted</Option>
-                    <Option value="reject">Rejected</Option>
-                  </Select>
-                </Space>
-              ),
-            }
-          ]}
-          pagination={false}
-          style={{ 
-            backgroundColor: '#ffffff',
-            border: '1px solid #f0f0f0',
-            borderRadius: 8,
-          }}
-        />
-      </div>
-    </ConfigProvider>
-  );
-
+  case 'other companies':
+     return <InternshipListing />;
+  
       default:
         return <div style={{ padding: '20px' }}>Content for {activeTab} will be here</div>;
     }
@@ -936,8 +621,7 @@ case 'applications':
             <Menu.Item key="applications" icon={<i className="fas fa-clipboard-list" />}>Applications</Menu.Item>
             <Menu.Item key="interns" icon={<TeamOutlined />}>Interns</Menu.Item>
             <Menu.Item key="evaluations" icon={<i className="fas fa-star" />}>Evaluations</Menu.Item>
-            <Menu.Item key="resources" icon={<i className="fas fa-book" />}>Resources</Menu.Item>
-            <Menu.Item key="settings" icon={<SettingOutlined />}>Settings</Menu.Item>
+            <Menu.Item key="other companies" icon={<i className="fas fa-book" />}>Other Companies</Menu.Item>
           </Menu>
         </Sider>
         <Content className="page-container">
