@@ -226,6 +226,10 @@ const Search = () => {
                       <FaCalendarAlt className="link-icon" />
                       <span>Schedule</span>
                     </a>
+                    <a href="workshops-management" className="link-item">
+                      <FaCalendarAlt className="link-icon" />
+                      <span>Workshop Management</span>
+                    </a>
                     <a href="#" className="link-item">
                       <FaEnvelope className="link-icon" />
                       <span>Messages</span>
