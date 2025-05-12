@@ -6,9 +6,9 @@ import './scadDashboard.css';
     { icon: "fa-home", label: "Dashboard" ,path: "/scaddashboard"},
     { icon: "fa-briefcase", label: "Internships",path: "/internships" },
     { icon: "fa-file-alt", label: "Reports",path: "/reports" },
-    { icon: "fa-clipboard-list", label: "Evaluations" },
+    { icon: "fa-clipboard-list", label: "Evaluations" ,path: "/EvaluationForms"},
     { icon: "fa-building", label: "Students" ,path: "/students"},
-    { icon: "fa-book", label: "Resources" },
+    { icon: "fa-book", label: "Workshops",path: "/workshopsManagement" },
     { icon: "fa-cog", label: "Settings" },
   ];
 
