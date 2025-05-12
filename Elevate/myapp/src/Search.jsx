@@ -210,7 +210,7 @@ const Search = () => {
                       <FaFileUpload className="link-icon" />
                       <span>Report Submissions</span>
                     </a>
-                    <a href="#" className="link-item">
+                    <a href="/evaluation-forms" className="link-item">
                       <FaTasks className="link-icon" />
                       <span>Evaluation Forms</span>
                     </a>
