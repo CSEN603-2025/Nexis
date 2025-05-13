@@ -5,13 +5,13 @@ import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import StudentDashboard from './StudentDashboard';
 import ScadDashboard from './scaddashboard';
-import Reports from './Reports';
-import StudentProfile from './students';
+import Reports from './reports';
+import StudentList from './students';
 import Internships from './internships';
 import MainLayout from './MainLayout';
-import StudentProfile from './studentProfile';
+import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
-import Workshops from './WorkshopManagement';
+import Workshops from './WorkshopsManagement';
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
       <Route path="/scaddashboard" element={<ScadDashboard />} />
       <Route path="/internships" element={<Internships />} />
       <Route path="/students" element={<StudentList />} />
-       <Route path="/WorkshopManagement" element={<Workshops />} />
-      <Route path="/students/:id" element={<StudentProfile />} />
+       <Route path="/WorkshopsManagement" element={<Workshops />} />
+      <Route path="/students/:id" element={<Studentscad />} />
       </Route>
       </Routes>
     </BrowserRouter>

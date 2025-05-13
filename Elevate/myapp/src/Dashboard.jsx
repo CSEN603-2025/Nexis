@@ -16,7 +16,7 @@ import {
   faInfoCircle,
   faFileAlt,
   faCertificate,
-  faDownload,faSun, faMoon
+  faDownload,faSun, faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 
