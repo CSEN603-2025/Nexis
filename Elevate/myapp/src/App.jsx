@@ -4,9 +4,6 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
-<<<<<<< Updated upstream
- 
-=======
 import ReportSubmissions from './ReportSubmissions';
 import EvaluationForms from './EvaluationForms';
 import WorkshopsManagement from './WorkshopsManagement';
@@ -16,10 +13,7 @@ import Assessment from './Assessment';
 import Analytics from './Analytics';
 import Registration from './registration';
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,8 +23,7 @@ function App() {
         <Route path="/student" element={<NormalStudent />} />
         <Route path='/prol' element={<internship />} />
         <Route path='/search' element={<Search />} />
-<<<<<<< Updated upstream
-=======
+
         <Route path='/report-submissions' element={<ReportSubmissions />} />
         <Route path="/evaluation-forms" element={<EvaluationForms />} />
         <Route path="/Workshops-management" element={<WorkshopsManagement />} />
@@ -40,10 +33,7 @@ function App() {
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
         
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
       </Routes>
     </BrowserRouter>
   );
