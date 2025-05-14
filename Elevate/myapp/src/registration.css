@@ -1,0 +1,244 @@
+/* Registration Component Styles */
+
+/* Main container */
+.registration-container {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form header styling */
+.form-header {
+  max-width: 28rem;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.form-header p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  font-weight: 500;
+  color: #2563eb;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.toggle-button:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Form container */
+.form-container {
+  background-color: white;
+  max-width: 28rem;
+  margin: 2rem auto 0;
+  padding: 2rem 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  width: 100%;
+  appearance: none;
+  line-height: 1.5;
+  color: #111827;
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+/* File upload styling */
+.file-upload {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.375rem;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.file-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.file-upload-btn {
+  position: relative;
+  background-color: white;
+  border: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #2563eb;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+}
+
+.file-upload-btn:hover {
+  background-color: #f9fafb;
+}
+
+.file-upload-btn input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-name {
+  font-size: 0.875rem;
+  color: #6b7280;
+  word-break: break-all;
+}
+
+.file-info {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  margin-top: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #1d4ed8;
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+}
+
+/* Social sign-in section */
+.social-signin {
+  margin-top: 1.5rem;
+}
+
+.separator {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.separator span {
+  position: relative;
+  background-color: white;
+  padding: 0 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.social-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.social-button {
+  padding: 0.625rem;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.social-button:hover {
+  background-color: #f9fafb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+  
+  .social-buttons {
+    grid-template-columns: 1fr;
+  }
+}
