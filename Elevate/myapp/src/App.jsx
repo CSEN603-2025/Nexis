@@ -16,6 +16,9 @@ import Assessment from './Assessment';
 import Analytics from './Analytics';
 import Registration from './registration';
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </Routes>
     </BrowserRouter>
