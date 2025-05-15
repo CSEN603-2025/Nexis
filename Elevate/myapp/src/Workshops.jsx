@@ -17,7 +17,7 @@ const Workshops = () => {
       status: 'upcoming',
       registered: true,
       description: 'Learn how to craft a compelling professional brand that showcases your unique skills and value proposition to potential employers.',
-      recordingUrl: 'dummy-video.mp4',
+      recordingUrl: '/dummy-video.mp4',
       certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,

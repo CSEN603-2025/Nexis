@@ -22,6 +22,7 @@ import MainLayout from './MainLayout';
 import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
 import    WorkshopsManagement from './WorkshopsManagement';
+import { BrowserRouter as Router,   Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -40,18 +41,17 @@ function App() {
         <Route path="/reg" element={<Registration />} />
 
         <Route path='/pro' element={<StudentDashboard />} />
-       <Route element={<MainLayout />}>
     <Route path="/reports" element={<Reports />} />
        <Route path="/EvaluationForms" element={<Evaluations />} />
       <Route path="/scaddashboard" element={<ScadDashboard />} />
       <Route path="/internships" element={<Internships />} />
       <Route path="/students" element={<StudentList />} />
-       <Route path="/WorkshopsManagement" element={<Workshops />} />
+       <Route path="/WorkshopsManagement" element={<WorkshopsManagement />} />
       <Route path="/students/:id" element={<Studentscad />} />
+      <Route path="/" element={<Navigate to="/company" replace />} />
        <Route path="/company" element={<Company />} />
 
     
-      </Route>
       </Routes>
     </BrowserRouter>
   );

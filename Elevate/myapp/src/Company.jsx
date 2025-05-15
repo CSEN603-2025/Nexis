@@ -32,14 +32,7 @@ const messages = [
 
 const Company = () => {
 
-const handleStatusChange = (key, newStatus) => {
-  console.log('Key:', key, 'New Status:', newStatus);
-  setInternsData((prevData) =>
-    prevData.map((intern) =>
-      intern.key === key ? { ...intern, status: newStatus } : intern
-    )
-  );
-};
+
    const [showEvaluations, setShowEvaluations] = useState(false);
      const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -120,7 +113,7 @@ const handlePostSubmit = (values) => {
   const years = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate'];
   const genders = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
 
-  const renderContent = () => {
+  const RenderContent = () => {
 
   const [internshipData, setInternshipData] = useState([
     {
@@ -625,7 +618,7 @@ case 'evaluations':
           </Menu>
         </Sider>
         <Content className="page-container">
-          {renderContent()}
+          {RenderContent()}
         </Content>
       </Layout>
     </Layout>
