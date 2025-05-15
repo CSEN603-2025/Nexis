@@ -11,7 +11,12 @@ import Workshops from './Workshops';
 import Assessment from './Assessment';
 import Analytics from './Analytics';
 import Registration from './registration';
+
 import FacultyProfile from './faculty';
+
+
+import Evaluate from './Evaluate';
+import Library from './Library';
 
 import StudentDashboard from './StudentDashboard';
 import ScadDashboard from './scaddashboard';
@@ -39,6 +44,12 @@ function App() {
         <Route path="/Assessment" element={<Assessment />} />
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
+
+
+        <Route path="/eval" element={<Evaluate />} />
+        <Route path="/lib" element={<Library />} />
+        
+
 
         <Route path='/pro' element={<StudentDashboard />} />
     <Route path="/reports" element={<Reports />} />
