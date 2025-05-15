@@ -4,13 +4,14 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
-
+//import Company from './Company';
 
 import InternshipDashboard from './InternshipDashboard';
 import Workshops from './Workshops';
 import Assessment from './Assessment';
 import Analytics from './Analytics';
 import Registration from './registration';
+import FacultyProfile from './faculty';
 
 function App() {
   return (
@@ -21,17 +22,17 @@ function App() {
         <Route path="/student" element={<NormalStudent />} />
         <Route path='/prol' element={<internship />} />
         <Route path='/search' element={<Search />} />
-        
-       
+        <Route path="/faculty" element={<FacultyProfile />} />
         <Route path="/new" element={<InternshipDashboard />} />
         <Route path="/Workshop" element={<Workshops />} />
         <Route path="/Assessment" element={<Assessment />} />
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
-        
+
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App; 
+// <Route path="/company" element={<Company />} />

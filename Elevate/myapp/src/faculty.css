@@ -1,0 +1,434 @@
+.faculty-profile {
+  --primary: #006D77;
+  --secondary: #FFDDD2;
+  --accent: #83C5BE;
+  --background: #EDF6F9;
+  --card: #FFFFFF;
+  --text: #1E1E1E;
+  --text-secondary: #5E5E5E;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  transition: var(--transition);
+}
+
+.faculty-profile.dark-mode {
+  --primary: #83C5BE;
+  --secondary: #E29578;
+  --accent: #006D77;
+  --background: #121212;
+  --card: #1E1E1E;
+  --text: #EDF6F9;
+  --text-secondary: #B0B0B0;
+}
+
+/* Header Styles */
+.profile-header {
+  background-color: var(--card);
+  padding: 1rem 2rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.profile-header h1 {
+  color: var(--primary);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.theme-toggle {
+  background-color: var(--accent);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Statistics Overview */
+.stats-overview {
+  background-color: var(--card);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.stats-overview h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  background-color: var(--background);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.stat-card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.stat-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0;
+}
+
+.stat-card.accepted {
+  border-bottom: 4px solid #4CAF50;
+}
+
+.stat-card.rejected {
+  border-bottom: 4px solid #F44336;
+}
+
+.stat-card.pending {
+  border-bottom: 4px solid #FFC107;
+}
+
+.stat-card.flagged {
+  border-bottom: 4px solid #9C27B0;
+}
+
+.generate-report-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.generate-report-btn:hover {
+  background-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Reports Section */
+.reports-section {
+  display: flex;
+  gap: 2rem;
+}
+
+.reports-list-container {
+  flex: 1;
+  min-width: 400px;
+}
+
+.report-detail {
+  flex: 2;
+  background-color: var(--card);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  min-height: 500px;
+}
+
+.filters {
+  background-color: var(--card);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.filters h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 0.5rem;
+  border: 1px solid var(--text-secondary);
+  border-radius: 4px;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+/* Reports List */
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.report-card {
+  background-color: var(--card);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 4px solid var(--text-secondary);
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.report-card.selected {
+  border-left: 4px solid var(--primary);
+  background-color: var(--background);
+}
+
+.report-card .report-info {
+  flex: 1;
+}
+
+.report-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--primary);
+}
+
+.report-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.report-card .status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.accepted {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-badge.rejected {
+  background-color: #FFEBEE;
+  color: #C62828;
+}
+
+.status-badge.pending {
+  background-color: #FFF8E1;
+  color: #F57F17;
+}
+
+.status-badge.flagged {
+  background-color: #F3E5F5;
+  color: #7B1FA2;
+}
+
+.download-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.download-btn:hover {
+  background-color: var(--accent);
+}
+
+.no-results, .no-report-selected {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* Report Detail View */
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-row {
+  display: flex;
+  border-bottom: 1px solid var(--background);
+  padding-bottom: 0.5rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  min-width: 150px;
+  color: var(--primary);
+}
+
+.detail-value {
+  flex: 1;
+}
+
+.status-actions {
+  margin-top: 2rem;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.status-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.status-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.status-btn.accepted {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-btn.accepted.active {
+  background-color: #2E7D32;
+  color: white;
+}
+
+.status-btn.rejected {
+  background-color: #FFEBEE;
+  color: #C62828;
+}
+
+.status-btn.rejected.active {
+  background-color: #C62828;
+  color: white;
+}
+
+.status-btn.flagged {
+  background-color: #F3E5F5;
+  color: #7B1FA2;
+}
+
+.status-btn.flagged.active {
+  background-color: #7B1FA2;
+  color: white;
+}
+
+/* Comment Section */
+.comment-section {
+  margin-top: 2rem;
+}
+
+.comment-section textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--text-secondary);
+  background-color: var(--background);
+  color: var(--text);
+  margin: 1rem 0;
+  resize: vertical;
+}
+
+.submit-comment-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submit-comment-btn:hover {
+  background-color: var(--accent);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .reports-section {
+    flex-direction: column;
+  }
+  
+  .reports-list-container {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .filter-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .status-buttons {
+    flex-direction: column;
+  }
+}
