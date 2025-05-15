@@ -115,7 +115,7 @@ const NormalStudent = () => {
 
   const handleSaveChanges = () => {
     setFormData({ ...editFormData });
-    setShowEditModal(false);
+  setShowEditModal(false);
   };
 
   const handleCancelEdit = () => {
@@ -151,29 +151,37 @@ const NormalStudent = () => {
   };
 
   const handleAddExperience = () => {
-    if (newExperience.title && newExperience.company && newExperience.duration) {
-      const newId = editFormData.previousExperience.length > 0 
-        ? Math.max(...editFormData.previousExperience.map(exp => exp.id)) + 1 
-        : 1;
-      
-      setEditFormData(prev => ({
-        ...prev,
-        previousExperience: [...prev.previousExperience, {
-          ...newExperience,
-          id: newId
-        }]
-      }));
-      
-      setNewExperience({
-        title: "",
-        company: "",
-        duration: "",
-        responsibilities: "",
-        type: "Internship"
-      });
-    }
-  };
+  if (newExperience.title && newExperience.company && newExperience.duration) {
+    const newId = editFormData.previousExperience.length > 0 
+      ? Math.max(...editFormData.previousExperience.map(exp => exp.id)) + 1 
+      : 1;
+    
+    const updatedExperience = {
+      ...newExperience,
+      id: newId
+    };
 
+    // Update both editFormData and formData
+    setEditFormData(prev => ({
+      ...prev,
+      previousExperience: [...prev.previousExperience, updatedExperience]
+    }));
+    
+    setFormData(prev => ({
+      ...prev,
+      previousExperience: [...prev.previousExperience, updatedExperience]
+    }));
+    
+    // Reset the form
+    setNewExperience({
+      title: "",
+      company: "",
+      duration: "",
+      responsibilities: "",
+      type: "Internship"
+    });
+  }
+};
   const handleRemoveExperience = (id) => {
     setEditFormData(prev => ({
       ...prev,
@@ -398,41 +406,42 @@ const NormalStudent = () => {
             </div>
             
             {/* Previous Experience Section */}
-            <div className="professional-section">
-              <h3 className="section-title">
-                <FaBriefcase style={{marginRight: '0.5rem', color: 'var(--accent)'}} />
-                Previous Experience
-              </h3>
-              
-              {formData.previousExperience.length > 0 ? (
-                <div className="experience-container">
-                  {formData.previousExperience.map((exp) => (
-                    <div key={exp.id} className="experience-card">
-                      <div className="experience-header">
-                        <h4 className="experience-title">{exp.title}</h4>
-                        <span className="experience-badge">{exp.type}</span>
-                      </div>
-                      <p className="experience-company">
-                        <FaBuilding style={{marginRight: '0.5rem'}} />
-                        {exp.company}
-                      </p>
-                      <p className="experience-duration">
-                        <FaCalendarAlt style={{marginRight: '0.5rem'}} />
-                        {exp.duration}
-                      </p>
-                      {exp.responsibilities && (
-                        <div className="experience-responsibilities">
-                          <p className="responsibilities-label">Responsibilities:</p>
-                          <p className="responsibilities-text">{exp.responsibilities}</p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="empty-state">No previous experience added yet.</p>
-              )}
+<div className="professional-section">
+  <h3 className="section-title">
+    <FaBriefcase style={{marginRight: '0.5rem', color: 'var(--accent)'}} />
+    Previous Experience
+  </h3>
+  
+  {formData.previousExperience.length > 0 ? (
+    <div className="experience-container">
+      {formData.previousExperience.map((exp) => (
+        <div key={exp.id} className="experience-card">
+          <div className="experience-header">
+            <h4 className="experience-title">{exp.title}</h4>
+            <span className="experience-badge">{exp.type}</span>
+          </div>
+          <p className="experience-company">
+            <FaBuilding style={{marginRight: '0.5rem'}} />
+            {exp.company}
+          </p>
+          <p className="experience-duration">
+            <FaCalendarAlt style={{marginRight: '0.5rem'}} />
+            {exp.duration}
+          </p>
+          {exp.responsibilities && (
+            <div className="experience-responsibilities">
+              <p className="responsibilities-label">Responsibilities:</p>
+              <p className="responsibilities-text">{exp.responsibilities}</p>
             </div>
+          )}
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p className="empty-state">No previous experience added yet.</p>
+  )}
+</div>
+
             
             {/* College Activities Section */}
             <div className="professional-section">
