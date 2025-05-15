@@ -446,12 +446,12 @@
     font-size: 0.875rem;
   }
   
-  .status-flagged {
+  .status-current-intern{
     background-color: #dfb600;
     color: white;
   }
   
-  .status-accepted {
+  .status-internship-complete {
     background-color: #34d399;
     color: white;
   }

@@ -13,6 +13,16 @@ import Analytics from './Analytics';
 import Registration from './registration';
 import FacultyProfile from './faculty';
 
+import StudentDashboard from './StudentDashboard';
+import ScadDashboard from './scaddashboard';
+import Reports from './reports';
+import StudentList from './students';
+import Internships from './internships';
+import MainLayout from './MainLayout';
+import Studentscad from './studentProfile';
+import Evaluations from './EvaluationForms';
+import Workshops from './WorkshopsManagement';
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +39,16 @@ function App() {
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
 
+        <Route path='/pro' element={<StudentDashboard />} />
+       <Route element={<MainLayout />}>
+    <Route path="/reports" element={<Reports />} />
+       <Route path="/EvaluationForms" element={<Evaluations />} />
+      <Route path="/scaddashboard" element={<ScadDashboard />} />
+      <Route path="/internships" element={<Internships />} />
+      <Route path="/students" element={<StudentList />} />
+       <Route path="/WorkshopsManagement" element={<Workshops />} />
+      <Route path="/students/:id" element={<Studentscad />} />
+      </Route>
       </Routes>
     </BrowserRouter>
   );

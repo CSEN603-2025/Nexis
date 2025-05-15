@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./internships.css";
+import "./Internships.css";
 import "./Internshipcycles.css"; // New CSS file for the cycle dates component
 
 function Internships() {
