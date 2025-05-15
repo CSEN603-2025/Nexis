@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
-//import Company from './Company';
+import Company from './Company';
 
 import InternshipDashboard from './InternshipDashboard';
 import Workshops from './Workshops';
@@ -21,7 +21,7 @@ import Internships from './internships';
 import MainLayout from './MainLayout';
 import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
-import Workshops from './WorkshopsManagement';
+import    WorkshopsManagement from './WorkshopsManagement';
 
 function App() {
   return (
@@ -48,6 +48,9 @@ function App() {
       <Route path="/students" element={<StudentList />} />
        <Route path="/WorkshopsManagement" element={<Workshops />} />
       <Route path="/students/:id" element={<Studentscad />} />
+       <Route path="/company" element={<Company />} />
+
+    
       </Route>
       </Routes>
     </BrowserRouter>
@@ -55,4 +58,3 @@ function App() {
 }
 
 export default App; 
-// <Route path="/company" element={<Company />} />
