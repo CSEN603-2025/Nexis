@@ -405,12 +405,8 @@ const [filters, setFilters] = useState({
     document.body.removeChild(link);
   };
 
-<<<<<<< Updated upstream
-  return (<div className="report1">
-=======
   return (
     <div className='submit'>
->>>>>>> Stashed changes
     <div className="report-submissions-container">
       <div className="submission-header">
         <h1><FaFileUpload /> Report Submissions</h1>
@@ -871,11 +867,7 @@ const [filters, setFilters] = useState({
         </div>
       )}
     </div>
-<<<<<<< Updated upstream
-  </div>
-=======
     </div>
->>>>>>> Stashed changes
   );
 };
 

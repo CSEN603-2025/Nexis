@@ -1,4 +1,4 @@
-.pro{
+
 :root {
   --primary-color: #319795;
   --primary-hover: #2c7a7b;
@@ -70,7 +70,16 @@ body {
 .logo i {
   margin-right: 0.5rem;
 }
-
+.quick-links {
+   background-color: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  width: 100%;
+  flex: 1; /* Take remaining space */
+  min-height: 0; 
+  overflow-y: auto; 
+  }
 .search-bar {
   position: relative;
   margin-left: 2rem;
@@ -827,4 +836,4 @@ tr:hover {
 /* Hover state */
 .sidebar-menu li:not(.active):hover {
   background-color: rgba(0, 0, 0, 0.05);
-}}
+}

@@ -16,7 +16,6 @@ import FacultyProfile from './faculty';
 import Evaluate from './Evaluate';
 import Library from './Library';
 import Welcome from './Welcome';
-import StudentDashboard from './StudentDashboard';
 import ScadDashboard from './scaddashboard';
 import Reports from './reports';
 import StudentList from './students';
@@ -51,7 +50,6 @@ function App() {
         
 
 
-        <Route path='/pro' element={<StudentDashboard />} />
    
           <Route path="/scaddashboard" element={<ScadDashboard />} />
           <Route path="/internships" element={<Internships />} />

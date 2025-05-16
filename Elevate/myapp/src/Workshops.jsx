@@ -12,7 +12,6 @@ const Workshops = () => {
   const [userFeedback, setUserFeedback] = useState('');
   const [showNotification, setShowNotification] = useState(null);
   
-  
   const [workshops, setWorkshops] = useState([
     { 
       id: 1, 
@@ -152,16 +151,11 @@ const Workshops = () => {
   const handleViewRecording = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.recordingUrl) {
-<<<<<<< Updated upstream
-      // In a real app, this would open the recording
-      setTimeout(() => {
-=======
       setCurrentRecording(workshop);
       setShowRecordingModal(true);
       // In a real app, this would open the recording
       setTimeout(() => {
         setShowRecordingModal(false);
->>>>>>> Stashed changes
         window.open(workshop.recordingUrl, '_blank');
       }, 2000);
     } else {
@@ -173,7 +167,7 @@ const Workshops = () => {
     }
   };
 
- const VideoConferenceModal = () => {
+  const VideoConferenceModal = () => {
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
     const [isScreenSharing, setIsScreenSharing] = useState(false);
@@ -186,8 +180,6 @@ const Workshops = () => {
         message: 'Welcome everyone to the workshop! We\'ll be starting in a few minutes.', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isPresenter: true
-<<<<<<< Updated upstream
-=======
       },
       { 
         id: 2, 
@@ -195,7 +187,6 @@ const Workshops = () => {
         message: 'Looking forward to it!', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isPresenter: false
->>>>>>> Stashed changes
       }
     ]);
     const [unreadMessages, setUnreadMessages] = useState(0);
@@ -206,18 +197,6 @@ const Workshops = () => {
     const localVideoRef = useRef(null);
     const chatContainerRef = useRef(null);
 
-<<<<<<< Updated upstream
-    // Participants data
-    const participants = [
-      { id: 1, name: activeWorkshop.presenter.split(',')[0], role: 'Presenter', isSpeaking: true, hasCamera: true, hasMic: true },
-      { id: 2, name: 'Alex Thompson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
-      { id: 3, name: 'Jessica Lee', role: 'Student', isSpeaking: false, hasCamera: false, hasMic: true },
-      { id: 4, name: 'David Miller', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: false },
-      { id: 5, name: 'Emily Wilson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true }
-    ];
-
-=======
->>>>>>> Stashed changes
     // Simulate video stream
     useEffect(() => {
       const getVideoStream = async () => {
@@ -232,12 +211,9 @@ const Workshops = () => {
           }
         } catch (err) {
           console.error("Error accessing media devices:", err);
-<<<<<<< Updated upstream
-=======
           if (localVideoRef.current) {
             localVideoRef.current.src = "https://placehold.co/600x400?text=No+Camera";
           }
->>>>>>> Stashed changes
         }
       };
 
@@ -253,22 +229,13 @@ const Workshops = () => {
     // Simulate presenter video
     useEffect(() => {
       if (showVideoConferenceModal && videoRef.current) {
-<<<<<<< Updated upstream
-        // In a real app, this would be the presenter's video stream
-        videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
-=======
         videoRef.current.src = "/presenter-video.mp4";
->>>>>>> Stashed changes
         videoRef.current.loop = true;
         videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
       }
     }, [showVideoConferenceModal]);
 
-<<<<<<< Updated upstream
-    // Auto-scroll chat to bottom
-=======
     // Simulate incoming messages
->>>>>>> Stashed changes
     useEffect(() => {
       const timer = setInterval(() => {
         if (Math.random() > 0.7) {
@@ -322,11 +289,7 @@ const Workshops = () => {
         setMessages(prev => [...prev, newMessage]);
         setChatInput('');
         
-<<<<<<< Updated upstream
-        // Simulate responses
-=======
         // Simulate response
->>>>>>> Stashed changes
         setTimeout(() => {
           const responses = [
             "Thanks for your question!",
@@ -335,17 +298,6 @@ const Workshops = () => {
             "Let me add that to our discussion",
             "Has anyone else experienced this?"
           ];
-<<<<<<< Updated upstream
-          const response = {
-            id: Date.now(),
-            sender: Math.random() > 0.5 ? activeWorkshop.presenter.split(',')[0] : participants[Math.floor(Math.random() * participants.length)].name,
-            message: randomResponses[Math.floor(Math.random() * randomResponses.length)],
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isPresenter: Math.random() > 0.5
-          };
-          setMessages(prev => [...prev, response]);
-        }, 1000 + Math.random() * 2000);
-=======
           const presenterResponse = {
             id: Date.now(),
             sender: activeWorkshop.presenter.split(',')[0],
@@ -355,18 +307,10 @@ const Workshops = () => {
           };
           setMessages(prev => [...prev, presenterResponse]);
         }, 2000);
->>>>>>> Stashed changes
       }
     };
 
     const toggleCamera = async () => {
-<<<<<<< Updated upstream
-      setIsCameraOn(!isCameraOn);
-    };
-
-    const toggleMic = () => {
-      setIsMicOn(!isMicOn);
-=======
       if (!isCameraOn) {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
@@ -403,7 +347,6 @@ const Workshops = () => {
         });
         setIsMicOn(!isMicOn);
       }
->>>>>>> Stashed changes
     };
 
     const toggleScreenShare = async () => {
@@ -414,18 +357,6 @@ const Workshops = () => {
             audio: true
           });
           
-<<<<<<< Updated upstream
-          if (videoRef.current) {
-            videoRef.current.srcObject = screenStream;
-          }
-          
-          screenStream.getVideoTracks()[0].onended = () => {
-            setIsScreenSharing(false);
-            // Return to presenter video
-            if (videoRef.current) {
-              videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
-              videoRef.current.play();
-=======
           if (localVideoRef.current) {
             localVideoRef.current.srcObject = screenStream;
           }
@@ -433,29 +364,17 @@ const Workshops = () => {
           screenStream.getVideoTracks()[0].onended = () => {
             if (localVideoRef.current) {
               localVideoRef.current.srcObject = null;
->>>>>>> Stashed changes
             }
             setIsScreenSharing(false);
           };
           
           setIsScreenSharing(true);
-<<<<<<< Updated upstream
-        } catch (err) {
-          console.error("Error sharing screen:", err);
-        }
-      } else {
-        setIsScreenSharing(false);
-        if (videoRef.current) {
-          videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
-          videoRef.current.play();
-=======
         } else {
           if (localVideoRef.current && localVideoRef.current.srcObject) {
             localVideoRef.current.srcObject.getTracks().forEach(track => track.stop());
             localVideoRef.current.srcObject = null;
           }
           setIsScreenSharing(false);
->>>>>>> Stashed changes
         }
       } catch (err) {
         console.error("Error sharing screen:", err);
@@ -469,8 +388,6 @@ const Workshops = () => {
 
     const toggleRaiseHand = () => {
       setRaisedHand(!raisedHand);
-<<<<<<< Updated upstream
-=======
       if (!raisedHand) {
         const newMessage = {
           id: Date.now(),
@@ -494,19 +411,15 @@ const Workshops = () => {
           setRaisedHand(false);
         }, 3000);
       }
->>>>>>> Stashed changes
     };
 
     const handlePinMessage = (message) => {
       setPinnedMessage(message);
-<<<<<<< Updated upstream
-=======
       setShowNotification({
         message: 'Message Pinned',
         content: 'This message is now visible to all participants'
       });
       setTimeout(() => setShowNotification(null), 5000);
->>>>>>> Stashed changes
     };
 
     const handleEndMeeting = () => {
@@ -539,19 +452,9 @@ const Workshops = () => {
                   ref={videoRef} 
                   autoPlay 
                   playsInline 
-<<<<<<< Updated upstream
-                  className="video-element"
-                />
-                {isScreenSharing && (
-                  <div className="screen-share-indicator">
-                    <i className="fas fa-desktop"></i> Screen Sharing
-                  </div>
-                )}
-=======
                   muted={!isMicOn}
                   className="video-element"
                 />
->>>>>>> Stashed changes
               </div>
               
               <div className={`local-video ${isCameraOn ? '' : 'disabled'}`}>
@@ -620,25 +523,6 @@ const Workshops = () => {
                           </div>
                         </div>
                       ))}
-<<<<<<< Updated upstream
-                      {/* Add yourself to participants list */}
-                      <div className="participant-item you">
-                        <div className="participant-avatar">
-                          You
-                          {raisedHand && <div className="speaking-indicator"></div>}
-                        </div>
-                        <div className="participant-info">
-                          <div className="participant-name">
-                            You (Me)
-                          </div>
-                          <div className="participant-status">
-                            <i className={`fas fa-video${isCameraOn ? '' : '-slash'}`}></i>
-                            <i className={`fas fa-microphone${isMicOn ? '' : '-slash'}`}></i>
-                          </div>
-                        </div>
-                      </div>
-=======
->>>>>>> Stashed changes
                     </div>
                   </div>
                 )}
@@ -665,21 +549,6 @@ const Workshops = () => {
                       {messages.map((msg) => (
                         <div 
                           key={msg.id} 
-<<<<<<< Updated upstream
-                          className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} ${msg.isPresenter ? 'presenter-message' : ''}`}
-                        >
-                          <div className="message-avatar">
-                            {msg.sender.split(' ').map(n => n[0]).join('')}
-                          </div>
-                          <div className="message-content">
-                            <div className="message-header">
-                              <span className="message-sender">{msg.sender}</span>
-                              <span className="message-time">{msg.time}</span>
-                              {msg.sender !== 'You' && (
-                                <button 
-                                  className="pin-button"
-                                  onClick={() => handlePinMessage(msg)}
-=======
                           className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''}`}
                         onMouseEnter={() => {
   const pinButton = document.getElementById(`pin-${msg.id}`);
@@ -700,7 +569,6 @@ onMouseLeave={() => {
                                   className="pin-button"
                                   onClick={() => handlePinMessage(msg)}
                                   style={{ display: 'none' }}
->>>>>>> Stashed changes
                                 >
                                   <i className="fas fa-thumbtack"></i>
                                 </button>
@@ -1060,12 +928,8 @@ onMouseLeave={() => {
           </div>
         </main>
       </div>
-<<<<<<< Updated upstream
-        {showVideoConferenceModal && <VideoConferenceModal />}
-=======
       
       {showVideoConferenceModal && <VideoConferenceModal />}
->>>>>>> Stashed changes
       {showRatingModal && <RatingModal />}
       {showRecordingModal && (
         <div className="recording-modal">
@@ -1094,4 +958,4 @@ onMouseLeave={() => {
   );
 };
 
-export default Workshops; /* General container styles */
+export default Workshops;

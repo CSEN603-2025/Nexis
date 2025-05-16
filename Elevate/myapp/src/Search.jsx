@@ -374,7 +374,7 @@ const Search = () => {
         localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
     };
 
-    return (
+    return (<div className="search">
         <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
             {/* Header */}
             <header className="header">
@@ -424,34 +424,20 @@ const Search = () => {
                                 <FaBriefcase className="link-icon" />
                                 <span>Internship Dashboard</span>
                             </a>
-                            <a href="#" className="link-item">
+                            <a href="/ReportStudent" className="link-item">
                                 <FaFileUpload className="link-icon" />
                                 <span>Report Submissions</span>
                             </a>
-                            <a href="#" className="link-item">
+                            <a href="/eval" className="link-item">
                                 <FaTasks className="link-icon" />
                                 <span>Evaluation Forms</span>
                             </a>
-                            <a href="#" className="link-item">
-                                <FaBuilding className="link-icon" />
-                                <span>Company Portal</span>
-                            </a>
-                            <a href="#" className="link-item">
+                           
+                            <a href="/lib" className="link-item">
                                 <FaBook className="link-icon" />
                                 <span>Resources Library</span>
                             </a>
-                            <a href="#" className="link-item">
-                                <FaCalendarAlt className="link-icon" />
-                                <span>Schedule</span>
-                            </a>
-                            <a href="#" className="link-item">
-                                <FaEnvelope className="link-icon" />
-                                <span>Messages</span>
-                            </a>
-                            <a href="#" className="link-item">
-                                <FaCog className="link-icon" />
-                                <span>Settings</span>
-                            </a>
+                           
                         </div>
                     </div>
                 </aside>
@@ -1027,6 +1013,7 @@ const Search = () => {
                 </div>
             </div>
         </div>
+    </div>
     );
 };
 

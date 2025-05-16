@@ -1,4 +1,5 @@
 /* Welcome.css */
+.wel{
 :root {
   --primary-color: #3f72af;
   --secondary-color: #112d4e;
@@ -473,4 +474,5 @@ body {
   .primary-btn, .secondary-btn {
     width: 100%;
   }
-}
+  
+}}

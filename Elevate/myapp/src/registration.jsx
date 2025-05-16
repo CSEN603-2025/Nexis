@@ -25,7 +25,7 @@ const Registration = () => {
   // Demo credentials
   const demoCredentials = {
     student: { email: 'student@elevate.com', password: 'student123', route: '/student' },
-    proStudent: { email: 'prostudent@elevate.com', password: 'prostudent123', route: '/pro' },
+    proStudent: { email: 'prostudent@elevate.com', password: 'prostudent123', route: '/student2' },
     faculty: { email: 'faculty@elevate.com', password: 'faculty123', route: '/faculty' },
     scad: { email: 'scad@elevate.com', password: 'scad123', route: '/scaddashboard' },
     company: { email: 'company@elevate.com', password: 'company123', route: '/company' }

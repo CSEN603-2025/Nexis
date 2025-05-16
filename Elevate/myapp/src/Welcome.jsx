@@ -24,7 +24,7 @@ const Welcome = () => {
     navigate('/reg');
   };
 
-  return (
+  return (<div className="wel">
     <div className="welcome-container">
       {/* Animated background elements */}
       <div className="animated-bg">
@@ -100,6 +100,7 @@ const Welcome = () => {
         </div>
       </footer>
     </div>
+  </div>
   );
 };
 
