@@ -468,7 +468,7 @@ body {
   .action-buttons {
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
   }
   
   .primary-btn, .secondary-btn {
