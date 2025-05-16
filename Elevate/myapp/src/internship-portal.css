@@ -196,8 +196,8 @@ html, body, #root {
 
 .menu-item.active {
     background-color: #e6f7ff;
-    color: #0d9488;
-    border-right: 3px solid #0d9488;
+    color: #319795;
+    border-right: 3px solid #319795;
 }
 
 /* Page container area */
@@ -272,7 +272,7 @@ html, body, #root {
 }
 
 .stat-link {
-    color: #0d9488;
+    color: #319795;
     font-size: 14px;
     font-weight: 500;
     margin-top: 8px;
@@ -327,7 +327,7 @@ html, body, #root {
 
 
 .document-status {
-    color: #0d9488;
+    color: #319795;
     font-size: 12px;
     font-weight: 500;
     margin-top: 8px;
@@ -379,7 +379,7 @@ html, body, #root {
 
 .sidebar-section.active {
   background-color: #e6f7ff;
-  border-left: 3px solid #0d9488;
+  border-left: 3px solid #319795;
 }
 
 .sidebar-section-header {
@@ -391,7 +391,7 @@ html, body, #root {
 .sidebar-icon {
   font-size: 18px;
   margin-right: 12px;
-  color: #0d9488;
+  color: #319795;
 }
 
 .sidebar-section-title {
@@ -425,7 +425,7 @@ html, body, #root {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #0d9488; /* Custom greenish-teal color */
+  background-color: #319795; /* Custom greenish-teal color */
   color: white;
   display: flex;
   align-items: center;
@@ -434,4 +434,11 @@ html, body, #root {
   font-size: 18px;
   text-transform: uppercase;
   flex-shrink: 0;
+}
+
+button:hover,
+.ant-btn:hover {
+  background-color: #2c7a7b !important;
+  border-color: #2c7a7b !important;
+  color: #ffffff !important;
 }
