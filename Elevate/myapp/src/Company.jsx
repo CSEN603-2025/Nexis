@@ -8,7 +8,7 @@ import Applications from './Applications';
 import Interns from './Interns';
 
 import React, { useState } from 'react';
-import techinnovateLogo from './assets/techinnovate-logo.png'; // Adjust path as needed
+
 import {
  Input, Modal,Layout, Menu, Avatar, Badge, Button, Tag, List, ConfigProvider,Typography, Row, Col, Card, Table,Space,Form,Select,DatePicker
 } from 'antd';
@@ -255,7 +255,7 @@ case 'internship-posts':
             key="submit" 
             type="primary" 
             onClick={() => form.submit()}
-            style={{ backgroundColor: '#0d9488' }}
+            style={{ backgroundColor: '#319795' }}
           >
             Submit
           </Button>,
@@ -406,7 +406,7 @@ case 'internship-posts':
 }}>
   <Button 
     type="primary" 
-    style={{ backgroundColor: '#0d9488' }} 
+    style={{ backgroundColor: ' #319795' }} 
     onClick={handlePostNewClick}
   >
     + Post New Internship
@@ -449,7 +449,7 @@ case 'internship-posts':
               <Space size="middle">
                 <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleView(record.key)}
                 >
                  View Details   
@@ -457,7 +457,7 @@ case 'internship-posts':
 
                   <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleEdit(record.key)}
                 >
                 Edit  
@@ -466,7 +466,7 @@ case 'internship-posts':
 
      <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleDelete(record.key)}
                 >
                 Delete 
@@ -532,7 +532,7 @@ case 'internship-posts':
                   <p>Business Registration: <Tag color="green">Verified</Tag></p>
                   <p>Company Profile: <Tag color="green">Verified</Tag></p>
                   <p>Representative ID: <Tag color="green">Verified</Tag></p>
-                  <Button type="default" block>Upload Additional Documents</Button>
+                  <Button type="primary"  style={{ backgroundColor: ' #319795' }} >Upload Additional Documents</Button>
                 </Card>
               </Col>
             </Row>
@@ -565,7 +565,8 @@ case 'evaluations':
               <div className="logo-circle">
                 <i className="fas fa-arrow-up logo-icon" />
               </div>
-              <span className="logo-text">Elevate</span>
+             <span className="logo-text" style={{ color: "#2c7a7b" }}>Elevate</span>
+
             </div>
             <span className="company-title">Company Portal</span>
           </div>
@@ -598,7 +599,7 @@ case 'evaluations':
       </Card>
     )}
   </div>
-  <Avatar size="large" className="avatar">TC</Avatar>
+
 </div>
         </div>
       </Header>
