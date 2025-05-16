@@ -252,23 +252,21 @@ const Student2 = () => {
   }, []);
 
   return (
-    <div className={`student2 ${darkMode ? 'dark-mode' : ''}`}>
-<header className="header">
-      <div className="logo-container">
-        <a href="/" className="logo">
-          <span className="logo-icon">↑</span>
-          Elevate
-        </a>
-        <Link to="/Analytics" className="user-badge">
-          <FaCrown className="crown-icon" />
-          <span className="badge-text">PRO Student</span>
+   <div className={`student2 ${darkMode ? 'dark-mode' : ''}`}>
+       <header className="header">
+         <div className="left-section">
+           <a href="/student2" className="logo2">
+             <span className="logo2-icon">↑</span>
+             Elevate
+           </a>
+           <Link to="/Analytics" className="user1-badge">
+          <FaCrown className="crown1-icon" />
+          <span className="badge1-text">PRO features</span>
         </Link>
-      </div>
+         </div>
 
       <div className="header-controls">
-        <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </button>
+        
         <img
           src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff"
           alt="User"
@@ -292,18 +290,18 @@ const Student2 = () => {
             <div className="quick-links-list">
               <a href="/Search" className="link-item">
                 <FaBriefcase className="link-icon" />
-                <span>Internship Dashboard</span>
+                <span>Internship Listing</span>
               </a>
-              <a href="/report" className="link-item">
+              <a href="/Rpro" className="link-item">
                 <FaFileUpload className="link-icon" />
                 <span>Report Submissions</span>
               </a>
-              <a href="/eval" className="link-item">
+              <a href="/Epro" className="link-item">
                 <FaTasks className="link-icon" />
                 <span>Evaluation Forms</span>
               </a>
             
-              <a href="/lib" className="link-item">
+              <a href="/Libpro" className="link-item">
                 <FaBook className="link-icon" />
                 <span>Resources Library</span>
               </a>

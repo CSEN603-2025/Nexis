@@ -38,7 +38,7 @@ const Workshops = () => {
       status: 'upcoming',
       registered: false,
       description: 'Master the art of technical interviews with hands-on coding exercises and problem-solving strategies from industry experts.',
-      recordingUrl: 'dummy-video.mp4',
+      recordingUrl: '/dummy-video.mp4',
       certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,
@@ -229,7 +229,7 @@ const Workshops = () => {
     // Simulate presenter video
     useEffect(() => {
       if (showVideoConferenceModal && videoRef.current) {
-        videoRef.current.src = "/presenter-video.mp4";
+        videoRef.current.src = "/dummy-video.mp4";
         videoRef.current.loop = true;
         videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
       }
@@ -437,6 +437,13 @@ const Workshops = () => {
             </div>
             <div className="header-actions">
               <button 
+  onClick={() => setActiveTab('notes')}
+  className={activeTab === 'notes' ? 'active' : ''}
+>
+  <i className="fas fa-edit"></i>
+  Notes
+</button>
+              <button 
                 onClick={handleEndMeeting}
                 className="end-button"
               >
@@ -598,6 +605,37 @@ onMouseLeave={() => {
                     </div>
                   </div>
                 )}
+                 {activeTab === 'notes' && (
+    <div className="notes-tab">
+      <textarea
+        className="workshop-notes"
+        placeholder="Type your notes here..."
+        value={activeWorkshop.notes}
+        onChange={(e) => {
+          const updatedWorkshops = workshops.map(w => 
+            w.id === activeWorkshop.id ? { ...w, notes: e.target.value } : w
+          );
+          setWorkshops(updatedWorkshops);
+          setActiveWorkshop({...activeWorkshop, notes: e.target.value});
+        }}
+      />
+      <div className="notes-actions">
+        <button 
+          className="save-notes-button"
+          onClick={() => {
+            setShowNotification({
+              message: 'Notes Saved',
+              content: 'Your workshop notes have been saved'
+            });
+            setTimeout(() => setShowNotification(null), 5000);
+          }}
+        >
+          <i className="fas fa-save"></i> Save Notes
+        </button>
+      </div>
+    </div>
+  )}
+
               </div>
             </div>
           </div>
@@ -719,21 +757,12 @@ onMouseLeave={() => {
     <div className="app-container">
       <header className="header">
         <div className="header-left">
-          <a href="#" className="logo">
-            <i className="fas fa-arrow-up"></i>
-            <span>Elevate</span>
-          </a>
+               <a href=" " className="logo2">
+          <span className="logo2-icon">↑</span>
+          Elevate
+        </a>
           
-          <div className="search-container">
-            <div className="search-box">
-              <i className="fas fa-search search-icon"></i>
-              <input 
-                type="text" 
-                placeholder="Search workshops..." 
-                className="search-input" 
-              />
-            </div>
-          </div>
+         
         </div>
         
         <div className="header-right">
@@ -755,35 +784,36 @@ onMouseLeave={() => {
               <span className="status-indicator"></span>
               Active
             </div>
+            <br></br>
             <div className="profile-badge">
               <i className="fas fa-crown crown-icon"></i>
               <span className="badge-text">PRO Student</span>
             </div>
           </div>
           
-           <div className="sidebar-section">
+           <div className="quick-links-list">
             <h3 className="section-title">Quick Links</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="/new" className="menu-item">
+                <a href="/new" className="link-item">
                   <i className="fas fa-home menu-icon"></i>
                   <span>Internship Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="/analytics" className="menu-item">
+                <a href="/analytics" className="link-item">
                   <i className="fas fa-chart-line menu-icon"></i>
                   <span>Profile Analytics</span>
                 </a>
               </li>
               <li>
-                <a href="/assessment" className="menu-item">
+                <a href="/assessment" className="link-item">
                   <i className="fas fa-tasks menu-icon"></i>
                   <span>Online Assessments</span>
                 </a>
               </li>
               <li>
-                <a href="/workshop" className="menu-item ative">
+                <a href="/workshop" className="link-item">
                   <i className="fas fa-chalkboard-teacher menu-icon"></i>
                   <span>Online Workshops</span>
                 </a>
@@ -791,23 +821,29 @@ onMouseLeave={() => {
             </ul>
           </div>
           
-          <div className="sidebar-section">
+          <div className="quick-links-list">
             <h3 className="section-title">Resources</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="/ReportStudent" className="menu-item">
+                <a href="/search" className="link-item">
+                  <i className="fas fa-file-alt menu-icon"></i>
+                  <span>Internship listing</span>
+                </a>
+              </li>
+              <li>
+                <a href="/Rpro" className="link-item">
                   <i className="fas fa-file-alt menu-icon"></i>
                   <span>Report Submissions</span>
                 </a>
               </li>
               <li>
-                <a href="/eval" className="menu-item">
+                <a href="/Epro" className="link-item">
                   <i className="fas fa-clipboard-list menu-icon"></i>
                   <span>Evaluation Forms</span>
                 </a>
               </li>
               <li>
-                <a href="/lib" className="menu-item">
+                <a href="/lib" className="link-item">
                   <i className="fas fa-book menu-icon"></i>
                   <span>Resources Library</span>
                 </a>
@@ -826,7 +862,7 @@ onMouseLeave={() => {
           
           <div className="content-card">
             <h2 className="card-title">Upcoming Workshops</h2>
-            
+            <br></br>
             <div className="workshops-list">
               {workshops.filter(w => w.status === 'upcoming').map((workshop, index) => (
                 <div key={index} className="workshop-item">
@@ -840,7 +876,7 @@ onMouseLeave={() => {
                         <i className="far fa-clock"></i>
                         <span>{workshop.time}</span>
                        {workshop.registered && workshop.notification && (
-  <span className="notification-badge">
+  <span className="noti">
    
   </span>
 )}
@@ -875,7 +911,7 @@ onMouseLeave={() => {
           
           <div className="content-card">
             <h2 className="card-title">Completed Workshops</h2>
-            
+            <br></br>
             <div className="workshops-list">
               {workshops.filter(w => w.status === 'completed').map((workshop, index) => (
                 <div key={index} className="workshop-item completed">

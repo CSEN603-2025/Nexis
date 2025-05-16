@@ -4,7 +4,7 @@ import './Welcome.css';
 
 const Welcome = () => {
   const navigate = useNavigate();
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);//lama
   const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {

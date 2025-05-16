@@ -254,35 +254,35 @@ const NormalStudent = () => {
    const handleBadgeClick = () => {
     alert('Please finish your internship period to access these features');
   };
-  return (
-    <div className={`normal ${darkMode ? 'dark-mode' : ''}`}>
-     <header className="header">
-        <div className="logo-container">
-          <a href=" " className="logo">
-            <span className="logo-icon">↑</span>
-            Elevate
-          </a>
-          <div className="user-badge" onClick={handleBadgeClick}>
-            <FaCrown className="crown-icon" />
-            <span className="badge-text">PRO Student</span>
-          </div>
+ return (
+  <div className={`normal ${darkMode ? 'dark-mode' : ''}`}>
+    <header className="header">
+      <div className="left-section">
+        <a href=" " className="logo2">
+          <span className="logo2-icon">↑</span>
+          Elevate
+        </a>
+        <div className="user1-badge" onClick={handleBadgeClick}>
+          <FaCrown className="crown1-icon" />
+          <span className="badge1-text">PRO Features</span>
         </div>
-        
-        <div className="header-controls">
-          <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          <img 
-            src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" 
-            alt="User" 
-            className="user-avatar" 
-          />
-        </div>
-      </header>
-      
-      <div className="container">
-        <aside className="sidebar">
-          <div className="profile-card">
+      </div>
+
+      <div className="header-controls">
+        <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
+        <img 
+          src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" 
+          alt="User" 
+          className="user-avatar" 
+        />
+      </div>
+    </header>
+
+    <div className="container">
+      <aside className="sidebar">
+        <div className="profile-card">
             <img src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=006D77&color=fff&size=100" alt="Profile" className="avatar" />
             <h3>Menna Elsayed</h3>
             <p style={{color: 'var(--text-secondary)'}}>Media Engineering & Technology</p>

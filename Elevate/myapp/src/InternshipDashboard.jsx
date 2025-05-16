@@ -66,21 +66,16 @@ const InternshipDashboard = () => {
     <div className={`pro ${darkMode ? 'dark-mode' : ''}`}>
       <header className="app-header">
         <div className="header-left">
-          <a href="/new" className="logo">
-            <i className="fas fa-arrow-up"></i>
-            <span>Elevate</span>
-          </a>
+                 <a href=" " className="logo2">
+          <span className="logo2-icon">↑</span>
+          Elevate
+        </a>
           
          
         </div>
         
         <div className="header-right">
-          <button 
-            onClick={() => setDarkMode(!darkMode)}
-            className="theme-toggle"
-          >
-            <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'}`}></i>
-          </button>
+         
           
           <div className="user-avatar">
             ME
@@ -99,65 +94,73 @@ const InternshipDashboard = () => {
               Active
             </div>
             <div className="pro-badge">
-              <i className="fas fa-crown"></i>
+              <i className="fas fa-crown crown-icon"></i>
               <span>PRO Student</span>
             </div>
           </div>
           
-          <div className="sidebar-section">
-            <h3>Quick Links</h3>
+          <div className="quick-links-list">
+            <h3 className="section-title">Quick Links</h3>
             <ul className="sidebar-menu">
-              <li className="active">
-                <i className="fas fa-home"></i>
-                <span>Internship Dashboard</span>
+              <li>
+                <a href="/new" className="link-item">
+                  <i className="fas fa-home menu-icon"></i>
+                  <span>Internship Dashboard</span>
+                </a>
               </li>
               <li>
-                <a href="/Analytics">
-                  <i className="fas fa-chart-line"></i>
+                <a href="/analytics" className="link-item">
+                  <i className="fas fa-chart-line menu-icon"></i>
                   <span>Profile Analytics</span>
                 </a>
               </li>
               <li>
-                <a href="/assessment">
-                  <i className="fas fa-tasks"></i>
+                <a href="/assessment" className="link-item">
+                  <i className="fas fa-tasks menu-icon"></i>
                   <span>Online Assessments</span>
                 </a>
               </li>
               <li>
-                <a href="/workshop">
-                  <i className="fas fa-chalkboard-teacher"></i>
+                <a href="/workshop" className="link-item">
+                  <i className="fas fa-chalkboard-teacher menu-icon"></i>
                   <span>Online Workshops</span>
                 </a>
               </li>
             </ul>
           </div>
           
-        <div className="sidebar-section">
+          <div className="quick-links-list">
             <h3 className="section-title">Resources</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="/ReportStudent" className="menu-item">
+                <a href="/search" className="link-item">
+                  <i className="fas fa-file-alt menu-icon"></i>
+                  <span>Internship listing</span>
+                </a>
+              </li>
+              <li>
+                <a href="/Rpro" className="link-item">
                   <i className="fas fa-file-alt menu-icon"></i>
                   <span>Report Submissions</span>
                 </a>
               </li>
               <li>
-                <a href="/eval" className="menu-item">
+                <a href="/Epro" className="link-item">
                   <i className="fas fa-clipboard-list menu-icon"></i>
                   <span>Evaluation Forms</span>
                 </a>
               </li>
-              
               <li>
-                <a href="/lib" className="menu-item">
+                <a href="/lib" className="link-item">
                   <i className="fas fa-book menu-icon"></i>
                   <span>Resources Library</span>
                 </a>
               </li>
-             
+ 
             </ul>
           </div>
         </aside>
+        
         
         <main className="dashboard-content">
           {/* Dashboard content only */}
@@ -165,8 +168,8 @@ const InternshipDashboard = () => {
             <div className="dashboard-title">
               <h1>PRO Student Dashboard</h1>
               <div className="pro-badge">
-                <i className="fas fa-crown"></i>
-                <span>PRO</span>
+                <i className="fas fa-crown crown-icon"></i>
+                <span> PRO</span>
               </div>
             </div>
            

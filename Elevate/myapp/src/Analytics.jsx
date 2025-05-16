@@ -433,8 +433,8 @@ const simulateIncomingCall = () => {
       
       {/* Header with functional notification button */}
      <header className="header">
-  <a href="/new" className="logo">
-    <span className="logo-icon">↑</span>
+  <a href="/new" className="logo2">
+    <span className="logo2-icon">↑</span>
     Elevate 
   </a>
   
@@ -452,9 +452,7 @@ const simulateIncomingCall = () => {
       )}
     </button>
     
-    <button className="theme-toggle" onClick={toggleTheme}>
-      {darkMode ? <FaSun /> : <FaMoon />}
-    </button>
+   
     <img 
       src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" 
       alt="User" 
@@ -477,35 +475,36 @@ const simulateIncomingCall = () => {
               <span className="status-indicator"></span>
               Active
             </div>
+            <br></br>
             <div className="profile-badge">
               <i className="fas fa-crown crown-icon"></i>
               <span className="badge-text">PRO Student</span>
             </div>
           </div>
           
-          <div className="sidebar-section">
+          <div className="quick-links-list">
             <h3 className="section-title">Quick Links</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="/new" className="menu-item">
+                <a href="/new" className="link-item">
                   <i className="fas fa-home menu-icon"></i>
                   <span>Internship Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="/analytics" className="menu-item active">
+                <a href="/analytics" className="link-item">
                   <i className="fas fa-chart-line menu-icon"></i>
                   <span>Profile Analytics</span>
                 </a>
               </li>
               <li>
-                <a href="/assessment" className="menu-item">
+                <a href="/assessment" className="link-item">
                   <i className="fas fa-tasks menu-icon"></i>
                   <span>Online Assessments</span>
                 </a>
               </li>
               <li>
-                <a href="/workshop" className="menu-item">
+                <a href="/workshop" className="link-item">
                   <i className="fas fa-chalkboard-teacher menu-icon"></i>
                   <span>Online Workshops</span>
                 </a>
@@ -513,23 +512,29 @@ const simulateIncomingCall = () => {
             </ul>
           </div>
           
-          <div className="sidebar-section">
+          <div className="quick-links-list">
             <h3 className="section-title">Resources</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="/ReportStudent" className="menu-item">
+                <a href="/search" className="link-item">
+                  <i className="fas fa-file-alt menu-icon"></i>
+                  <span>Internship listing</span>
+                </a>
+              </li>
+              <li>
+                <a href="/Rpro" className="link-item">
                   <i className="fas fa-file-alt menu-icon"></i>
                   <span>Report Submissions</span>
                 </a>
               </li>
               <li>
-                <a href="/eval" className="menu-item">
+                <a href="/Epro" className="link-item">
                   <i className="fas fa-clipboard-list menu-icon"></i>
                   <span>Evaluation Forms</span>
                 </a>
               </li>
               <li>
-                <a href="/lib" className="menu-item">
+                <a href="/lib" className="link-item">
                   <i className="fas fa-book menu-icon"></i>
                   <span>Resources Library</span>
                 </a>
@@ -554,13 +559,13 @@ const simulateIncomingCall = () => {
                 className="request-appointment-btn"
                 onClick={requestAppointment}
               >
-                <i className="fas fa-plus"></i> Request Appointment
+                <i className="fas fa-plus"></i>&nbsp; Request Appointment
               </button>
               <button 
                 className="simulate-call-btn"
                 onClick={simulateIncomingCall}
               >
-                <i className="fas fa-phone"></i> Simulate Call
+                <i className="fas fa-phone"></i>&nbsp; Simulate Call
               </button>
             </div>
             
@@ -879,11 +884,11 @@ const simulateIncomingCall = () => {
           Clear All
         </button>
         <button 
-          className="close-notifications"
-          onClick={() => setShowNotificationsPanel(false)}
-        >
-          &times;
-        </button>
+  className="close-notifications"
+  onClick={() => setShowNotificationsPanel(false)}
+>
+  &times;
+</button>
       </div>
     </div>
     <div className="notification-filter">

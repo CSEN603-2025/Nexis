@@ -72,7 +72,30 @@ const Search = () => {
         }
     ]);
     const [viewApplied, setViewApplied] = useState(false);
-
+const InternshipCard = ({ internship, onClick }) => (
+    <div className="internship-card" onClick={onClick}>
+        <div className="internship-content">
+            <div className="internship-header">
+                <div className="internship-title-container">
+                    <h3 className="internship-title">{internship.title}</h3>
+                    <p className="internship-company">{internship.company}</p>
+                </div>
+                <span className={`internship-status ${internship.status === 'Current' ? 'status-current' : 'status-former'}`}>
+                    {internship.status}
+                </span>
+            </div>
+            <div className="internship-tags">
+                <span className="tag tag-industry">{internship.industry}</span>
+                <span className="tag tag-location">
+                    <i className="fas fa-map-marker-alt tag-icon"></i> {internship.location}
+                </span>
+                <span className="tag tag-duration">
+                    <i className="fas fa-clock tag-icon"></i> {internship.duration}
+                </span>
+            </div>
+        </div>
+    </div>
+);
     const industries = [
         'All Industries',
         'Technology',
@@ -222,7 +245,27 @@ const Search = () => {
             skills: ['Cybersecurity', 'Network Security', 'Threat Analysis', 'Security Tools']
         }
     ];
+const [pastInternships, setPastInternships] = useState([
+    {
+        id: 9,
+        title: 'Graphic Design Intern',
+        company: 'Creative Designs',
+        industry: 'Media',
+        location: 'Remote',
+        duration: '4 months',
+        status: 'Former',
+        payment: {
+            type: 'paid',
+            salary: '$18/hour'
+        },
+        description: 'Created visual content for social media and marketing materials.',
+        requirements: 'Proficiency in Adobe Creative Suite, creative portfolio.',
+        deadline: 'December 15, 2024',
+        skills: ['Photoshop', 'Illustrator', 'Graphic Design']
+    }
+]);
 
+const [viewPastInternships, setViewPastInternships] = useState(false);
        const majors = [
         { name: 'Computer Science', semesters: 8 },
         { name: 'Media Engineering', semesters: 7 },
@@ -379,31 +422,20 @@ const Search = () => {
             {/* Header */}
             <header className="header">
                 <div className="logo-container">
-                    <a href=" " className="logo">
-                        <span className="logo-icon">↑</span>
-                        Elevate
-                    </a>
+                    <a href=" " className="logo2">
+          <span className="logo2-icon">↑</span>
+          Elevate
+        </a>
                 </div>
-                <div className="search-container">
-                    <div className="search-input-wrapper">
-                        <input
-                            type="text"
-                            placeholder="Search internships..."
-                            className="search-input"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button className="search-icon">
-                            <i className="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
+                
                 <div className="header-controls">
-                    <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
-                        {darkMode ? <FaSun /> : <FaMoon />}
-                    </button>
+                    <div className="internships-header-controls">
+    
+   
+    
+</div>
                     <img src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" alt="User" className="user-avatar" />
-                    <span className="user-initials">ME</span>
+                    
                 </div>
             </header>
             <div className="main-container">
@@ -422,7 +454,7 @@ const Search = () => {
                         <div className="quick-links-list">
                             <a href="/Search" className="link-item">
                                 <FaBriefcase className="link-icon" />
-                                <span>Internship Dashboard</span>
+                                <span>Internship Listing</span>
                             </a>
                             <a href="/ReportStudent" className="link-item">
                                 <FaFileUpload className="link-icon" />
@@ -447,8 +479,10 @@ const Search = () => {
                     <div className="internships-card">
                         <div className="internships-header">
                             <div className="internships-title">
-                                <i className="fas fa-search-location title-icon"></i>
+                               
                                 <h2 className="section-title">
+                                     <i className="fas fa-search-location title-icon"></i>&nbsp;
+                                     
                                     {viewApplied ? 'My Applications' : 'Available Internships'}
                                 </h2>
                             </div>
@@ -949,8 +983,8 @@ const Search = () => {
                     <div className="recommendations-card">
                         <div className="recommendations-header">
                             <div className="recommendations-title">
-                                <i className="fas fa-star title-icon"></i>
-                                <h2 className="section-title">Recommended for You</h2>
+                                
+                                <h2 className="section-title"><i className="fas fa-star title-icon"></i>&nbsp;Recommended for You</h2>
                             </div>
                             <button className="view-all-button">
                                 View All
@@ -1010,6 +1044,35 @@ const Search = () => {
                             ))}
                         </div>
                     </div>
+                    {/* My Internships Section */}
+<div className="my-internships-card">
+    <div className="my-internships-header">
+        <h2 className="section-title">
+            <i className="fas fa-briefcase title-icon"></i>&nbsp;
+            My Internships (Current & Past)
+        </h2>
+    </div>
+    
+    <div className="my-internships-grid">
+        {/* Current Internships */}
+        {internships.filter(i => i.status === 'Current').map(internship => (
+            <InternshipCard 
+                key={`current-${internship.id}`} 
+                internship={internship}
+                onClick={() => handleInternshipClick(internship.id)}
+            />
+        ))}
+        
+        {/* Past Internships */}
+        {pastInternships.map(internship => (
+            <InternshipCard 
+                key={`past-${internship.id}`} 
+                internship={internship}
+                onClick={() => handleInternshipClick(internship.id)}
+            />
+        ))}
+    </div>
+</div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ import {
 } from 'react-icons/fa';
 import './Library.css';
 
-const Library = () => {
+const Libpro = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -452,4 +452,4 @@ const Library = () => {
   );
 };
 
-export default Library;
+export default Libpro;

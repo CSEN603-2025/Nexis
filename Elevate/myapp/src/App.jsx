@@ -20,7 +20,7 @@ import ScadDashboard from './scaddashboard';
 import Reports from './reports';
 import StudentList from './students';
 import Internships from './internships';
-
+import EvaluatePro from './EvaluatePro';
 import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
 import    WorkshopsManagement from './WorkshopsManagement';
@@ -28,6 +28,8 @@ import { BrowserRouter as Router,   Navigate } from "react-router-dom";
 import EvaluationForms from './EvaluationForms';
 import ReportSubmissions from './ReportSubmissions';
 import Evaluate1 from "./Evaluationsfa";
+import ReportPro from './ReportPro';
+
 function App() {
   return (
     <BrowserRouter>
@@ -43,10 +45,13 @@ function App() {
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
         <Route path="/student2" element={<Student2 />} />
-
+        
 
         <Route path="/eval" element={<Evaluate />} />
         <Route path="/lib" element={<Library />} />
+        <Route path="/Rpro" element={<ReportPro />} />
+        <Route path="/Epro" element={<EvaluatePro/>} />
+        
         
 
 

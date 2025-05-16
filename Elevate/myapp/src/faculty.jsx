@@ -1,8 +1,24 @@
 import { useState, useEffect } from 'react';
-import './faculty.css'; // Ensure this matches the CSS file name
-import { jsPDF } from 'jspdf'; // Added for proper PDF generation
-
-const NotificationIcon = () => <span>🔔</span>; // Kept emoji; replace with Font Awesome if needed
+import './faculty.css';
+import { jsPDF } from 'jspdf';
+import { 
+  FaMoon, 
+  FaSun, 
+  FaBell, 
+  FaFilePdf,
+  FaFileDownload,
+  FaBook,
+  FaChartBar,
+  FaSearch,
+  FaFilter,
+  FaUserGraduate,
+  FaFileUpload,
+  FaTasks,
+  FaBuilding,
+  FaCalendarAlt,
+  FaEnvelope,
+  FaCog
+} from 'react-icons/fa';
 
 const FacultyProfile = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -244,7 +260,7 @@ const FacultyProfile = () => {
 
   const handleViewPendingReports = () => {
     setFilters(prev => ({ ...prev, status: 'pending' }));
-    setActiveTab('reports'); // Switch to reports tab
+    setActiveTab('reports');
   };
 
   const exportAnalyticsData = () => {
@@ -282,66 +298,129 @@ const FacultyProfile = () => {
   };
 
   return (
-    <div className="faculty-profile" >
-      <div className="main-content">
-        <header className="profile-header">
-          <h1>Faculty Dashboard</h1>
-          <div className="header-right">
-            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-              {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-            </button>
-            <div className="notification-bell">
-              <NotificationIcon />
-              {notifications > 0 && (
-                <span className="notification-badge">{notifications}</span>
-              )}
-            </div>
-            <div className="user-avatar">{faculty.avatarInitials}</div>
+    <div className={`faculty-app ${darkMode ? 'dark-mode' : ''}`}>
+      <header className="faculty-header">
+        <a href="/" className="logo2">
+          <span className="logo2-icon">↑</span>
+          Elevate
+        </a>
+        <div className="header-right">
+          <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </button>
+          <div className="notification-bell">
+            <FaBell />
+            {notifications > 0 && (
+              <span className="notification-badge">{notifications}</span>
+            )}
           </div>
-        </header>
+          <div className="user-avatar">{faculty.avatarInitials}</div>
+        </div>
+      </header>
 
-        <div className="dashboard-container">
-          {/* Welcome Section */}
-          <div className="welcome-section">
-            <h2>Welcome, {faculty.name}!</h2>
-           <div className="welcome">
-              <div className="welcome-info">
-                <p>
-                  <strong>Role:</strong> {faculty.role}
-                </p>
-                <p>
-                  <strong>Department:</strong> {faculty.department}
-                </p>
-                <p>
-                  As a faculty advisor, you oversee student internship reports, ensuring timely review and feedback. You
-                  currently have <strong>{faculty.pendingReports} pending reports</strong> awaiting your action.
-                </p>
-              </div>
-              <button className="action-btn" onClick={handleViewPendingReports}>
-                View Pending Reports
+      <div className="faculty-container">
+        <aside className={`faculty-sidebar ${darkMode ? 'dark-sidebar' : ''}`}>
+          <div className="profile-section">
+            <div className="profile-avatar">
+              {faculty.avatarInitials}
+            </div>
+            <h2 className="profile-name">{faculty.name}</h2>
+            <p className="profile-title">{faculty.role}</p>
+            <p className="profile-department">{faculty.department}</p>
+            <div className="profile-status">
+              <span className="status-indicator"></span>
+              Active
+            </div>
+          </div>
+
+          <div className="quick-links">
+            <h4>Navigation</h4>
+            <div className="quick-links-list">
+              <button 
+                className={`link-item ${activeTab === 'reports' ? 'active' : ''}`}
+                onClick={() => setActiveTab('reports')}
+              >
+                <FaBook className="link-icon" />
+                <span>Report Management</span>
               </button>
-              </div>
+              <button 
+                className={`link-item ${activeTab === 'analytics' ? 'active' : ''}`}
+                onClick={() => setActiveTab('analytics')}
+              >
+                <FaChartBar className="link-icon" />
+                <span>Faculty Analytics</span>
+              </button>
             </div>
-          
 
-          {/* Dashboard Tabs */}
-          <div className="dashboard-tabs">
-            <button
-              className={activeTab === 'reports' ? 'active' : ''}
-              onClick={() => setActiveTab('reports')}
-            >
-              Report Management
-            </button>
-            <button
-              className={activeTab === 'analytics' ? 'active' : ''}
-              onClick={() => setActiveTab('analytics')}
-            >
-              Faculty Academic Analytics Dashboard
-            </button>
+            <h4>Quick Actions</h4>
+            <div className="quick-links-list">
+              <button 
+                className="link-item"
+                onClick={handleViewPendingReports}
+              >
+                <FaTasks className="link-icon" />
+                <span>View Pending Reports</span>
+              </button>
+              <button 
+                className="link-item"
+                onClick={generateStatsReport}
+              >
+                <FaFilePdf className="link-icon" />
+                <span>Generate Stats PDF</span>
+              </button>
+              <button 
+                className="link-item"
+                onClick={exportAnalyticsData}
+              >
+                <FaFileDownload className="link-icon" />
+                <span>Export Analytics</span>
+              </button>
+            </div>
+
+            <h4>Resources</h4>
+            <div className="quick-links-list">
+              <a href="/student-profiles" className="link-item">
+                <FaUserGraduate className="link-icon" />
+                <span>Student Profiles</span>
+              </a>
+              <a href="/submission-guidelines" className="link-item">
+                <FaFileUpload className="link-icon" />
+                <span>Submission Guidelines</span>
+              </a>
+              <a href="/company-directory" className="link-item">
+                <FaBuilding className="link-icon" />
+                <span>Company Directory</span>
+              </a>
+              <a href="/calendar" className="link-item">
+                <FaCalendarAlt className="link-icon" />
+                <span>Academic Calendar</span>
+              </a>
+            </div>
+
+            <h4>Settings</h4>
+            <div className="quick-links-list">
+              <a href="/notifications" className="link-item">
+                <FaEnvelope className="link-icon" />
+                <span>Notification Settings</span>
+              </a>
+              <a href="/account-settings" className="link-item">
+                <FaCog className="link-icon" />
+                <span>Account Settings</span>
+              </a>
+            </div>
           </div>
+        </aside>
 
+        <main className="faculty-main-content">
           {activeTab === 'analytics' ? (
-            <div className="analytics-dashboard">
+            <div className="faculty-card">
+              <div className="card-header">
+                <h2 className="card-title">
+                  <FaChartBar style={{marginRight: '0.75rem', color: '#27a1a1'}} />
+                  Faculty Academic Analytics Dashboard
+                </h2>
+              </div>
+
               <div className="analytics-grid">
                 {/* Report Status Summary */}
                 <div className="analytics-card">
@@ -358,6 +437,10 @@ const FacultyProfile = () => {
                     <div className="status-item flagged">
                       <span>⚠️ Flagged:</span>
                       <strong>{stats.flagged}</strong>
+                    </div>
+                    <div className="status-item pending">
+                      <span>⏳ Pending:</span>
+                      <strong>{stats.pending}</strong>
                     </div>
                   </div>
                 </div>
@@ -404,24 +487,17 @@ const FacultyProfile = () => {
                   </ul>
                 </div>
               </div>
-
-              <div className="dashboard-actions">
-                <button className="export-btn" onClick={exportAnalyticsData}>
-                  Export Analytics (CSV)
-                </button>
-                <select className="cycle-selector" defaultValue="Current Cycle">
-                  <option>Current Cycle</option>
-                  <option>Spring 2023</option>
-                  <option>Fall 2022</option>
-                  <option>Summer 2022</option>
-                </select>
-              </div>
             </div>
           ) : (
-            <div className="reports-interface">
-              {/* Statistics Overview */}
+            <div className="faculty-card">
+              <div className="card-header">
+                <h2 className="card-title">
+                  <FaBook style={{marginRight: '0.75rem', color: '#27a1a1'}} />
+                  Internship Report Management
+                </h2>
+              </div>
+
               <div className="stats-overview">
-                <h2>Internship Report Statistics</h2>
                 <div className="stats-cards">
                   <div className="stat-card accepted">
                     <h3>Accepted</h3>
@@ -440,45 +516,65 @@ const FacultyProfile = () => {
                     <p>{stats.flagged}</p>
                   </div>
                 </div>
-                <button className="generate-report-btn" onClick={generateStatsReport}>
-                  Generate Statistics Report (PDF)
-                </button>
               </div>
 
-              {/* Reports Section */}
               <div className="reports-section">
                 <div className="reports-list-container">
                   <div className="filters">
-                    <h2>Internship Reports</h2>
-                    <div className="filter-controls">
+                    <div className="search-bar">
+                      <FaSearch className="search-icon" />
                       <input
                         type="text"
                         name="studentName"
-                        placeholder="Filter by student name"
+                        placeholder="Search reports..."
                         value={filters.studentName}
                         onChange={handleFilterChange}
                       />
-                      <input
-                        type="text"
-                        name="major"
-                        placeholder="Filter by major"
-                        value={filters.major}
-                        onChange={handleFilterChange}
-                      />
-                      <input
-                        type="text"
-                        name="companyName"
-                        placeholder="Filter by company"
-                        value={filters.companyName}
-                        onChange={handleFilterChange}
-                      />
-                      <select name="status" value={filters.status} onChange={handleFilterChange}>
-                        <option value="">All Statuses</option>
-                        <option value="accepted">Accepted</option>
-                        <option value="rejected">Rejected</option>
-                        <option value="pending">Pending</option>
-                        <option value="flagged">Flagged</option>
-                      </select>
+                    </div>
+                    <div className="filter-controls">
+                      <div className="filter-group">
+                        <label htmlFor="major-filter">
+                          <FaFilter style={{marginRight: '0.5rem'}} />
+                          Major:
+                        </label>
+                        <input
+                          type="text"
+                          name="major"
+                          placeholder="Filter by major"
+                          value={filters.major}
+                          onChange={handleFilterChange}
+                        />
+                      </div>
+                      <div className="filter-group">
+                        <label htmlFor="company-filter">
+                          <FaFilter style={{marginRight: '0.5rem'}} />
+                          Company:
+                        </label>
+                        <input
+                          type="text"
+                          name="companyName"
+                          placeholder="Filter by company"
+                          value={filters.companyName}
+                          onChange={handleFilterChange}
+                        />
+                      </div>
+                      <div className="filter-group">
+                        <label htmlFor="status-filter">
+                          <FaFilter style={{marginRight: '0.5rem'}} />
+                          Status:
+                        </label>
+                        <select 
+                          name="status" 
+                          value={filters.status} 
+                          onChange={handleFilterChange}
+                        >
+                          <option value="">All Statuses</option>
+                          <option value="accepted">Accepted</option>
+                          <option value="rejected">Rejected</option>
+                          <option value="pending">Pending</option>
+                          <option value="flagged">Flagged</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
@@ -513,7 +609,8 @@ const FacultyProfile = () => {
                               downloadReport(report.id);
                             }}
                           >
-                            Download PDF
+                            <FaFileDownload style={{marginRight: '0.5rem'}} />
+                            Download
                           </button>
                         </div>
                       ))
@@ -523,7 +620,6 @@ const FacultyProfile = () => {
                   </div>
                 </div>
 
-                {/* Report Detail View */}
                 <div className="report-detail">
                   {selectedReport ? (
                     <>
@@ -550,6 +646,14 @@ const FacultyProfile = () => {
                         <div className="detail-row">
                           <span className="detail-label">Submission Date:</span>
                           <span className="detail-value">{selectedReport.submissionDate}</span>
+                        </div>
+                        <div className="detail-row">
+                          <span className="detail-label">Course:</span>
+                          <span className="detail-value">{selectedReport.course}</span>
+                        </div>
+                        <div className="detail-row">
+                          <span className="detail-label">Student Rating:</span>
+                          <span className="detail-value">{selectedReport.studentRating}/5</span>
                         </div>
 
                         <div className="status-actions">
@@ -599,7 +703,7 @@ const FacultyProfile = () => {
               </div>
             </div>
           )}
-        </div>
+        </main>
       </div>
     </div>
   );
