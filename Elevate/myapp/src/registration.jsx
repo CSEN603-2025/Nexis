@@ -22,19 +22,19 @@ const Registration = () => {
   const [fileName, setFileName] = useState('');
   const [documentsName, setDocumentsName] = useState('');
 
-  // Show welcome notification on first load
-  useEffect(() => {
-    showNotification("Welcome to ELEVATE Professional Network", "welcome");
-  }, []);
-
   // Demo credentials
   const demoCredentials = {
     student: { email: 'student@elevate.com', password: 'student123', route: '/student' },
-    proStudent: { email: 'prostudent@elevate.com', password: 'prostudent123', route: '/student2' },
+    proStudent: { email: 'prostudent@elevate.com', password: 'prostudent123', route: '/pro' },
     faculty: { email: 'faculty@elevate.com', password: 'faculty123', route: '/faculty' },
     scad: { email: 'scad@elevate.com', password: 'scad123', route: '/scaddashboard' },
     company: { email: 'company@elevate.com', password: 'company123', route: '/company' }
   };
+
+  // Show welcome notification on first load
+  useEffect(() => {
+    showNotification("Welcome to ELEVATE Professional Network", "welcome");
+  }, []);
 
   const showNotification = (message, type = 'success') => {
     setNotification({ show: true, message, type });
@@ -77,13 +77,25 @@ const Registration = () => {
       return;
     }
     
-    if (!isSignIn) {
-      showNotification("Registration submitted! Please wait for verification email.", "success");
+    // Check if credentials match any demo account
+    const matchedRole = Object.keys(demoCredentials).find(role => 
+      formData.email === demoCredentials[role].email && 
+      formData.password === demoCredentials[role].password
+    );
+    
+    if (isSignIn) {
+      if (matchedRole) {
+        showNotification("Sign in successful! Redirecting...", "success");
+        setTimeout(() => {
+          navigate(demoCredentials[matchedRole].route);
+        }, 2000);
+      } else {
+        showNotification("Invalid credentials. Try demo accounts if needed.", "error");
+      }
     } else {
-      showNotification("Sign in successful! Redirecting...", "success");
-      setTimeout(() => {
-        navigate('/company');
-      }, 2000);
+      // Registration logic
+      showNotification("Registration submitted! Please wait for verification email.", "success");
+      // Here you would typically send data to your backend
     }
   };
 
@@ -104,7 +116,14 @@ const Registration = () => {
   };
 
   const handleDemoLogin = (type) => {
-    showNotification(`Logging in as ${type}...`, "info");
+    // Set the demo credentials in the form
+    setFormData({
+      ...formData,
+      email: demoCredentials[type].email,
+      password: demoCredentials[type].password
+    });
+    
+    showNotification(`Logging in as ${type.replace(/([A-Z])/g, ' $1').toLowerCase()}...`, "info");
     setTimeout(() => {
       navigate(demoCredentials[type].route);
     }, 1500);
@@ -115,25 +134,13 @@ const Registration = () => {
     
     // In a real app, these would be your actual OAuth endpoints
     setTimeout(() => {
-      switch(provider) {
-        case 'google':
-          // Simulate successful Google login redirect to student page
-          navigate('/student');
-          break;
-        case 'linkedin':
-          // Simulate successful LinkedIn login redirect to student page
-          navigate('/student');
-          break;
-        case 'github':
-          // Simulate successful GitHub login redirect to student page
-          navigate('/student');
-          break;
-        default:
-          showNotification("Social login failed. Please try again.", "error");
-      }
+      // For demo purposes, redirect to student dashboard
+      navigate('/student');
     }, 2000);
   };
 
+  // ... (rest of your component code remains the same)
+  
   return (
     <div className="registration-container">
       {/* Background elements */}
@@ -198,9 +205,9 @@ const Registration = () => {
         </div>
 
         <div className="form-header">
-          <h2>{isSignIn ? 'Company Sign In' : 'Company Registration'}</h2>
+          <h2>{isSignIn ? ' Welcome to our Platform' : ' Registration'}</h2>
           <p>
-            {isSignIn ? "Don't have a company account? " : "Already have a company account? "}
+            {isSignIn ? "Don't have an account? " : "Already have an account? "}
             <button 
               type="button"
               onClick={toggleForm} 

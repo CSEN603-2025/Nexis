@@ -226,7 +226,7 @@ function ScadDashboard() {
   };
   
   return (
-    <div className="app-container">
+    <div className="scad-container">
       {/* Top Navigation Bar */}
      
       <div className="main-container">

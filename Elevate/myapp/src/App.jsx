@@ -11,7 +11,7 @@ import Workshops from './Workshops';
 import Assessment from './Assessment';
 import Analytics from './Analytics';
 import Registration from './registration';
-
+import FAMainLayout from './faMainLayout';
 import FacultyProfile from './faculty';
 
 
@@ -30,6 +30,7 @@ import    WorkshopsManagement from './WorkshopsManagement';
 import { BrowserRouter as Router,   Navigate } from "react-router-dom";
 import EvaluationForms from './EvaluationForms';
 import ReportSubmissions from './ReportSubmissions';
+import Evaluate1 from "./Evaluationsfa";
 function App() {
   return (
     <BrowserRouter>
@@ -39,7 +40,7 @@ function App() {
         <Route path="/student" element={<NormalStudent />} />
         <Route path='/prol' element={<internship />} />
         <Route path='/search' element={<Search />} />
-        <Route path="/faculty" element={<FacultyProfile />} />
+       
         <Route path="/new" element={<InternshipDashboard />} />
         <Route path="/Workshop" element={<Workshops />} />
         <Route path="/Assessment" element={<Assessment />} />
@@ -54,13 +55,20 @@ function App() {
 
 
         <Route path='/pro' element={<StudentDashboard />} />
-    <Route path="/reports" element={<Reports />} />
-       <Route path="/EvaluationForms" element={<Evaluations />} />
-      <Route path="/scaddashboard" element={<ScadDashboard />} />
-      <Route path="/internships" element={<Internships />} />
-      <Route path="/students" element={<StudentList />} />
-       <Route path="/WorkshopsManagement" element={<WorkshopsManagement />} />
-      <Route path="/students/:id" element={<Studentscad />} />
+    <Route element={<MainLayout />}>
+          <Route path="/scaddashboard" element={<ScadDashboard />} />
+          <Route path="/internships" element={<Internships />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/EvaluationForms" element={<Evaluations />} />
+          <Route path="/students" element={<StudentList />} />
+          <Route path="/workshopsManagement" element={< WorkshopsManagement />} />
+          <Route path="/students/:id" element={<Studentscad />} />
+        </Route>
+        <Route element={<FAMainLayout />}>
+         <Route path="/faculty" element={<FacultyProfile />} />
+         <Route path="/Evaluationsfa" element={<Evaluate1 />} />
+         </Route>
+
       <Route path="/" element={<Navigate to="/company" replace />} />
        <Route path="/company" element={<Company />} />
        <Route path="/evaluate2" element={<EvaluationForms />} />
