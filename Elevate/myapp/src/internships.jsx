@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./internships.css";
+import "./Internships.css";
 import "./Internshipcycles.css"; // New CSS file for the cycle dates component
 
 function Internships() {
@@ -134,20 +134,28 @@ function Internships() {
   const toggleCycleSettings = () => setShowCycleSettings(!showCycleSettings);
 
   return (
-    <div className="app-container">
+    <div className="scad-container">
    
 
       <div className="main-container">
        
 
         <main className="content">
+         
           <div className="companies-container">
+            
             {/* Internship Cycle Settings Button */}
             <div className="cycle-settings-button-container">
               <button className="btn btn-secondary cycle-settings-button" onClick={toggleCycleSettings}>
                 <i className="fas fa-calendar-alt"></i>
                 <span>{showCycleSettings ? "Hide Cycle Settings" : "Manage Internship Cycle"}</span>
               </button>
+               <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
             </div>
             
             {/* Internship Cycle Settings Panel */}

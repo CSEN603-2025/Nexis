@@ -1,3 +1,4 @@
+.scad-container{
 html, body, #root {
   height: 100%;
 }
@@ -7,7 +8,7 @@ html, body, #root {
     margin: 0;
     padding: 0;
   }
-  .app-container {
+  .scad-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -365,4 +366,4 @@ html, body, #root {
   gap: 0.5rem;
   align-items: flex-end;
 }
-  
+}

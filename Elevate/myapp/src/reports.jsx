@@ -180,16 +180,23 @@ function Reports() {
   };
 
   return (
-    <div className="app-container">
+    <div className="scad-container">
       {/* Top Navigation Bar */}
  
       <div className="main-container">
-       
+      
         {/* Main Content Area */}
         <main className="content-area">
+         
           <div className="main-content">
             <div className="content-wrapper">
               <div className="card">
+                  <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
                 <div className="card-header">
                   <h2 className="card-title">Reports</h2>
                   <div className="filter-container">

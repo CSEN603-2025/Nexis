@@ -1,5 +1,27 @@
 /* Dashboard.css */
+.scad-container {
 
+  
+  .content-wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+  }
+  
+  .card-body {
+    display: flex; /* enables horizontal layout */
+    flex-wrap: wrap; /* allows wrapping if it overflows */
+    gap: 2rem; /* spacing between children */
+    padding: 32px;
+    width: 100%; /* full width of container */
+    box-sizing: border-box; /* ensures padding doesn't overflow */
+  }
 /* Base styles */
 * {
     box-sizing: border-box;
@@ -13,7 +35,7 @@
     color: #333;
   }
   
-  .app-container {
+  .scad-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -446,12 +468,12 @@
     font-size: 0.875rem;
   }
   
-  .status-flagged {
+  .status-current-intern{
     background-color: #dfb600;
     color: white;
   }
   
-  .status-accepted {
+  .status-internship-complete {
     background-color: #34d399;
     color: white;
   }
@@ -473,4 +495,4 @@
     top: 0;
     left: 0;
     width: 100%;
-  }
+  }}

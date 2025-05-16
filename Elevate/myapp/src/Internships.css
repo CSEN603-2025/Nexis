@@ -1,6 +1,7 @@
 /* Dashboard.css */
 
 /* Base styles */
+.scad-container{
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,7 +14,7 @@
     color: #333;
   }
   
-  .app-container {
+  .scad-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -418,4 +419,4 @@
     display: flex;
     gap: 0.75rem;
     justify-content: flex-end;
-  }
+  }}

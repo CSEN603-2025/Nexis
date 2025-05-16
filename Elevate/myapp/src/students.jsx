@@ -5,16 +5,16 @@ import './students.css'; // Import your CSS file for styling
 
 // Mock data for students
 const mockStudents = [
-  { id: 1, name: "Emma Johnson", email: "emma.j@student.scad.edu", major: "MET", year: "Junior", status: "Pending" },
-  { id: 2, name: "Marcus Lee", email: "m.lee@student.scad.edu", major: "IET", year: "Sophomore", status: "Flagged" },
-  { id: 3, name: "Sofia Patel", email: "sofia.p@student.scad.edu", major: "EMS", year: "Senior", status: "Accepted" },
-  { id: 4, name: "Jackson Smith", email: "j.smith@student.scad.edu", major: "MET", year: "Freshman", status: "Accepted" },
-  { id: 5, name: "Olivia Garcia", email: "o.garcia@student.scad.edu", major: "IET", year: "Senior", status: "Rejected" },
-  { id: 6, name: "Ethan Williams", email: "e.williams@student.scad.edu", major: "IET", year: "Junior", status: "Rejected" },
-  { id: 7, name: "Ava Rodriguez", email: "a.rodriguez@student.scad.edu", major: "Law", year: "Sophomore", status: "Accepted" },
-  { id: 8, name: "Noah Chen", email: "n.chen@student.scad.edu", major: "Business", year: "Senior", status: "Pending" },
-  { id: 9, name: "Mia Taylor", email: "m.taylor@student.scad.edu", major: "Law", year: "Freshman", status: "Pending" },
-  { id: 10, name: "Liam Brown", email: "l.brown@student.scad.edu", major: "Business", year: "Junior", status: "Flagged" },
+  { id: 1, name: "Emma Johnson", email: "emma.j@student.scad.edu", major: "MET", year: "Junior", status: "Current intern" },
+  { id: 2, name: "Marcus Lee", email: "m.lee@student.scad.edu", major: "IET", year: "Sophomore", status: "Internship complete" },
+  { id: 3, name: "Sofia Patel", email: "sofia.p@student.scad.edu", major: "EMS", year: "Senior", status:  "Internship complete" },
+  { id: 4, name: "Jackson Smith", email: "j.smith@student.scad.edu", major: "MET", year: "Freshman", status: "Current intern" },
+  { id: 5, name: "Olivia Garcia", email: "o.garcia@student.scad.edu", major: "IET", year: "Senior", status: "Current intern" },
+  { id: 6, name: "Ethan Williams", email: "e.williams@student.scad.edu", major: "IET", year: "Junior", status: "Internship complete"},
+  { id: 7, name: "Ava Rodriguez", email: "a.rodriguez@student.scad.edu", major: "Law", year: "Sophomore", status:"Internship complete"},
+  { id: 8, name: "Noah Chen", email: "n.chen@student.scad.edu", major: "Business", year: "Senior", status:"Current intern" },
+  { id: 9, name: "Mia Taylor", email: "m.taylor@student.scad.edu", major: "Law", year: "Freshman", status: "Internship complete"},
+  { id: 10, name: "Liam Brown", email: "l.brown@student.scad.edu", major: "Business", year: "Junior", status: "Internship complete" },
 ];
 
 // The main component
@@ -68,7 +68,7 @@ const handleRowClick = (id) => {
   ];
 
   return (
-    <div className="app-container">
+    <div className="scad-container">
       {/* Top Navigation Bar */}
      
 
@@ -78,9 +78,16 @@ const handleRowClick = (id) => {
 
         {/* Main content */}
         <main className="content">
+         
           <div className="companies-container">
             <div className="card companies-card">
               <div className="card-header">
+                 <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
                 <h2 className="card-title">Students List</h2>
                 <div className="filter-controls">
                   <select value={statusFilter} onChange={handleStatusFilter} className="industry-filter">
