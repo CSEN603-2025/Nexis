@@ -21,7 +21,7 @@ import ScadDashboard from './scaddashboard';
 import Reports from './reports';
 import StudentList from './students';
 import Internships from './internships';
-import MainLayout from './MainLayout';
+
 import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
 import    WorkshopsManagement from './WorkshopsManagement';
@@ -52,7 +52,7 @@ function App() {
 
 
         <Route path='/pro' element={<StudentDashboard />} />
-    <Route element={<MainLayout />}>
+   
           <Route path="/scaddashboard" element={<ScadDashboard />} />
           <Route path="/internships" element={<Internships />} />
           <Route path="/reports" element={<Reports />} />
@@ -60,7 +60,7 @@ function App() {
           <Route path="/students" element={<StudentList />} />
           <Route path="/workshopsManagement" element={< WorkshopsManagement />} />
           <Route path="/students/:id" element={<Studentscad />} />
-        </Route>
+       
         <Route element={<FAMainLayout />}>
          <Route path="/faculty" element={<FacultyProfile />} />
          <Route path="/Evaluationsfa" element={<Evaluate1 />} />

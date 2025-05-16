@@ -883,7 +883,12 @@
   align-items: center;
   gap: 1rem;
 }
-
+.company-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
 .company-logo-container {
   width: 80px;
   height: 80px;
@@ -898,12 +903,7 @@
   object-fit: cover;
 }
 
-.company-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+
 
 .company-name {
   font-weight: 500;
@@ -952,6 +952,10 @@
 .accept-button {
   background-color: rgba(46, 204, 113, 0.1);
   color: #2ecc71;
+}
+.reject-button {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
 }
 
 .accept-button:hover {

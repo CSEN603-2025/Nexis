@@ -846,7 +846,54 @@ function ScadDashboard() {
                             {company.status}
                           </span>
                         </td>
+<td className="action-cell">
+                            <div className="action-buttons">
+                              {(company.status === "Under Review" || company.status === "Pending") && (
+                                <>
+                                  <button
+                                    className="accept-button"
+                                    onClick={e => {
+                                      e.stopPropagation()
+                                      const updatedCompanies = companies.map(c =>
+                                        c.name === company.name
+                                          ? {
+                                              ...c,
+                                              status: "Approved",
+                                              statusClass: "approvedst"
+                                            }
+                                          : c
+                                      )
+                                      setCompanies(updatedCompanies)
+                                    }}
+                                  >
+                                    <i className="fas fa-check text-sm"></i>
+                                    <span>Accept</span>
+                                  </button>
+                                  <button
+                                    className="reject-button"
+                                    onClick={e => {
+                                      e.stopPropagation()
+                                      const updatedCompanies = companies.map(c =>
+                                        c.name === company.name
+                                          ? {
+                                              ...c,
+                                              status: "Rejected",
+                                              statusClass: "rejst"
+                                            }
+                                          : c
+                                      )
+                                      setCompanies(updatedCompanies)
+                                    }}
+                                  >
+                                    <i className="fas fa-times text-sm"></i>
+                                    <span>Reject</span>
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          </td>
                       </tr>
+                      
                     ))
                   ) : (
                     <tr>
