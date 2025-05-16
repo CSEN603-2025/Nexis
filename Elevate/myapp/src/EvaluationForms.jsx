@@ -240,6 +240,12 @@ const EvaluationForms = () => {
   return (
     <div className="evaluation-forms-container">
       <div className="evaluation-header">
+         <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
         <h1>Evaluation Forms</h1>
         <div className="role-badge">
           {userRole === 'scad' ? 'SCAD Office' : 'Faculty Academic'}

@@ -288,7 +288,7 @@ function ScadDashboard() {
     { icon: "fa-clipboard-list", label: "Evaluations", path: "/EvaluationForms" },
     { icon: "fa-building", label: "Students", path: "/students" },
     { icon: "fa-chalkboard-teacher", label: "Workshops", path: "/WorkshopsManagement" },
-    { icon: "fa-cog", label: "Settings", path: "/settings" }
+    { icon: "fa-cog", label: "Log Out", path: "/reg" }
   ];
 
   const totalReports = statisticsData.reports.total;

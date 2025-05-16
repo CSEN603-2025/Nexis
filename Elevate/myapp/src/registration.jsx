@@ -200,7 +200,7 @@ const Registration = () => {
       
       <div className="registration-content">
         <div className="logo-container">
-          <div className="logo">ELEVATE</div>
+          
           <div className="logo-subtitle">Professional Network for Internships</div>
         </div>
 

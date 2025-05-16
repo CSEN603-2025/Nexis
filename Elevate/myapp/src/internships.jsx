@@ -141,13 +141,21 @@ function Internships() {
        
 
         <main className="content">
+         
           <div className="companies-container">
+            
             {/* Internship Cycle Settings Button */}
             <div className="cycle-settings-button-container">
               <button className="btn btn-secondary cycle-settings-button" onClick={toggleCycleSettings}>
                 <i className="fas fa-calendar-alt"></i>
                 <span>{showCycleSettings ? "Hide Cycle Settings" : "Manage Internship Cycle"}</span>
               </button>
+               <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
             </div>
             
             {/* Internship Cycle Settings Panel */}
