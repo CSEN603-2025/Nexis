@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./scadDashboard.css";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import callRingtone from './call-ringtone.mp3';
 
@@ -99,7 +100,7 @@ function ScadDashboard() {
     },
     {
       id: 2, name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      industry: "Technology", location: "Redmond, WA", status: "Approved",
+      industry: "Technology", location: "Redmond, WA", status: "Pending",
       description: "Global leader in software, services, devices, and solutions.",
       employees: "221,000", founded: "1975", website: "www.microsoft.com", openPositions: "32"
     },
@@ -483,62 +484,91 @@ function ScadDashboard() {
         </aside>
 
         <main className="content-area">
-          <div className="card profile-card">
-            <div className="card-body">
-              <div className="profile-header">
-                <div className="profile-info">
-                  <div className="profile-avatar">
-                    <img src="/scadIcon.jpeg" alt="SCAD Office" />
-
-
-                  </div>
-                  <div className="profile-details">
-                    <h1 className="profile-title">{profileData.name}</h1>
-                    <p className="profile-subtitle">{profileData.title}</p>
-                  
-                  </div>
-                </div>
-                <button className="btn btn-primary" onClick={() => setShowEditProfileModal(true)}>
-                  <i className="fas fa-edit"></i>
-                  <span>Edit Profile</span>
-                </button>
-              </div>
-              <div className="profile-grid">
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Department</h3>
-                  <p className="grid-value">{profileData.title}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Office ID</h3>
-                  <p className="grid-value">SCAD-2025</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Email</h3>
-                  <p className="grid-value">{profileData.email}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Location</h3>
-                  <p className="grid-value">{profileData.location}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Office Hours</h3>
-                  <p className="grid-value">{profileData.officeHours}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Head of Department</h3>
-                  <p className="grid-value">{profileData.head}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Establishment Date</h3>
-                  <p className="grid-value">{profileData.established}</p>
-                </div>
-                <div className="profile-grid-item">
-                  <h3 className="grid-label">Staff Members</h3>
-                  <p className="grid-value">{profileData.staff}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="card profile-card">
+  <div className="card-body">
+    <div className="profile-header">
+      <div className="profile-info">
+        <div className="profile-avatar">
+          <img src="/scadIcon.jpeg" alt="SCAD Office" />
+        </div>
+        <div className="profile-details">
+          <h1 className="profile-title">{profileData.name}</h1>
+          <p className="profile-subtitle">{profileData.title}</p>
+        </div>
+      </div>
+      <button className="btn btn-primary" onClick={() => setShowEditProfileModal(true)}>
+        <i className="fas fa-edit"></i>
+        <span>Edit Profile</span>
+      </button>
+    </div>
+    
+    <div className="profile-grid">
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-building"></i>
+          Department
+        </h3>
+        <p className="grid-value">{profileData.title}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-id-card"></i>
+          Office ID
+        </h3>
+        <p className="grid-value">SCAD-2025</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-envelope"></i>
+          Email
+        </h3>
+        <p className="grid-value">{profileData.email}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-map-marker-alt"></i>
+          Location
+        </h3>
+        <p className="grid-value">{profileData.location}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-clock"></i>
+          Office Hours
+        </h3>
+        <p className="grid-value">{profileData.officeHours}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-user-tie"></i>
+          Head of Department
+        </h3>
+        <p className="grid-value">{profileData.head}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-calendar-alt"></i>
+          Establishment Date
+        </h3>
+        <p className="grid-value">{profileData.established}</p>
+      </div>
+      
+      <div className="profile-grid-item">
+        <h3 className="grid-label">
+          <i className="fas fa-users"></i>
+          Staff Members
+        </h3>
+        <p className="grid-value">{profileData.staff}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
           <div className="card appointments-card">
             <div className="card-header">
@@ -846,7 +876,54 @@ function ScadDashboard() {
                             {company.status}
                           </span>
                         </td>
+<td className="action-cell">
+                            <div className="action-buttons">
+                              {(company.status === "Under Review" || company.status === "Pending") && (
+                                <>
+                                  <button
+                                    className="accept-button"
+                                    onClick={e => {
+                                      e.stopPropagation()
+                                      const updatedCompanies = companies.map(c =>
+                                        c.name === company.name
+                                          ? {
+                                              ...c,
+                                              status: "Approved",
+                                              statusClass: "approvedst"
+                                            }
+                                          : c
+                                      )
+                                      setCompanies(updatedCompanies)
+                                    }}
+                                  >
+                                    <i className="fas fa-check text-sm"></i>
+                                    <span>Accept</span>
+                                  </button>
+                                  <button
+                                    className="reject-button"
+                                    onClick={e => {
+                                      e.stopPropagation()
+                                      const updatedCompanies = companies.map(c =>
+                                        c.name === company.name
+                                          ? {
+                                              ...c,
+                                              status: "Rejected",
+                                              statusClass: "rejst"
+                                            }
+                                          : c
+                                      )
+                                      setCompanies(updatedCompanies)
+                                    }}
+                                  >
+                                    <i className="fas fa-times text-sm"></i>
+                                    <span>Reject</span>
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          </td>
                       </tr>
+                      
                     ))
                   ) : (
                     <tr>
@@ -865,7 +942,8 @@ function ScadDashboard() {
               </div>
               <div className="card-body">
                 <div className="company-logo-container">
-                  <img src={selectedCompanyData.logo} alt={selectedCompanyData.name} />
+                  <img src={selectedCompanyData.logo} alt={selectedCompanyData.name} className="company-logo" />
+                  
                 </div>
                 <p><strong>Description:</strong> {selectedCompanyData.description}</p>
                 <p><strong>Employees:</strong> {selectedCompanyData.employees}</p>
@@ -1143,9 +1221,7 @@ function ScadDashboard() {
       {callStatus === 'ringing' && (
         <div className="incoming-call-notification">
           <div className="caller-info">
-            <div className="caller-avatar">
-              <img src="/scadIcon.jpeg" alt="Caller" />
-            </div>
+            
             <div className="caller-details">
               <h3>Incoming Call</h3>
               <p>{incomingCall.with}</p>
