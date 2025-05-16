@@ -136,7 +136,7 @@ const InternshipListings = () => {
         <Space size="middle">
           <Button 
             type="primary" 
-            style={{ backgroundColor: '#0d9488', borderColor: '#0d9488' }}
+            style={{ backgroundColor: '#319795', borderColor: '#319795' }}
             onClick={() => showDetails(record)}
           >
             View Details

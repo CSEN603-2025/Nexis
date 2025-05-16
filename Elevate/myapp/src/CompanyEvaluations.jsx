@@ -364,25 +364,25 @@ const EvaluationManagement = () => {
       render: (_, record) => (
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <Button
-            style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+            style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
             onClick={() => handleViewDetails(record)}
           >
             View Details
           </Button>
           <Button
-            style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+            style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
             onClick={() => handleEdit(record)}
           >
             Edit
           </Button>
           <Button
-            style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+            style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
             onClick={() => handleDeleteConfirm(record)}
           >
             Delete
           </Button>
           <Button
-            style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+            style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
             onClick={() => handleDownload(record)}
           >
             Download Evaluation
@@ -405,7 +405,7 @@ const EvaluationManagement = () => {
         }}
       >
         <Button
-          style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+          style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
           onClick={handleCreate}
         >
           Create Evaluation

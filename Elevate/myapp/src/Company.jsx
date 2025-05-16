@@ -8,11 +8,14 @@ import Applications from './Applications';
 import Interns from './Interns';
 
 import React, { useState } from 'react';
+
 import {
  Input, Modal,Layout, Menu, Avatar, Badge, Button, Tag, List, ConfigProvider,Typography, Row, Col, Card, Table,Space,Form,Select,DatePicker
 } from 'antd';
 import {
-  DashboardOutlined, FileTextOutlined, TeamOutlined,
+  DashboardOutlined, FileTextOutlined, TeamOutlined,FileDoneOutlined,
+  StarOutlined,
+  BankOutlined,
   MailOutlined, SettingOutlined,EyeOutlined, EditOutlined, DeleteOutlined,PlusOutlined 
 } from '@ant-design/icons';
 
@@ -32,7 +35,7 @@ const messages = [
 
 const Company = () => {
 
-
+;
    const [showEvaluations, setShowEvaluations] = useState(false);
      const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -252,7 +255,7 @@ case 'internship-posts':
             key="submit" 
             type="primary" 
             onClick={() => form.submit()}
-            style={{ backgroundColor: '#0d9488' }}
+            style={{ backgroundColor: '#319795' }}
           >
             Submit
           </Button>,
@@ -403,7 +406,7 @@ case 'internship-posts':
 }}>
   <Button 
     type="primary" 
-    style={{ backgroundColor: '#0d9488' }} 
+    style={{ backgroundColor: ' #319795' }} 
     onClick={handlePostNewClick}
   >
     + Post New Internship
@@ -446,7 +449,7 @@ case 'internship-posts':
               <Space size="middle">
                 <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleView(record.key)}
                 >
                  View Details   
@@ -454,7 +457,7 @@ case 'internship-posts':
 
                   <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleEdit(record.key)}
                 >
                 Edit  
@@ -463,7 +466,7 @@ case 'internship-posts':
 
      <Button 
                   type="primary"
-                style={{ backgroundColor: '#0d9488' }} 
+                style={{ backgroundColor: '#319795' }} 
                   onClick={() => handleDelete(record.key)}
                 >
                 Delete 
@@ -529,7 +532,7 @@ case 'internship-posts':
                   <p>Business Registration: <Tag color="green">Verified</Tag></p>
                   <p>Company Profile: <Tag color="green">Verified</Tag></p>
                   <p>Representative ID: <Tag color="green">Verified</Tag></p>
-                  <Button type="default" block>Upload Additional Documents</Button>
+                  <Button type="primary"  style={{ backgroundColor: ' #319795' }} >Upload Additional Documents</Button>
                 </Card>
               </Col>
             </Row>
@@ -562,7 +565,8 @@ case 'evaluations':
               <div className="logo-circle">
                 <i className="fas fa-arrow-up logo-icon" />
               </div>
-              <span className="logo-text">Elevate</span>
+             <span className="logo-text" style={{ color: "#2c7a7b" }}>Elevate</span>
+
             </div>
             <span className="company-title">Company Portal</span>
           </div>
@@ -595,28 +599,87 @@ case 'evaluations':
       </Card>
     )}
   </div>
-  <Avatar size="large" className="avatar">TC</Avatar>
+
 </div>
         </div>
       </Header>
 
       <Layout>
-        <Sider width={250} theme="light" className="sidebar">
-          <div className="company-info">
-            <Avatar size={64} />
-            <h3 className="company-name">TechInnovate Solutions</h3>
-            <Tag color="green" className="verified-tag">Verified Company</Tag>
-          </div>
+      <Sider width={280} theme="light" className="sidebar" style={{ background: '#fff' }}>
+<div className="company-info" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+  <div className="logo-placeholder">
+    TI
+  </div>
+  <div>
+    <h3 className="company-name">TechInnovate Solutions</h3>
+    <Tag color="green" className="verified-tag">Verified Company</Tag>
+  </div>
+</div>
 
-          <Menu mode="inline" selectedKeys={[activeTab]} onClick={({ key }) => setActiveTab(key)}>
-            <Menu.Item key="dashboard" icon={<DashboardOutlined />}>Dashboard</Menu.Item>
-            <Menu.Item key="internship-posts" icon={<FileTextOutlined />}>Internship Posts</Menu.Item>
-            <Menu.Item key="applications" icon={<i className="fas fa-clipboard-list" />}>Applications</Menu.Item>
-            <Menu.Item key="interns" icon={<TeamOutlined />}>Interns</Menu.Item>
-            <Menu.Item key="evaluations" icon={<i className="fas fa-star" />}>Evaluations</Menu.Item>
-            <Menu.Item key="other companies" icon={<i className="fas fa-book" />}>Other Companies</Menu.Item>
-          </Menu>
-        </Sider>
+
+  <div className="sidebar-menu">
+    <div 
+      className={`menu-item ${activeTab === 'dashboard' ? 'active' : ''}`}
+      onClick={() => setActiveTab('dashboard')}
+    >
+      <DashboardOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Dashboard</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'internship-posts' ? 'active' : ''}`}
+      onClick={() => setActiveTab('internship-posts')}
+    >
+      <FileTextOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Internship Posts</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'applications' ? 'active' : ''}`}
+      onClick={() => setActiveTab('applications')}
+    >
+        <FileDoneOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Applications</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'interns' ? 'active' : ''}`}
+      onClick={() => setActiveTab('interns')}
+    >
+      <TeamOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Interns</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'evaluations' ? 'active' : ''}`}
+      onClick={() => setActiveTab('evaluations')}
+    >
+   <StarOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Evaluations</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'other companies' ? 'active' : ''}`}
+      onClick={() => setActiveTab('other companies')}
+    >
+        <  BankOutlined
+ className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Other Companies</span>
+      </div>
+    </div>
+  </div>
+</Sider>
         <Content className="page-container">
           {RenderContent()}
         </Content>

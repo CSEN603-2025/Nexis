@@ -108,7 +108,7 @@ const Applications = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Button
             type="primary"
-            style={{ backgroundColor: '#0d9488' }}
+            style={{ backgroundColor: '#319795' }}
             onClick={() => showStudentDetails(record)}
           >
             View Details
