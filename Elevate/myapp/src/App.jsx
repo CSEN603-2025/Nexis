@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
 import Company from './Company';
-
+import Student2 from './student2';
 import InternshipDashboard from './InternshipDashboard';
 import Workshops from './Workshops';
 import Assessment from './Assessment';
@@ -28,7 +28,8 @@ import Studentscad from './studentProfile';
 import Evaluations from './EvaluationForms';
 import    WorkshopsManagement from './WorkshopsManagement';
 import { BrowserRouter as Router,   Navigate } from "react-router-dom";
-
+import EvaluationForms from './EvaluationForms';
+import ReportSubmissions from './ReportSubmissions';
 function App() {
   return (
     <BrowserRouter>
@@ -44,6 +45,7 @@ function App() {
         <Route path="/Assessment" element={<Assessment />} />
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/reg" element={<Registration />} />
+        <Route path="/student2" element={<Student2 />} />
 
 
         <Route path="/eval" element={<Evaluate />} />
@@ -61,6 +63,9 @@ function App() {
       <Route path="/students/:id" element={<Studentscad />} />
       <Route path="/" element={<Navigate to="/company" replace />} />
        <Route path="/company" element={<Company />} />
+       <Route path="/evaluate2" element={<EvaluationForms />} />
+       <Route path="/ReportStudent" element={<ReportSubmissions />} />
+       
 
     
       </Routes>

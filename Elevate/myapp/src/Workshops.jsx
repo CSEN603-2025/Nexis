@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Workshops.css';
-import EmojiPicker from 'emoji-picker-react';
 
 const Workshops = () => {
   const [showVideoConferenceModal, setShowVideoConferenceModal] = useState(false);
-  const [showRecordingModal, setShowRecordingModal] = useState(false);
-  const [currentRecording, setCurrentRecording] = useState(null);
   const [activeWorkshop, setActiveWorkshop] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [userRating, setUserRating] = useState(0);
+  const [userFeedback, setUserFeedback] = useState('');
+  const [showNotification, setShowNotification] = useState(null);
+  
   const [workshops, setWorkshops] = useState([
     { 
       id: 1, 
@@ -17,8 +19,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: true,
       description: 'Learn how to craft a compelling professional brand that showcases your unique skills and value proposition to potential employers.',
-      recordingUrl: '/dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -33,8 +35,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: false,
       description: 'Master the art of technical interviews with hands-on coding exercises and problem-solving strategies from industry experts.',
-      recordingUrl: 'dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -49,8 +51,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: false,
       description: 'Create a standout portfolio that effectively communicates your skills and experience to potential employers.',
-      recordingUrl: '/dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -65,8 +67,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: true,
       description: 'Develop essential networking skills to build professional relationships and uncover hidden job opportunities.',
-      recordingUrl: '/dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -81,8 +83,8 @@ const Workshops = () => {
       status: 'completed',
       registered: true,
       description: 'Transform your resume into a powerful marketing tool that gets you noticed by recruiters and hiring managers.',
-      recordingUrl: '/dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: 'Great workshop with practical tips!',
       rating: 5,
       notes: 'Focus on quantifiable achievements\nTailor resume for each application',
@@ -97,8 +99,8 @@ const Workshops = () => {
       status: 'completed',
       registered: true,
       description: 'Improve your communication skills to collaborate effectively with teams and present your ideas clearly.',
-      recordingUrl: '/dummy-video.mp4',
-      certificateUrl: '/sample-certificate.pdf',
+      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       feedback: 'Helpful for improving team collaboration',
       rating: 4,
       notes: 'Active listening techniques\nNon-verbal communication matters',
@@ -106,40 +108,6 @@ const Workshops = () => {
     }
   ]);
 
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      type: 'workshop',
-      message: 'Your workshop "Building Your Professional Brand" starts in 2 hours',
-      timestamp: '2025-05-15 12:00',
-      read: false
-    },
-    {
-      id: 2,
-      type: 'chat',
-      message: 'New message from Sarah Johnson in "Building Your Professional Brand"',
-      timestamp: '2025-05-15 11:30',
-      read: false
-    }
-  ]);
-
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [showFAQ, setShowFAQ] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  // Simulated participants data
-  const participants = [
-    { id: 1, name: 'Menna Elsayed', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
-    { id: 2, name: 'Sarah Johnson', role: 'Presenter', isSpeaking: true, hasCamera: true, hasMic: true },
-    { id: 3, name: 'Alex Thompson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
-    { id: 4, name: 'Jessica Lee', role: 'Student', isSpeaking: false, hasCamera: false, hasMic: true },
-    { id: 5, name: 'David Miller', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: false },
-    { id: 6, name: 'Emily Wilson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
-    { id: 7, name: 'Michael Chen', role: 'Student', isSpeaking: false, hasCamera: false, hasMic: false },
-    { id: 8, name: 'Emma Davis', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
-  ];
-
-  // Handle register for workshop
   const handleRegister = (workshopId) => {
     const updatedWorkshops = workshops.map(workshop => 
       workshop.id === workshopId ? { ...workshop, registered: true, notification: true } : workshop
@@ -147,53 +115,49 @@ const Workshops = () => {
     setWorkshops(updatedWorkshops);
     
     const workshop = workshops.find(w => w.id === workshopId);
-    const newNotification = {
-      id: Date.now(),
-      type: 'registration',
-      message: `You've registered for "${workshop.title}" on ${workshop.date}`,
-      timestamp: new Date().toLocaleString(),
-      read: false
-    };
-    setNotifications([...notifications, newNotification]);
-    
-    alert('You have successfully registered for this workshop!');
+    setShowNotification({
+      message: 'Registration Confirmed',
+      content: `You've successfully registered for "${workshop.title}"`
+    });
+    setTimeout(() => setShowNotification(null), 5000);
   };
 
-  // Handle join workshop
   const handleJoinWorkshop = (workshop) => {
     setActiveWorkshop(workshop);
     setShowVideoConferenceModal(true);
   };
 
-  // Handle download certificate
   const handleDownloadCertificate = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.certificateUrl) {
-      // Create a temporary anchor element to trigger download
-      const link = document.createElement('a');
-      link.href = workshop.certificateUrl;
-      link.download = `Certificate_${workshop.title.replace(/\s+/g, '_')}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.open(workshop.certificateUrl, '_blank');
+      setShowNotification({
+        message: 'Certificate Downloaded',
+        content: `Certificate for "${workshop.title}" has been downloaded`
+      });
+      setTimeout(() => setShowNotification(null), 5000);
     } else {
-      alert('Certificate is not yet available. Please check back later.');
+      setShowNotification({
+        message: 'Certificate Not Available',
+        content: 'The certificate is not yet available. Please check back later.'
+      });
+      setTimeout(() => setShowNotification(null), 5000);
     }
   };
 
-  // Handle view recording
   const handleViewRecording = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.recordingUrl) {
-      setCurrentRecording(workshop);
-      setShowRecordingModal(true);
       window.open(workshop.recordingUrl, '_blank');
     } else {
-      alert('Recording is not yet available. Please check back later.');
+      setShowNotification({
+        message: 'Recording Not Available',
+        content: 'The recording is not yet available. Please check back later.'
+      });
+      setTimeout(() => setShowNotification(null), 5000);
     }
   };
 
-  // Video Conference Modal Component
   const VideoConferenceModal = () => {
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
@@ -204,136 +168,85 @@ const Workshops = () => {
       { 
         id: 1, 
         sender: activeWorkshop.presenter.split(',')[0], 
-        message: 'Welcome everyone to the workshop! We\'ll be starting in a few minutes.', 
+        message: 'Welcome everyone to the workshop!', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: true
+        isPresenter: true,
+        isSystem: false
       },
       { 
         id: 2, 
-        sender: 'Alex Thompson', 
-        message: 'Looking forward to it!', 
+        sender: 'System', 
+        message: 'You joined the workshop', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: false
-      },
-      { 
-        id: 3, 
-        sender: 'Jessica Lee', 
-        message: 'Will the slides be available after the session?', 
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: false
-      },
-      { 
-        id: 4, 
-        sender: activeWorkshop.presenter.split(',')[0], 
-        message: 'Yes, I\'ll share all materials after the workshop.', 
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: true
+        isPresenter: false,
+        isSystem: true
       }
     ]);
     const [unreadMessages, setUnreadMessages] = useState(0);
     const [raisedHand, setRaisedHand] = useState(false);
-    const [showFileUpload, setShowFileUpload] = useState(false);
+    const [pinnedMessage, setPinnedMessage] = useState(null);
     
     const videoRef = useRef(null);
     const localVideoRef = useRef(null);
-    const screenShareRef = useRef(null);
     const chatContainerRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    // Simulate new messages from participants
-    useEffect(() => {
-      const timer = setInterval(() => {
-        if (Math.random() > 0.7) {
-          const randomParticipants = participants.filter(p => p.role === 'Student' && p.name !== 'Menna Elsayed');
-          if (randomParticipants.length > 0) {
-            const randomParticipant = randomParticipants[Math.floor(Math.random() * randomParticipants.length)];
-            const newMessage = {
-              id: Date.now(),
-              sender: randomParticipant.name,
-              message: getRandomMessage(),
-              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-              isPresenter: false
-            };
-            setMessages(prev => [...prev, newMessage]);
-            if (activeTab !== 'chat') {
-              setUnreadMessages(prev => prev + 1);
-              const newNotification = {
-                id: Date.now(),
-                type: 'chat',
-                message: `New message from ${randomParticipant.name}`,
-                timestamp: new Date().toLocaleString(),
-                read: false
-              };
-              setNotifications(prev => [...prev, newNotification]);
-            }
-          }
-        }
-      }, 8000);
+    // Participants data
+    const participants = [
+      { id: 1, name: activeWorkshop.presenter.split(',')[0], role: 'Presenter', isSpeaking: true, hasCamera: true, hasMic: true },
+      { id: 2, name: 'Alex Thompson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true },
+      { id: 3, name: 'Jessica Lee', role: 'Student', isSpeaking: false, hasCamera: false, hasMic: true },
+      { id: 4, name: 'David Miller', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: false },
+      { id: 5, name: 'Emily Wilson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true }
+    ];
 
-      return () => clearInterval(timer);
-    }, [activeTab]);
-
-    const getRandomMessage = () => {
-      const messages = [
-        "That's a great point!",
-        "I have a question about the last slide",
-        "Could you explain that again?",
-        "This is really helpful, thanks!",
-        "Has anyone tried this approach before?",
-        "I'm having trouble with this part",
-        "Can you share the slides after the workshop?",
-        "What's the best way to practice this?"
-      ];
-      return messages[Math.floor(Math.random() * messages.length)];
-    };
-
-    // Auto-scroll chat to bottom when new messages arrive
-    useEffect(() => {
-      if (chatContainerRef.current && activeTab === 'chat') {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        setUnreadMessages(0);
-      }
-    }, [messages, activeTab]);
-
-    // Get video stream when modal opens
+    // Simulate video stream for local video
     useEffect(() => {
       const getVideoStream = async () => {
         try {
-          if (showVideoConferenceModal && isCameraOn) {
-            const stream = await navigator.mediaDevices.getUserMedia({
-              video: true,
-              audio: isMicOn
-            });
-            
-            if (localVideoRef.current) {
-              localVideoRef.current.srcObject = stream;
-            }
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: isCameraOn,
+            audio: isMicOn
+          });
+          
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
           }
         } catch (err) {
           console.error("Error accessing media devices:", err);
           if (localVideoRef.current) {
-            localVideoRef.current.src = "https://placehold.co/600x400?text=No+Camera";
+            localVideoRef.current.src = "https://placehold.co/400x300?text=No+Camera";
           }
         }
       };
 
-      getVideoStream();
+      if (isCameraOn || isMicOn) {
+        getVideoStream();
+      }
 
       return () => {
         if (localVideoRef.current && localVideoRef.current.srcObject) {
           localVideoRef.current.srcObject.getTracks().forEach(track => track.stop());
         }
       };
-    }, [showVideoConferenceModal, isCameraOn, isMicOn]);
+    }, [isCameraOn, isMicOn]);
 
-    // Simulate presenter video
+    // Set up main video (simulated presenter video)
     useEffect(() => {
       if (showVideoConferenceModal && videoRef.current) {
-        videoRef.current.src = "/presenter-video.mp4";
-        videoRef.current.loop = true;
-        videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
+        videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
+        videoRef.current.setAttribute('frameborder', '0');
+        videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        videoRef.current.setAttribute('allowfullscreen', '');
       }
     }, [showVideoConferenceModal]);
+
+    // Auto-scroll chat to bottom when new messages arrive
+    useEffect(() => {
+      if (chatContainerRef.current) {
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      }
+    }, [messages]);
 
     const handleSendMessage = () => {
       if (chatInput.trim()) {
@@ -342,28 +255,34 @@ const Workshops = () => {
           sender: 'You',
           message: chatInput,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isPresenter: false
+          isPresenter: false,
+          isSystem: false
         };
         setMessages(prev => [...prev, newMessage]);
         setChatInput('');
         
+        // Simulate responses from other participants
         setTimeout(() => {
-          const responses = [
-            "Thanks for your question!",
-            "I'll address that in a moment",
-            "Great point!",
-            "Let me add that to our discussion",
-            "Has anyone else experienced this?"
+          const randomResponses = [
+            "That's a great point!",
+            "I'll address that shortly",
+            "Thanks for sharing!",
+            "Has anyone else experienced this?",
+            "Let me add that to our discussion"
           ];
-          const presenterResponse = {
+          const response = {
             id: Date.now(),
-            sender: activeWorkshop.presenter.split(',')[0],
-            message: responses[Math.floor(Math.random() * responses.length)],
+            sender: Math.random() > 0.5 ? activeWorkshop.presenter.split(',')[0] : participants[Math.floor(Math.random() * participants.length)].name,
+            message: randomResponses[Math.floor(Math.random() * randomResponses.length)],
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isPresenter: true
+            isPresenter: Math.random() > 0.5,
+            isSystem: false
           };
-          setMessages(prev => [...prev, presenterResponse]);
-        }, 2000);
+          setMessages(prev => [...prev, response]);
+          if (activeTab !== 'chat') {
+            setUnreadMessages(prev => prev + 1);
+          }
+        }, 1000 + Math.random() * 2000);
       }
     };
 
@@ -373,37 +292,14 @@ const Workshops = () => {
         const newMessage = {
           id: Date.now(),
           sender: 'You',
-          message: `File: ${file.name}`,
+          message: `[File Attachment] ${file.name}`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           isPresenter: false,
-          isFile: true,
-          file: {
-            name: file.name,
-            size: file.size,
-            type: file.type
-          }
-        };
-        setMessages(prev => [...prev, newMessage]);
-        setSelectedFile(file);
-        setShowFileUpload(false);
-      }
-    };
-
-    const onEmojiClick = (emojiData) => {
-      setChatInput(prev => prev + emojiData.emoji);
-      setShowEmojiPicker(false);
-    };
-
-    const toggleRaiseHand = () => {
-      setRaisedHand(!raisedHand);
-      if (!raisedHand) {
-        const newMessage = {
-          id: Date.now(),
-          sender: 'You',
-          message: '✋ Raised hand',
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isPresenter: false,
-          isSystem: true
+          isSystem: false,
+          isAttachment: true,
+          fileName: file.name,
+          fileType: file.type,
+          fileSize: (file.size / 1024).toFixed(2) + ' KB'
         };
         setMessages(prev => [...prev, newMessage]);
         
@@ -411,87 +307,119 @@ const Workshops = () => {
           const response = {
             id: Date.now(),
             sender: activeWorkshop.presenter.split(',')[0],
-            message: 'I see your raised hand. What would you like to ask?',
+            message: `Thanks for sharing ${file.name}. It's very helpful!`,
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isPresenter: true
+            isPresenter: true,
+            isSystem: false
           };
           setMessages(prev => [...prev, response]);
-          setRaisedHand(false);
-        }, 3000);
+          if (activeTab !== 'chat') {
+            setUnreadMessages(prev => prev + 1);
+          }
+        }, 1500);
       }
     };
 
     const toggleCamera = async () => {
-      if (!isCameraOn) {
+      setIsCameraOn(!isCameraOn);
+      if (!isCameraOn && localVideoRef.current) {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: isMicOn
           });
-          
-          if (localVideoRef.current) {
-            localVideoRef.current.srcObject = stream;
-          }
-          setIsCameraOn(true);
+          localVideoRef.current.srcObject = stream;
         } catch (err) {
-          console.error("Error accessing camera:", err);
-          alert("Could not access camera. Please check permissions.");
+          console.error("Error re-enabling camera:", err);
         }
-      } else {
-        if (localVideoRef.current && localVideoRef.current.srcObject) {
-          localVideoRef.current.srcObject.getVideoTracks().forEach(track => track.stop());
-          localVideoRef.current.srcObject = null;
-        }
-        setIsCameraOn(false);
+      } else if (localVideoRef.current && localVideoRef.current.srcObject) {
+        localVideoRef.current.srcObject.getVideoTracks().forEach(track => track.stop());
+        localVideoRef.current.src = "https://placehold.co/400x300?text=Camera+Off";
       }
     };
 
     const toggleMic = () => {
+      setIsMicOn(!isMicOn);
       if (localVideoRef.current && localVideoRef.current.srcObject) {
-        const audioTracks = localVideoRef.current.srcObject.getAudioTracks();
-        audioTracks.forEach(track => {
-          track.enabled = !track.enabled;
+        localVideoRef.current.srcObject.getAudioTracks().forEach(track => {
+          track.enabled = !isMicOn;
         });
-        setIsMicOn(!isMicOn);
       }
     };
 
     const toggleScreenShare = async () => {
-      try {
-        if (!isScreenSharing) {
+      if (!isScreenSharing) {
+        try {
           const screenStream = await navigator.mediaDevices.getDisplayMedia({
             video: true,
             audio: true
           });
           
-          if (localVideoRef.current) {
-            localVideoRef.current.srcObject = screenStream;
+          if (videoRef.current) {
+            videoRef.current.srcObject = screenStream;
+            videoRef.current.src = null;
           }
           
           screenStream.getVideoTracks()[0].onended = () => {
-            if (localVideoRef.current) {
-              localVideoRef.current.srcObject = null;
-            }
             setIsScreenSharing(false);
+            if (videoRef.current) {
+              videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
+              videoRef.current.setAttribute('frameborder', '0');
+              videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+              videoRef.current.setAttribute('allowfullscreen', '');
+            }
           };
           
           setIsScreenSharing(true);
-        } else {
-          if (localVideoRef.current && localVideoRef.current.srcObject) {
-            localVideoRef.current.srcObject.getTracks().forEach(track => track.stop());
-            localVideoRef.current.srcObject = null;
-          }
-          setIsScreenSharing(false);
+        } catch (err) {
+          console.error("Error sharing screen:", err);
         }
-      } catch (err) {
-        console.error("Error sharing screen:", err);
+      } else {
+        setIsScreenSharing(false);
+        if (videoRef.current) {
+          videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
+          videoRef.current.setAttribute('frameborder', '0');
+          videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          videoRef.current.setAttribute('allowfullscreen', '');
+        }
       }
     };
 
-    if (!activeWorkshop) return null;
+    const toggleRaiseHand = () => {
+      setRaisedHand(!raisedHand);
+      if (!raisedHand) {
+        const newMessage = {
+          id: Date.now(),
+          sender: 'System',
+          message: 'You raised your hand',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isPresenter: false,
+          isSystem: true
+        };
+        setMessages(prev => [...prev, newMessage]);
+      }
+    };
+
+    const handlePinMessage = (message) => {
+      setPinnedMessage(message);
+      const newMessage = {
+        id: Date.now(),
+        sender: 'System',
+        message: `You pinned a message from ${message.sender}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isPresenter: false,
+        isSystem: true
+      };
+      setMessages(prev => [...prev, newMessage]);
+    };
+
+    const handleEndMeeting = () => {
+      setShowVideoConferenceModal(false);
+      setShowRatingModal(true);
+    };
 
     return (
-      <div className="video-conference-modal" id="videoConferenceModal">
+      <div className="video-conference-modal">
         <div className="video-conference-container">
           <div className="video-header">
             <div>
@@ -500,10 +428,10 @@ const Workshops = () => {
             </div>
             <div className="header-actions">
               <button 
-                onClick={() => setShowVideoConferenceModal(false)}
-                className="close-button"
+                onClick={handleEndMeeting}
+                className="end-button"
               >
-                <i className="fas fa-times"></i> Leave
+                <i className="fas fa-times"></i> End Meeting
               </button>
             </div>
           </div>
@@ -511,25 +439,26 @@ const Workshops = () => {
           <div className="video-content">
             <div className="video-area">
               <div className="main-video">
-                <video 
-                  ref={videoRef} 
-                  autoPlay 
-                  playsInline 
-                  muted={!isMicOn}
-                  className="video-element"
-                />
-                <div className="video-overlay">
-                  <div className="presenter-info">
-                    <div className="presenter-avatar">
-                      {activeWorkshop.presenter.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <p className="presenter-display-name">{activeWorkshop.presenter.split(',')[0]}</p>
-                    <p className="presenter-role">Presenter</p>
+                {isScreenSharing ? (
+                  <video 
+                    ref={videoRef} 
+                    autoPlay 
+                    playsInline 
+                    className="video-element"
+                  />
+                ) : (
+                  <iframe
+                    ref={videoRef}
+                    className="video-element"
+                    title="Presenter Video"
+                    allowFullScreen
+                  ></iframe>
+                )}
+                {isScreenSharing && (
+                  <div className="screen-share-indicator">
+                    <i className="fas fa-desktop"></i> Screen Sharing
                   </div>
-                  <div className="speaking-indicator">
-                    <i className="fas fa-microphone"></i> Speaking
-                  </div>
-                </div>
+                )}
               </div>
               
               <div className={`local-video ${isCameraOn ? '' : 'disabled'}`}>
@@ -543,44 +472,9 @@ const Workshops = () => {
                 <div className="local-video-overlay">
                   <p>You</p>
                   {!isCameraOn && <i className="fas fa-video-slash"></i>}
+                  {!isMicOn && <i className="fas fa-microphone-slash"></i>}
                   {raisedHand && <div className="raised-hand-indicator"><i className="fas fa-hand-paper"></i></div>}
                 </div>
-              </div>
-              
-              <div className="video-thumbnails">
-                {participants.slice(0, 5).map((participant, index) => (
-                  <div key={index} className="thumbnail">
-                    <div className="thumbnail-content">
-                      <div className="thumbnail-avatar">
-                        {participant.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <p className="thumbnail-name">{participant.name.split(' ')[0]}</p>
-                    </div>
-                    {participant.isSpeaking && (
-                      <div className="mic-indicator speaking">
-                        <i className="fas fa-microphone"></i>
-                      </div>
-                    )}
-                    {!participant.hasMic && (
-                      <div className="mic-indicator muted">
-                        <i className="fas fa-microphone-slash"></i>
-                      </div>
-                    )}
-                    {!participant.hasCamera && (
-                      <div className="camera-indicator off">
-                        <i className="fas fa-video-slash"></i>
-                      </div>
-                    )}
-                  </div>
-                ))}
-                {participants.length > 5 && (
-                  <div className="thumbnail more-participants">
-                    <div className="more-content">
-                      <i className="fas fa-users"></i>
-                      <p>+{participants.length - 5} more</p>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             
@@ -591,10 +485,13 @@ const Workshops = () => {
                   className={activeTab === 'participants' ? 'active' : ''}
                 >
                   <i className="fas fa-users"></i>
-                  Participants ({participants.length})
+                  Participants ({participants.length + 1})
                 </button>
                 <button 
-                  onClick={() => setActiveTab('chat')}
+                  onClick={() => {
+                    setActiveTab('chat');
+                    setUnreadMessages(0);
+                  }}
                   className={activeTab === 'chat' ? 'active' : ''}
                 >
                   <i className="fas fa-comment-alt"></i>
@@ -608,13 +505,6 @@ const Workshops = () => {
               <div className="tab-content">
                 {activeTab === 'participants' && (
                   <div className="participants-tab">
-                    <div className="participants-header">
-                      <h3>Participants ({participants.length})</h3>
-                      <div className="search-participants">
-                        <i className="fas fa-search"></i>
-                        <input type="text" placeholder="Search participants..." />
-                      </div>
-                    </div>
                     <div className="participants-list">
                       {participants.map((p) => (
                         <div key={p.id} className="participant-item">
@@ -628,101 +518,103 @@ const Workshops = () => {
                               {p.role === 'Presenter' && <span className="presenter-badge">Presenter</span>}
                             </div>
                             <div className="participant-status">
-                              <span className={`status-icon ${p.hasCamera ? '' : 'off'}`}>
-                                <i className={p.hasCamera ? 'fas fa-video' : 'fas fa-video-slash'}></i>
-                              </span>
-                              <span className={`status-icon ${p.hasMic ? '' : 'off'}`}>
-                                <i className={p.hasMic ? 'fas fa-microphone' : 'fas fa-microphone-slash'}></i>
-                              </span>
-                              {p.role === 'Student' && (
-                                <button className="private-message-button">
-                                  <i className="fas fa-envelope"></i>
-                                </button>
-                              )}
+                              <i className={`fas fa-video${p.hasCamera ? '' : '-slash'}`}></i>
+                              <i className={`fas fa-microphone${p.hasMic ? '' : '-slash'}`}></i>
                             </div>
                           </div>
                         </div>
                       ))}
+                      <div className="participant-item you">
+                        <div className="participant-avatar">
+                          You
+                          {raisedHand && <div className="speaking-indicator"></div>}
+                        </div>
+                        <div className="participant-info">
+                          <div className="participant-name">
+                            You (Me)
+                          </div>
+                          <div className="participant-status">
+                            <i className={`fas fa-video${isCameraOn ? '' : '-slash'}`}></i>
+                            <i className={`fas fa-microphone${isMicOn ? '' : '-slash'}`}></i>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
                 
                 {activeTab === 'chat' && (
                   <div className="chat-container">
-                    <div className="chat-header">
-                      <h3>Workshop Chat</h3>
-                      <button 
-                        className="faq-button"
-                        onClick={() => setShowFAQ(!showFAQ)}
-                      >
-                        <i className="fas fa-question-circle"></i> FAQ
-                      </button>
-                    </div>
-                    
-                    {showFAQ && (
-                      <div className="faq-section">
-                        <h4>Frequently Asked Questions</h4>
-                        <ul>
-                          <li>Q: Will the slides be available after?<br/>A: Yes, all materials will be shared via email.</li>
-                          <li>Q: Can I get a certificate?<br/>A: Certificates are available after completing the feedback form.</li>
-                          <li>Q: How do I ask a question?<br/>A: Type in the chat or raise your hand using the hand icon.</li>
-                        </ul>
+                    {pinnedMessage && (
+                      <div className="pinned-message">
+                        <div className="pinned-header">
+                          <i className="fas fa-thumbtack"></i>
+                          <span>Pinned message</span>
+                        </div>
+                        <div className="pinned-content">
+                          <strong>{pinnedMessage.sender}</strong>: {pinnedMessage.message}
+                        </div>
                       </div>
                     )}
                     
                     <div className="chat-messages" ref={chatContainerRef}>
                       {messages.map((msg) => (
-                        <div key={msg.id} className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} ${msg.isPresenter ? 'presenter-message' : ''}`}>
-                          <div className="message-avatar">
-                            {msg.sender.split(' ').map(n => n[0]).join('')}
-                          </div>
-                          <div className="message-content">
-                            <div className="message-header">
-                              <span className="message-sender">{msg.sender}</span>
-                              <span className="message-time">{msg.time}</span>
+                        <div 
+                          key={msg.id} 
+                          className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} 
+                            ${msg.isPresenter ? 'presenter-message' : ''} ${msg.isSystem ? 'system-message' : ''}`}
+                        >
+                          {!msg.isSystem && (
+                            <div className="message-avatar">
+                              {msg.sender.split(' ').map(n => n[0]).join('')}
                             </div>
-                            {msg.isFile ? (
-                              <div className="file-message">
-                                <i className="fas fa-file"></i>
-                                <span>{msg.file.name}</span>
-                                <button className="download-button">
-                                  <i className="fas fa-download"></i>
-                                </button>
+                          )}
+                          <div className="message-content">
+                            {!msg.isSystem && (
+                              <div className="message-header">
+                                <span className="message-sender">{msg.sender}</span>
+                                <span className="message-time">{msg.time}</span>
+                                {msg.sender !== 'You' && !msg.isSystem && (
+                                  <button 
+                                    className="pin-button"
+                                    onClick={() => handlePinMessage(msg)}
+                                  >
+                                    <i className="fas fa-thumbtack"></i>
+                                  </button>
+                                )}
                               </div>
-                            ) : (
-                              <p className="message-text">{msg.message}</p>
                             )}
+                            <p className="message-text">
+                              {msg.isAttachment ? (
+                                <div className="file-attachment">
+                                  <i className="fas fa-file"></i>
+                                  <div className="file-info">
+                                    <span className="file-name">{msg.message.replace('[File Attachment] ', '')}</span>
+                                    <span className="file-size">{msg.fileSize}</span>
+                                  </div>
+                                </div>
+                              ) : (
+                                msg.message
+                              )}
+                            </p>
                           </div>
                         </div>
                       ))}
                     </div>
                     
                     <div className="chat-input-container">
-                      <div className="input-tools">
-                        <button 
-                          className="tool-button"
-                          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                        >
-                          <i className="far fa-smile"></i>
-                        </button>
-                        <button 
-                          className="tool-button"
-                          onClick={() => fileInputRef.current.click()}
-                        >
-                          <i className="fas fa-paperclip"></i>
-                        </button>
-                        <input 
+                      <button 
+                        className="attachment-button"
+                        onClick={() => fileInputRef.current.click()}
+                      >
+                        <i className="fas fa-paperclip"></i>
+                        <input
                           type="file"
                           ref={fileInputRef}
-                          onChange={handleFileUpload}
                           style={{ display: 'none' }}
+                          onChange={handleFileUpload}
                         />
-                      </div>
-                      {showEmojiPicker && (
-                        <div className="emoji-picker-container">
-                          <EmojiPicker onEmojiClick={onEmojiClick} />
-                        </div>
-                      )}
+                      </button>
                       <input
                         type="text"
                         placeholder="Type a message..."
@@ -749,30 +641,32 @@ const Workshops = () => {
               <button 
                 onClick={toggleMic}
                 className={`control-button ${isMicOn ? '' : 'muted'}`}
-                title={isMicOn ? 'Mute microphone' : 'Unmute microphone'}
               >
                 <i className={isMicOn ? 'fas fa-microphone' : 'fas fa-microphone-slash'}></i>
               </button>
               <button 
                 onClick={toggleCamera}
                 className={`control-button ${isCameraOn ? '' : 'camera-off'}`}
-                title={isCameraOn ? 'Turn off camera' : 'Turn on camera'}
               >
                 <i className={isCameraOn ? 'fas fa-video' : 'fas fa-video-slash'}></i>
               </button>
               <button 
                 onClick={toggleScreenShare}
                 className={`control-button ${isScreenSharing ? 'sharing' : ''}`}
-                title={isScreenSharing ? 'Stop sharing' : 'Share screen'}
               >
                 <i className="fas fa-desktop"></i>
               </button>
               <button 
                 onClick={toggleRaiseHand}
                 className={`control-button ${raisedHand ? 'active' : ''}`}
-                title={raisedHand ? 'Lower hand' : 'Raise hand'}
               >
                 <i className="fas fa-hand-paper"></i>
+              </button>
+              <button 
+                onClick={() => setShowVideoConferenceModal(false)}
+                className="control-button leave-button"
+              >
+                <i className="fas fa-phone-slash"></i>
               </button>
             </div>
           </div>
@@ -781,70 +675,72 @@ const Workshops = () => {
     );
   };
 
-  // Notification system
-  const NotificationIndicator = () => {
-    const [showNotifications, setShowNotifications] = useState(false);
-    const unreadCount = notifications.filter(n => !n.read).length;
-
-    const markAsRead = (id) => {
-      setNotifications(notifications.map(n => 
-        n.id === id ? { ...n, read: true } : n
-      ));
+  const RatingModal = () => {
+    const handleSubmitRating = () => {
+      const updatedWorkshops = workshops.map(w => 
+        w.id === activeWorkshop.id 
+          ? { ...w, rating: userRating, feedback: userFeedback, status: 'completed' } 
+          : w
+      );
+      setWorkshops(updatedWorkshops);
+      setShowRatingModal(false);
+      setShowNotification({
+        message: 'Thank you for your feedback!',
+        content: `You rated "${activeWorkshop.title}" ${userRating} stars`
+      });
+      setTimeout(() => setShowNotification(null), 5000);
     };
 
     return (
-      <div className="notification-container">
-        <button 
-          className="notification-button"
-          onClick={() => setShowNotifications(!showNotifications)}
-        >
-          <i className="fas fa-bell"></i>
-          {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
-        </button>
-        
-        {showNotifications && (
-          <div className="notification-dropdown">
-            <div className="notification-header">
-              <h3>Notifications</h3>
-              <button 
-                className="clear-all"
-                onClick={() => setNotifications(notifications.map(n => ({ ...n, read: true })))}
-              >
-                Mark all as read
-              </button>
-            </div>
-            
-            {notifications.length === 0 ? (
-              <div className="empty-notifications">No new notifications</div>
-            ) : (
-              <div className="notification-list">
-                {notifications.map(notification => (
-                  <div 
-                    key={notification.id} 
-                    className={`notification-item ${notification.read ? '' : 'unread'}`}
-                    onClick={() => markAsRead(notification.id)}
-                  >
-                    <div className="notification-icon">
-                      {notification.type === 'chat' ? (
-                        <i className="fas fa-comment-alt"></i>
-                      ) : (
-                        <i className="fas fa-calendar-check"></i>
-                      )}
-                    </div>
-                    <div className="notification-content">
-                      <p className="notification-message">{notification.message}</p>
-                      <p className="notification-time">{notification.timestamp}</p>
-                    </div>
-                    {!notification.read && <div className="unread-dot"></div>}
-                  </div>
-                ))}
-              </div>
-            )}
+      <div className="rating-modal">
+        <div className="rating-modal-content">
+          <h2>Rate this Workshop</h2>
+          <p>How would you rate "{activeWorkshop.title}"?</p>
+          
+          <div className="rating-stars">
+            {[1, 2, 3, 4, 5].map(star => (
+              <i 
+                key={star} 
+                className={`fas fa-star ${star <= userRating ? 'active' : ''}`}
+                onClick={() => setUserRating(star)}
+              />
+            ))}
           </div>
-        )}
+          
+          <textarea
+            placeholder="Share your feedback (optional)"
+            value={userFeedback}
+            onChange={(e) => setUserFeedback(e.target.value)}
+          />
+          
+          <div className="rating-buttons">
+            <button 
+              className="submit-button"
+              onClick={handleSubmitRating}
+              disabled={userRating === 0}
+            >
+              Submit Rating
+            </button>
+          </div>
+        </div>
       </div>
     );
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const upcomingWorkshop = workshops.find(w => w.status === 'upcoming' && w.registered);
+      if (upcomingWorkshop) {
+        setShowNotification({
+          message: 'Upcoming Workshop Reminder',
+          content: `"${upcomingWorkshop.title}" starts in 1 hour`
+        });
+        setTimeout(() => setShowNotification(null), 5000);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [workshops]);
 
   return (
     <div className="app-container">
@@ -857,7 +753,7 @@ const Workshops = () => {
           
           <div className="search-container">
             <div className="search-box">
-              <i className="fas fa-search search-icon"></i>&nbsp;&nbsp;
+              <i className="fas fa-search search-icon"></i>
               <input 
                 type="text" 
                 placeholder="Search workshops..." 
@@ -868,7 +764,6 @@ const Workshops = () => {
         </div>
         
         <div className="header-right">
-          <NotificationIndicator />
           <div className="user-avatar">
             ME
           </div>
@@ -918,42 +813,6 @@ const Workshops = () => {
                 <a href="#" className="nav-link active">
                   <i className="fas fa-chalkboard-teacher"></i>
                   <span>Online Workshops</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="sidebar-section">
-            <h3 className="section-title">Resources</h3>
-            <ul className="nav-links">
-              <li>
-                <a href="#" className="nav-link">
-                  <i className="fas fa-file-alt"></i>
-                  <span>Report Submissions</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">
-                  <i className="fas fa-clipboard-list"></i>
-                  <span>Evaluation Forms</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">
-                  <i className="fas fa-building"></i>
-                  <span>Company Portal</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">
-                  <i className="fas fa-book"></i>
-                  <span>Resources Library</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">
-                  <i className="fas fa-calendar-alt"></i>
-                  <span>Schedule</span>
                 </a>
               </li>
             </ul>
@@ -1070,18 +929,13 @@ const Workshops = () => {
           </div>
         </main>
       </div>
-      
       {showVideoConferenceModal && <VideoConferenceModal />}
-      {showRecordingModal && (
-        <div className="recording-modal">
-          <div className="recording-modal-content">
-            <p>The workshop recording is opening in a new tab...</p>
-            <button 
-              className="close-button"
-              onClick={() => setShowRecordingModal(false)}
-            >
-              Close
-            </button>
+      {showRatingModal && <RatingModal />}
+      {showNotification && (
+        <div className="notification-popup">
+          <div className="notification-popup-content">
+            <h4>{showNotification.message}</h4>
+            <p>{showNotification.content}</p>
           </div>
         </div>
       )}
