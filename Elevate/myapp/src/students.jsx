@@ -68,7 +68,7 @@ const handleRowClick = (id) => {
   ];
 
   return (
-    <div className="app-container">
+    <div className="scad-container">
       {/* Top Navigation Bar */}
      
 

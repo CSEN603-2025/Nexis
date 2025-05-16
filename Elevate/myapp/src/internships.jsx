@@ -134,7 +134,7 @@ function Internships() {
   const toggleCycleSettings = () => setShowCycleSettings(!showCycleSettings);
 
   return (
-    <div className="app-container">
+    <div className="scad-container">
    
 
       <div className="main-container">

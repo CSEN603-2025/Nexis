@@ -1,5 +1,5 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
+.workshops-management{
 :root {
   --primary: #006D77;
   --secondary: #FFDDD2;
@@ -599,4 +599,4 @@
   .workshops-grid {
     grid-template-columns: 1fr;
   }
-}
+}}

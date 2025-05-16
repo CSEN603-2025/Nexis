@@ -1,7 +1,10 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './scadDashboard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
+<FontAwesomeIcon icon={faRightFromBracket} />
   const navItems = [
     { icon: "fa-home", label: "Dashboard" ,path: "/scaddashboard"},
     { icon: "fa-briefcase", label: "Internships",path: "/internships" },
@@ -9,7 +12,7 @@ import './scadDashboard.css';
     { icon: "fa-clipboard-list", label: "Evaluations" ,path: "/EvaluationForms"},
     { icon: "fa-building", label: "Students" ,path: "/students"},
     { icon: "fa-book", label: "Workshops",path: "/workshopsManagement" },
-    { icon: "fa-cog", label: "Settings" },
+   { icon: "fas fa-right-from-bracket", label: "Log Out", path: "/reg" }
   ];
 
 export default function MainLayout() {
@@ -35,24 +38,15 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="app-container">
-      <header className="top-header">
-        <div className="header-content">
-          <div className="header-left">
+    <div className="scad-container">
+        <div className="header-left">
             <button onClick={toggleSidebar} className="sidebar-toggle">
               <i className="fas fa-bars"></i>
             </button>
-            <img src="/api/placeholder/120/40" alt="Logo" className="logo" />
-          </div>
-          <div className="header-right">
-            <button className="icon-button"><i className="fas fa-bell"></i></button>
-            <button className="icon-button"><i className="fas fa-moon"></i></button>
-            <div className="avatar">SO</div>
-          </div>
-        </div>
-      </header>
+            </div>
 
       <div className="main-container">
+     
         <aside className={`sidebar ${isSidebarCollapsed ? "collapsed" : ""}`}>
           <nav className="sidebar-nav">
             <ul className="nav-list">
