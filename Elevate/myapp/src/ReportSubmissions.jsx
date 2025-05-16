@@ -405,11 +405,22 @@ const [filters, setFilters] = useState({
     document.body.removeChild(link);
   };
 
+<<<<<<< Updated upstream
   return (<div className="report1">
+=======
+  return (
+    <div className='submit'>
+>>>>>>> Stashed changes
     <div className="report-submissions-container">
       <div className="submission-header">
         <h1><FaFileUpload /> Report Submissions</h1>
         <div className="header-actions">
+          <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/student'}
+    >
+      Back to Dashboard
+    </button>
           <p className="submission-cycle-info">
             <FaCalendarAlt /> Current cycle: {new Date(currentCycle.start).toLocaleDateString()} - {new Date(currentCycle.end).toLocaleDateString()}
           </p>
@@ -860,7 +871,11 @@ const [filters, setFilters] = useState({
         </div>
       )}
     </div>
+<<<<<<< Updated upstream
   </div>
+=======
+    </div>
+>>>>>>> Stashed changes
   );
 };
 

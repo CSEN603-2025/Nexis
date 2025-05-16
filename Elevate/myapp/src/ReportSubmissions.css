@@ -1,5 +1,9 @@
 /* Base Styles */
+<<<<<<< Updated upstream
 .report1{
+=======
+.submit{
+>>>>>>> Stashed changes
 .report-submissions-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1000px;
@@ -695,4 +699,45 @@ tr:hover {
   padding: 30px;
   text-align: center;
   color: #7f8c8d;
+<<<<<<< Updated upstream
+=======
+}
+
+/* Header Layout */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-to-dashboard {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-dashboard:hover {
+  background-color: #e9ecef;
+  border-color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .back-to-dashboard {
+    align-self: flex-start;
+  }
+>>>>>>> Stashed changes
 }}

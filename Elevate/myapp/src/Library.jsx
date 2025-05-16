@@ -158,6 +158,7 @@ const Library = () => {
   };
 
   return (
+    <div className='lib'>
     <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
       <header className="header">
         <a href=" " className="logo">
@@ -174,55 +175,78 @@ const Library = () => {
       </header>
       
       <div className="container">
-        <aside className="sidebar">
-          <div className="profile-card">
-            <img src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=006D77&color=fff&size=100" alt="Profile" className="avatar" />
-            <h3>Menna Elsayed</h3>
-            <p style={{color: 'var(--text-secondary)'}}>Media Engineering & Technology</p>
-            <div style={{marginTop: '1rem'}}>
-              <span style={{display: 'inline-block', background: 'rgba(var(--primary), 0.1)', color: 'var(--primary)', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem'}}>Active</span>
+          <aside className={`sidebar ${darkMode ? 'dark-sidebar' : ''}`}>
+         <div className="profile-section">
+            <div className="profile-avatar">
+              ME
+            </div>
+            <h2 className="profile-name">Menna Elsayed</h2>
+            <p className="profile-title">Media Engineering & Technology</p>
+            <div className="profile-status">
+              <span className="status-indicator"></span>
+              Active
+            </div>
+            <div className="profile-badge">
+              <i className="fas fa-crown crown-icon"></i>
+              <span className="badge-text">PRO Student</span>
             </div>
           </div>
           
-          <div className="quick-links">
-            <h4 style={{marginTop: 0, color: 'var(--primary)'}}>Quick Links</h4>
-            <div className="quick-links-list">
-              <a href="/Search" className="link-item">
-                <FaBriefcase className="link-icon" />
-                <span>Internship Dashboard</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaFileUpload className="link-icon" />
-                <span>Report Submissions</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaTasks className="link-icon" />
-                <span>Evaluation Forms</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaBuilding className="link-icon" />
-                <span>Company Portal</span>
-              </a>
-              <a href="#" className="link-item current">
-                <FaBook className="link-icon" />
-                <span>Resources Library</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaCalendarAlt className="link-icon" />
-                <span>Schedule</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaEnvelope className="link-icon" />
-                <span>Messages</span>
-              </a>
-              <a href="#" className="link-item">
-                <FaCog className="link-icon" />
-                <span>Settings</span>
-              </a>
-            </div>
+           <div className="sidebar-section">
+            <h3 className="section-title">Quick Links</h3>
+            <ul className="sidebar-menu">
+              <li>
+                <a href="/new" className="menu-item">
+                  <i className="fas fa-home menu-icon"></i>
+                  <span>Internship Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="/analytics" className="menu-item">
+                  <i className="fas fa-chart-line menu-icon"></i>
+                  <span>Profile Analytics</span>
+                </a>
+              </li>
+              <li>
+                <a href="/assessment" className="menu-item">
+                  <i className="fas fa-tasks menu-icon"></i>
+                  <span>Online Assessments</span>
+                </a>
+              </li>
+              <li>
+                <a href="/workshop" className="menu-item">
+                  <i className="fas fa-chalkboard-teacher menu-icon"></i>
+                  <span>Online Workshops</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="sidebar-section">
+            <h3 className="section-title">Resources</h3>
+            <ul className="sidebar-menu">
+              <li>
+                <a href="/ReportStudent" className="menu-item">
+                  <i className="fas fa-file-alt menu-icon"></i>
+                  <span>Report Submissions</span>
+                </a>
+              </li>
+              <li>
+                <a href="/eval" className="menu-item">
+                  <i className="fas fa-clipboard-list menu-icon"></i>
+                  <span>Evaluation Forms</span>
+                </a>
+              </li>
+              <li>
+                <a href="/lib" className="menu-item active">
+                  <i className="fas fa-book menu-icon"></i>
+                  <span>Resources Library</span>
+                </a>
+              </li>
+ 
+            </ul>
           </div>
         </aside>
-        
         <main className="main-content">
           <div className="card">
             <div className="card-header">
@@ -458,6 +482,7 @@ const Library = () => {
           </div>
         </main>
       </div>
+    </div>
     </div>
   );
 };
