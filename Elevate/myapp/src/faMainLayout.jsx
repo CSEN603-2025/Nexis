@@ -2,18 +2,14 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './fa.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faClipboardList, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-<FontAwesomeIcon icon={faRightFromBracket} />
-  const navItems = [
-    { icon: "fa-home", label: "Dashboard" ,path: "/faculty"},
-    
-    { icon: "fa-clipboard-list", label: "Evaluations" ,path: "/Evaluationsfa"},
-   
-   
-   { icon: "fas fa-right-from-bracket", label: "Log Out", path: "/reg" }
-  ];
 
+ const navItems = [
+  { icon: "fas fa-home", label: "Dashboard", path: "/faculty" },
+  { icon: "fas fa-clipboard-list", label: "Evaluations", path: "/Evaluationsfa" },
+  { icon: "fas fa-arrow-right-from-bracket", label: "Log Out", path: "/reg" },
+];
 export default function FAMainLayout() {
   const location = useLocation();
   const navigate = useNavigate();

@@ -357,7 +357,7 @@ const FacultyProfile = () => {
               className={activeTab === 'analytics' ? 'active' : ''}
               onClick={() => setActiveTab('analytics')}
             >
-              SCAD Analytics Dashboard
+              Faculty Academic Analytics Dashboard
             </button>
           </div>
 
