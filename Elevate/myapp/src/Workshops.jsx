@@ -4,6 +4,8 @@ import EmojiPicker from 'emoji-picker-react';
 
 const Workshops = () => {
   const [showVideoConferenceModal, setShowVideoConferenceModal] = useState(false);
+  const [showRecordingModal, setShowRecordingModal] = useState(false);
+  const [currentRecording, setCurrentRecording] = useState(null);
   const [activeWorkshop, setActiveWorkshop] = useState(null);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [userRating, setUserRating] = useState(0);
@@ -150,8 +152,16 @@ const Workshops = () => {
   const handleViewRecording = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.recordingUrl) {
+<<<<<<< Updated upstream
       // In a real app, this would open the recording
       setTimeout(() => {
+=======
+      setCurrentRecording(workshop);
+      setShowRecordingModal(true);
+      // In a real app, this would open the recording
+      setTimeout(() => {
+        setShowRecordingModal(false);
+>>>>>>> Stashed changes
         window.open(workshop.recordingUrl, '_blank');
       }, 2000);
     } else {
@@ -173,9 +183,19 @@ const Workshops = () => {
       { 
         id: 1, 
         sender: activeWorkshop.presenter.split(',')[0], 
-        message: 'Welcome everyone to the workshop!', 
+        message: 'Welcome everyone to the workshop! We\'ll be starting in a few minutes.', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isPresenter: true
+<<<<<<< Updated upstream
+=======
+      },
+      { 
+        id: 2, 
+        sender: 'Alex Thompson', 
+        message: 'Looking forward to it!', 
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        isPresenter: false
+>>>>>>> Stashed changes
       }
     ]);
     const [unreadMessages, setUnreadMessages] = useState(0);
@@ -186,6 +206,7 @@ const Workshops = () => {
     const localVideoRef = useRef(null);
     const chatContainerRef = useRef(null);
 
+<<<<<<< Updated upstream
     // Participants data
     const participants = [
       { id: 1, name: activeWorkshop.presenter.split(',')[0], role: 'Presenter', isSpeaking: true, hasCamera: true, hasMic: true },
@@ -195,6 +216,8 @@ const Workshops = () => {
       { id: 5, name: 'Emily Wilson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true }
     ];
 
+=======
+>>>>>>> Stashed changes
     // Simulate video stream
     useEffect(() => {
       const getVideoStream = async () => {
@@ -209,6 +232,12 @@ const Workshops = () => {
           }
         } catch (err) {
           console.error("Error accessing media devices:", err);
+<<<<<<< Updated upstream
+=======
+          if (localVideoRef.current) {
+            localVideoRef.current.src = "https://placehold.co/600x400?text=No+Camera";
+          }
+>>>>>>> Stashed changes
         }
       };
 
@@ -224,19 +253,62 @@ const Workshops = () => {
     // Simulate presenter video
     useEffect(() => {
       if (showVideoConferenceModal && videoRef.current) {
+<<<<<<< Updated upstream
         // In a real app, this would be the presenter's video stream
         videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+=======
+        videoRef.current.src = "/presenter-video.mp4";
+>>>>>>> Stashed changes
         videoRef.current.loop = true;
         videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
       }
     }, [showVideoConferenceModal]);
 
+<<<<<<< Updated upstream
     // Auto-scroll chat to bottom
+=======
+    // Simulate incoming messages
+>>>>>>> Stashed changes
     useEffect(() => {
-      if (chatContainerRef.current) {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-      }
-    }, [messages]);
+      const timer = setInterval(() => {
+        if (Math.random() > 0.7) {
+          const names = ['Alex Thompson', 'Jessica Lee', 'David Miller', 'Emily Wilson'];
+          const randomName = names[Math.floor(Math.random() * names.length)];
+          const newMessage = {
+            id: Date.now(),
+            sender: randomName,
+            message: getRandomMessage(),
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isPresenter: false
+          };
+          setMessages(prev => [...prev, newMessage]);
+          
+          // Show notification popup
+          setShowNotification({
+            message: `New message from ${randomName}`,
+            content: newMessage.message
+          });
+          
+          setTimeout(() => setShowNotification(null), 5000);
+        }
+      }, 8000);
+
+      return () => clearInterval(timer);
+    }, []);
+
+    const getRandomMessage = () => {
+      const messages = [
+        "That's a great point!",
+        "I have a question about the last slide",
+        "Could you explain that again?",
+        "This is really helpful, thanks!",
+        "Has anyone tried this approach before?",
+        "I'm having trouble with this part",
+        "Can you share the slides after the workshop?",
+        "What's the best way to practice this?"
+      ];
+      return messages[Math.floor(Math.random() * messages.length)];
+    };
 
     const handleSendMessage = () => {
       if (chatInput.trim()) {
@@ -250,15 +322,20 @@ const Workshops = () => {
         setMessages(prev => [...prev, newMessage]);
         setChatInput('');
         
+<<<<<<< Updated upstream
         // Simulate responses
+=======
+        // Simulate response
+>>>>>>> Stashed changes
         setTimeout(() => {
-          const randomResponses = [
-            "That's a great point!",
-            "I'll address that shortly",
-            "Thanks for sharing!",
-            "Has anyone else experienced this?",
-            "Let me add that to our discussion"
+          const responses = [
+            "Thanks for your question!",
+            "I'll address that in a moment",
+            "Great point!",
+            "Let me add that to our discussion",
+            "Has anyone else experienced this?"
           ];
+<<<<<<< Updated upstream
           const response = {
             id: Date.now(),
             sender: Math.random() > 0.5 ? activeWorkshop.presenter.split(',')[0] : participants[Math.floor(Math.random() * participants.length)].name,
@@ -268,25 +345,76 @@ const Workshops = () => {
           };
           setMessages(prev => [...prev, response]);
         }, 1000 + Math.random() * 2000);
+=======
+          const presenterResponse = {
+            id: Date.now(),
+            sender: activeWorkshop.presenter.split(',')[0],
+            message: responses[Math.floor(Math.random() * responses.length)],
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isPresenter: true
+          };
+          setMessages(prev => [...prev, presenterResponse]);
+        }, 2000);
+>>>>>>> Stashed changes
       }
     };
 
     const toggleCamera = async () => {
+<<<<<<< Updated upstream
       setIsCameraOn(!isCameraOn);
     };
 
     const toggleMic = () => {
       setIsMicOn(!isMicOn);
+=======
+      if (!isCameraOn) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: isMicOn
+          });
+          
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+          setIsCameraOn(true);
+        } catch (err) {
+          console.error("Error accessing camera:", err);
+          setShowNotification({
+            message: 'Camera Error',
+            content: 'Could not access camera. Please check permissions.'
+          });
+          setTimeout(() => setShowNotification(null), 5000);
+        }
+      } else {
+        if (localVideoRef.current && localVideoRef.current.srcObject) {
+          localVideoRef.current.srcObject.getVideoTracks().forEach(track => track.stop());
+          localVideoRef.current.srcObject = null;
+        }
+        setIsCameraOn(false);
+      }
+    };
+
+    const toggleMic = () => {
+      if (localVideoRef.current && localVideoRef.current.srcObject) {
+        const audioTracks = localVideoRef.current.srcObject.getAudioTracks();
+        audioTracks.forEach(track => {
+          track.enabled = !track.enabled;
+        });
+        setIsMicOn(!isMicOn);
+      }
+>>>>>>> Stashed changes
     };
 
     const toggleScreenShare = async () => {
-      if (!isScreenSharing) {
-        try {
+      try {
+        if (!isScreenSharing) {
           const screenStream = await navigator.mediaDevices.getDisplayMedia({
             video: true,
             audio: true
           });
           
+<<<<<<< Updated upstream
           if (videoRef.current) {
             videoRef.current.srcObject = screenStream;
           }
@@ -297,10 +425,21 @@ const Workshops = () => {
             if (videoRef.current) {
               videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
               videoRef.current.play();
+=======
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = screenStream;
+          }
+          
+          screenStream.getVideoTracks()[0].onended = () => {
+            if (localVideoRef.current) {
+              localVideoRef.current.srcObject = null;
+>>>>>>> Stashed changes
             }
+            setIsScreenSharing(false);
           };
           
           setIsScreenSharing(true);
+<<<<<<< Updated upstream
         } catch (err) {
           console.error("Error sharing screen:", err);
         }
@@ -309,16 +448,65 @@ const Workshops = () => {
         if (videoRef.current) {
           videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
           videoRef.current.play();
+=======
+        } else {
+          if (localVideoRef.current && localVideoRef.current.srcObject) {
+            localVideoRef.current.srcObject.getTracks().forEach(track => track.stop());
+            localVideoRef.current.srcObject = null;
+          }
+          setIsScreenSharing(false);
+>>>>>>> Stashed changes
         }
+      } catch (err) {
+        console.error("Error sharing screen:", err);
+        setShowNotification({
+          message: 'Screen Share Error',
+          content: 'Could not share screen. Please try again.'
+        });
+        setTimeout(() => setShowNotification(null), 5000);
       }
     };
 
     const toggleRaiseHand = () => {
       setRaisedHand(!raisedHand);
+<<<<<<< Updated upstream
+=======
+      if (!raisedHand) {
+        const newMessage = {
+          id: Date.now(),
+          sender: 'You',
+          message: '✋ Raised hand',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          isPresenter: false,
+          isSystem: true
+        };
+        setMessages(prev => [...prev, newMessage]);
+        
+        setTimeout(() => {
+          const response = {
+            id: Date.now(),
+            sender: activeWorkshop.presenter.split(',')[0],
+            message: 'I see your raised hand. What would you like to ask?',
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isPresenter: true
+          };
+          setMessages(prev => [...prev, response]);
+          setRaisedHand(false);
+        }, 3000);
+      }
+>>>>>>> Stashed changes
     };
 
     const handlePinMessage = (message) => {
       setPinnedMessage(message);
+<<<<<<< Updated upstream
+=======
+      setShowNotification({
+        message: 'Message Pinned',
+        content: 'This message is now visible to all participants'
+      });
+      setTimeout(() => setShowNotification(null), 5000);
+>>>>>>> Stashed changes
     };
 
     const handleEndMeeting = () => {
@@ -351,6 +539,7 @@ const Workshops = () => {
                   ref={videoRef} 
                   autoPlay 
                   playsInline 
+<<<<<<< Updated upstream
                   className="video-element"
                 />
                 {isScreenSharing && (
@@ -358,6 +547,11 @@ const Workshops = () => {
                     <i className="fas fa-desktop"></i> Screen Sharing
                   </div>
                 )}
+=======
+                  muted={!isMicOn}
+                  className="video-element"
+                />
+>>>>>>> Stashed changes
               </div>
               
               <div className={`local-video ${isCameraOn ? '' : 'disabled'}`}>
@@ -371,7 +565,6 @@ const Workshops = () => {
                 <div className="local-video-overlay">
                   <p>You</p>
                   {!isCameraOn && <i className="fas fa-video-slash"></i>}
-                  {!isMicOn && <i className="fas fa-microphone-slash"></i>}
                   {raisedHand && <div className="raised-hand-indicator"><i className="fas fa-hand-paper"></i></div>}
                 </div>
               </div>
@@ -384,7 +577,7 @@ const Workshops = () => {
                   className={activeTab === 'participants' ? 'active' : ''}
                 >
                   <i className="fas fa-users"></i>
-                  Participants ({participants.length + 1})
+                  Participants (8)
                 </button>
                 <button 
                   onClick={() => {
@@ -405,24 +598,29 @@ const Workshops = () => {
                 {activeTab === 'participants' && (
                   <div className="participants-tab">
                     <div className="participants-list">
-                      {participants.map((p) => (
+                      {[
+                        { id: 1, name: activeWorkshop.presenter.split(',')[0], role: 'Presenter' },
+                        { id: 2, name: 'Alex Thompson', role: 'Student' },
+                        { id: 3, name: 'Jessica Lee', role: 'Student' },
+                        { id: 4, name: 'David Miller', role: 'Student' },
+                        { id: 5, name: 'Emily Wilson', role: 'Student' },
+                        { id: 6, name: 'Michael Chen', role: 'Student' },
+                        { id: 7, name: 'Emma Davis', role: 'Student' },
+                        { id: 8, name: 'Robert Johnson', role: 'Student' }
+                      ].map((p) => (
                         <div key={p.id} className="participant-item">
                           <div className="participant-avatar">
                             {p.name.split(' ').map(n => n[0]).join('')}
-                            {p.isSpeaking && <div className="speaking-indicator"></div>}
                           </div>
                           <div className="participant-info">
                             <div className="participant-name">
                               {p.name}
                               {p.role === 'Presenter' && <span className="presenter-badge">Presenter</span>}
                             </div>
-                            <div className="participant-status">
-                              <i className={`fas fa-video${p.hasCamera ? '' : '-slash'}`}></i>
-                              <i className={`fas fa-microphone${p.hasMic ? '' : '-slash'}`}></i>
-                            </div>
                           </div>
                         </div>
                       ))}
+<<<<<<< Updated upstream
                       {/* Add yourself to participants list */}
                       <div className="participant-item you">
                         <div className="participant-avatar">
@@ -439,6 +637,8 @@ const Workshops = () => {
                           </div>
                         </div>
                       </div>
+=======
+>>>>>>> Stashed changes
                     </div>
                   </div>
                 )}
@@ -458,9 +658,14 @@ const Workshops = () => {
                     )}
                     
                     <div className="chat-messages" ref={chatContainerRef}>
+                      <div className="chat-info">
+                        <p>You can pin a message to make it visible for people who join later. When you leave the call, you won't be able to access this chat.</p>
+                      </div>
+                      
                       {messages.map((msg) => (
                         <div 
                           key={msg.id} 
+<<<<<<< Updated upstream
                           className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} ${msg.isPresenter ? 'presenter-message' : ''}`}
                         >
                           <div className="message-avatar">
@@ -474,6 +679,28 @@ const Workshops = () => {
                                 <button 
                                   className="pin-button"
                                   onClick={() => handlePinMessage(msg)}
+=======
+                          className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''}`}
+                        onMouseEnter={() => {
+  const pinButton = document.getElementById(`pin-${msg.id}`);
+  if (pinButton) pinButton.style.display = 'block';
+}}
+onMouseLeave={() => {
+  const pinButton = document.getElementById(`pin-${msg.id}`);
+  if (pinButton) pinButton.style.display = 'none';
+}}
+                        >
+                          <div className="message-content">
+                            <div className="message-header">
+                              <strong>{msg.sender}</strong>
+                              <span className="message-time">{msg.time}</span>
+                              {msg.sender !== 'You' && !msg.isSystem && (
+                                <button 
+                                  id={`pin-${msg.id}`}
+                                  className="pin-button"
+                                  onClick={() => handlePinMessage(msg)}
+                                  style={{ display: 'none' }}
+>>>>>>> Stashed changes
                                 >
                                   <i className="fas fa-thumbtack"></i>
                                 </button>
@@ -488,7 +715,7 @@ const Workshops = () => {
                     <div className="chat-input-container">
                       <input
                         type="text"
-                        placeholder="Type a message..."
+                        placeholder="Send a message"
                         className="chat-input"
                         value={chatInput}
                         onChange={(e) => setChatInput(e.target.value)}
@@ -498,7 +725,7 @@ const Workshops = () => {
                         className="send-button"
                         onClick={handleSendMessage}
                       >
-                        <i className="fas fa-paper-plane"></i>
+                        <i className="fas fa-paper-plane"></i> Send
                       </button>
                     </div>
                   </div>
@@ -514,30 +741,35 @@ const Workshops = () => {
                 className={`control-button ${isMicOn ? '' : 'muted'}`}
               >
                 <i className={isMicOn ? 'fas fa-microphone' : 'fas fa-microphone-slash'}></i>
+                {isMicOn ? '' : ''}
               </button>
               <button 
                 onClick={toggleCamera}
                 className={`control-button ${isCameraOn ? '' : 'camera-off'}`}
               >
                 <i className={isCameraOn ? 'fas fa-video' : 'fas fa-video-slash'}></i>
+                {isCameraOn ? '' : ''}
               </button>
               <button 
                 onClick={toggleScreenShare}
                 className={`control-button ${isScreenSharing ? 'sharing' : ''}`}
               >
                 <i className="fas fa-desktop"></i>
+               
               </button>
               <button 
                 onClick={toggleRaiseHand}
                 className={`control-button ${raisedHand ? 'active' : ''}`}
               >
                 <i className="fas fa-hand-paper"></i>
+                
               </button>
               <button 
                 onClick={() => setShowVideoConferenceModal(false)}
                 className="control-button leave-button"
               >
                 <i className="fas fa-phone-slash"></i>
+                
               </button>
             </div>
           </div>
@@ -615,6 +847,7 @@ const Workshops = () => {
   }, [workshops]);
 
   return (
+    <div className='vid'>
     <div className="app-container">
       <header className="header">
         <div className="header-left">
@@ -643,53 +876,79 @@ const Workshops = () => {
       </header>
       
       <div className="main-container">
-        <aside className="sidebar">
-          <div className="user-profile">
+         <aside className="sidebar" >
+         <div className="profile-section">
             <div className="profile-avatar">
               ME
             </div>
             <h2 className="profile-name">Menna Elsayed</h2>
-            <p className="profile-program">Media Engineering & Technology</p>
+            <p className="profile-title">Media Engineering & Technology</p>
             <div className="profile-status">
               <span className="status-indicator"></span>
               Active
             </div>
             <div className="profile-badge">
-              <i className="fas fa-crown"></i>
-              <span>PRO Student</span>
+              <i className="fas fa-crown crown-icon"></i>
+              <span className="badge-text">PRO Student</span>
             </div>
           </div>
           
-          <div className="sidebar-section">
+           <div className="sidebar-section">
             <h3 className="section-title">Quick Links</h3>
-            <ul className="nav-links">
+            <ul className="sidebar-menu">
               <li>
-                <a href="/dashboard" className="nav-link">
-                  <i className="fas fa-home"></i>
+                <a href="/new" className="menu-item">
+                  <i className="fas fa-home menu-icon"></i>
                   <span>Internship Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="/analytics" className="nav-link">
-                  <i className="fas fa-chart-line"></i>
+                <a href="/analytics" className="menu-item">
+                  <i className="fas fa-chart-line menu-icon"></i>
                   <span>Profile Analytics</span>
                 </a>
               </li>
               <li>
-                <a href="/assessments" className="nav-link">
-                  <i className="fas fa-tasks"></i>
+                <a href="/assessment" className="menu-item">
+                  <i className="fas fa-tasks menu-icon"></i>
                   <span>Online Assessments</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link active">
-                  <i className="fas fa-chalkboard-teacher"></i>
+                <a href="/workshop" className="menu-item ative">
+                  <i className="fas fa-chalkboard-teacher menu-icon"></i>
                   <span>Online Workshops</span>
                 </a>
               </li>
             </ul>
           </div>
+          
+          <div className="sidebar-section">
+            <h3 className="section-title">Resources</h3>
+            <ul className="sidebar-menu">
+              <li>
+                <a href="/ReportStudent" className="menu-item">
+                  <i className="fas fa-file-alt menu-icon"></i>
+                  <span>Report Submissions</span>
+                </a>
+              </li>
+              <li>
+                <a href="/eval" className="menu-item">
+                  <i className="fas fa-clipboard-list menu-icon"></i>
+                  <span>Evaluation Forms</span>
+                </a>
+              </li>
+              <li>
+                <a href="/lib" className="menu-item">
+                  <i className="fas fa-book menu-icon"></i>
+                  <span>Resources Library</span>
+                </a>
+              </li>
+ 
+            </ul>
+          </div>
         </aside>
+
         
         <main className="content">
           <div className="content-header">
@@ -712,11 +971,11 @@ const Workshops = () => {
                         <span>{workshop.date}</span>
                         <i className="far fa-clock"></i>
                         <span>{workshop.time}</span>
-                        {workshop.registered && workshop.notification && (
-                          <span className="notification-badge">
-                            <i className="fas fa-bell"></i> Starts in {Math.floor(Math.random() * 24)} hours
-                          </span>
-                        )}
+                       {workshop.registered && workshop.notification && (
+  <span className="notification-badge">
+   
+  </span>
+)}
                       </div>
                     </div>
                     {workshop.registered ? (
@@ -801,8 +1060,27 @@ const Workshops = () => {
           </div>
         </main>
       </div>
+<<<<<<< Updated upstream
         {showVideoConferenceModal && <VideoConferenceModal />}
+=======
+      
+      {showVideoConferenceModal && <VideoConferenceModal />}
+>>>>>>> Stashed changes
       {showRatingModal && <RatingModal />}
+      {showRecordingModal && (
+        <div className="recording-modal">
+          <div className="recording-modal-content">
+            <p>The workshop recording is opening in a new tab...</p>
+            <button 
+              className="close-button"
+              onClick={() => setShowRecordingModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      
       {showNotification && (
         <div className="notification-popup">
           <div className="notification-popup-content">
@@ -811,6 +1089,7 @@ const Workshops = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

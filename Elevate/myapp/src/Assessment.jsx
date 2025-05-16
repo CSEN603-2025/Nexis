@@ -358,7 +358,7 @@ const Assessment = () => {
   }
 
   return (
-    <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
+    <div className={`assess ${darkMode ? 'dark-mode' : ''}`}>
       <header className={`app-header ${darkMode ? 'dark-header' : ''}`}>
         <div className="header-left">
           <a href="#" className="logo">
@@ -367,12 +367,8 @@ const Assessment = () => {
           </a>
           <div className="search-container">
             <div className="search-wrapper">
-              <input
-                type="text"
-                placeholder="Search internships..."
-                className={`search-input ${darkMode ? 'dark-search' : ''}`}
-              />
-              <i className="fas fa-search search-icon"></i>
+             
+             
             </div>
           </div>
         </div>
@@ -436,7 +432,7 @@ const Assessment = () => {
       
       <div className="main-container">
         <aside className={`sidebar ${darkMode ? 'dark-sidebar' : ''}`}>
-          <div className="profile-section">
+         <div className="profile-section">
             <div className="profile-avatar">
               ME
             </div>
@@ -452,29 +448,29 @@ const Assessment = () => {
             </div>
           </div>
           
-          <div className="sidebar-section">
+           <div className="sidebar-section">
             <h3 className="section-title">Quick Links</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="#" className="menu-item">
+                <a href="/new" className="menu-item">
                   <i className="fas fa-home menu-icon"></i>
                   <span>Internship Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="menu-item">
+                <a href="/analytics" className="menu-item">
                   <i className="fas fa-chart-line menu-icon"></i>
                   <span>Profile Analytics</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="menu-item active">
+                <a href="/assessment" className="menu-item active">
                   <i className="fas fa-tasks menu-icon"></i>
                   <span>Online Assessments</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="menu-item">
+                <a href="/workshop" className="menu-item">
                   <i className="fas fa-chalkboard-teacher menu-icon"></i>
                   <span>Online Workshops</span>
                 </a>
@@ -486,38 +482,28 @@ const Assessment = () => {
             <h3 className="section-title">Resources</h3>
             <ul className="sidebar-menu">
               <li>
-                <a href="#" className="menu-item">
+                <a href="/ReportStudent" className="menu-item">
                   <i className="fas fa-file-alt menu-icon"></i>
                   <span>Report Submissions</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="menu-item">
+                <a href="/eval" className="menu-item">
                   <i className="fas fa-clipboard-list menu-icon"></i>
                   <span>Evaluation Forms</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="menu-item">
-                  <i className="fas fa-building menu-icon"></i>
-                  <span>Company Portal</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="menu-item">
+                <a href="/lib" className="menu-item">
                   <i className="fas fa-book menu-icon"></i>
                   <span>Resources Library</span>
                 </a>
               </li>
-              <li>
-                <a href="#" className="menu-item">
-                  <i className="fas fa-calendar-alt menu-icon"></i>
-                  <span>Schedule</span>
-                </a>
-              </li>
+ 
             </ul>
           </div>
         </aside>
+
         
         <main className="content-area">
           <div className="page-header">
