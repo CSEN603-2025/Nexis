@@ -125,7 +125,7 @@ const Interns = () => {
       key: 'action',
       render: (_, record) => (
         <Button
-          style={{ backgroundColor: '#0d9488', borderColor: '#0d9488', color: '#fff' }}
+          style={{ backgroundColor: '#319795', borderColor: '#319795', color: '#fff' }}
           onClick={() => handleViewDetails(record)}
         >
           View Details
