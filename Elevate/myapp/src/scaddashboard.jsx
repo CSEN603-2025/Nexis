@@ -18,16 +18,16 @@ function ScadDashboard() {
   const [reportSuccess, setReportSuccess] = useState(false);
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: "SCAD Office",
-    title: "Student Career & Alumni Department",
-    email: "scad.office@guc.edu.eg",
-    location: "Building B, Floor 2",
-    officeHours: "9:00 AM - 5:00 PM",
-    head: "Dr. Sarah Ahmed",
-    established: "January 2020",
-    staff: "12 Members",
-    avatar: "https://via.placeholder.com/150" // Placeholder avatar
-  });
+  name: "SCAD Office",
+  title: "Student Career & Alumni Department",
+  email: "scad.office@guc.edu.eg",
+  location: "Building B, Floor 2",
+  officeHours: "9:00 AM - 5:00 PM",
+  head: "Dr. Sarah Ahmed",
+  established: "January 2020",
+  staff: "12 Members",
+  avatar: "/scadIcon.jpeg" // Remove the duplicate line
+});
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -284,9 +284,9 @@ function ScadDashboard() {
     { icon: "fa-home", label: "Dashboard", path: "/dashboard" },
     { icon: "fa-briefcase", label: "Internships", path: "/internships" },
     { icon: "fa-file-alt", label: "Reports", path: "/reports" },
-    { icon: "fa-clipboard-list", label: "Evaluations", path: "/evaluations" },
+    { icon: "fa-clipboard-list", label: "Evaluations", path: "/EvaluationForms" },
     { icon: "fa-building", label: "Students", path: "/students" },
-    { icon: "fa-chalkboard-teacher", label: "Workshops", path: "/workshops" },
+    { icon: "fa-chalkboard-teacher", label: "Workshops", path: "/WorkshopsManagement" },
     { icon: "fa-cog", label: "Settings", path: "/settings" }
   ];
 
@@ -422,17 +422,18 @@ function ScadDashboard() {
             )}
           </div>
           <div className="user-avatar">
-            <img src={profileData.avatar} alt={profileData.name} />
+  <img src="/scadIcon.jpeg" alt="SCAD Office" />
+</div>
           </div>
-        </div>
+     
       </header>
 
       <div className="main-container">
         <aside className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''}`}>
           <div className="profile-section">
-            <div className="avatar-container">
-              <img src={profileData.avatar} alt={profileData.name} />
-            </div>
+           <div className="avatar-container">
+  <img src="/scadIcon.jpeg" alt="SCAD Office" />
+</div>
             <h2 className="user-name">{profileData.name}</h2>
             <p className="user-title">{profileData.title}</p>
             <div className="user-status">
@@ -487,15 +488,14 @@ function ScadDashboard() {
               <div className="profile-header">
                 <div className="profile-info">
                   <div className="profile-avatar">
-                    <img src={profileData.avatar} alt={profileData.name} />
+                    <img src="/scadIcon.jpeg" alt="SCAD Office" />
+
+
                   </div>
                   <div className="profile-details">
                     <h1 className="profile-title">{profileData.name}</h1>
                     <p className="profile-subtitle">{profileData.title}</p>
-                    <span className="status-badge status-active">
-                      <span className="status-indicator"></span>
-                      Active
-                    </span>
+                  
                   </div>
                 </div>
                 <button className="btn btn-primary" onClick={() => setShowEditProfileModal(true)}>
@@ -1140,12 +1140,11 @@ function ScadDashboard() {
         </div>
       )}
 
-      {/* Call Notifications and Interface */}
       {callStatus === 'ringing' && (
         <div className="incoming-call-notification">
           <div className="caller-info">
             <div className="caller-avatar">
-              <img src={profileData.avatar} alt="Caller" />
+              <img src="/scadIcon.jpeg" alt="Caller" />
             </div>
             <div className="caller-details">
               <h3>Incoming Call</h3>

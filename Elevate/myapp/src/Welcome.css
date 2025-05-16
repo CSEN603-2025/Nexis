@@ -1,5 +1,4 @@
 /* Welcome.css */
-.welcome{ 
 :root {
   --primary-color: #3f72af;
   --secondary-color: #112d4e;
@@ -227,15 +226,15 @@ body {
 }
 
 .student-icon {
-  background-image: url('https://via.placeholder.com/70');
+  background-image: url('https://via.placeholder.com/70x70/3f72af/ffffff?text=ST');
 }
 
 .faculty-icon {
-  background-image: url('https://via.placeholder.com/70');
+  background-image: url('https://via.placeholder.com/70x70/112d4e/ffffff?text=FC');
 }
 
 .company-icon {
-  background-image: url('https://via.placeholder.com/70');
+  background-image: url('https://via.placeholder.com/70x70/f9a826/ffffff?text=CO');
 }
 
 .feature-card h3 {
@@ -474,4 +473,4 @@ body {
   .primary-btn, .secondary-btn {
     width: 100%;
   }
-}}
+}

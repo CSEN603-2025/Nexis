@@ -1,3 +1,4 @@
+.scad-container{
 :root {
   /* Light Theme */
   --primary-light: #006D77;
@@ -145,11 +146,7 @@
   transition: var(--transition);
 }
 
-.user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+
 
 .user-avatar:hover {
   transform: scale(1.1);
@@ -959,4 +956,4 @@
 
 .accept-button:hover {
   background-color: rgba(46, 204, 113, 0.2);
-}
+}}
