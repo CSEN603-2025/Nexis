@@ -99,7 +99,7 @@ function ScadDashboard() {
     },
     {
       id: 2, name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      industry: "Technology", location: "Redmond, WA", status: "Approved",
+      industry: "Technology", location: "Redmond, WA", status: "Pending",
       description: "Global leader in software, services, devices, and solutions.",
       employees: "221,000", founded: "1975", website: "www.microsoft.com", openPositions: "32"
     },
@@ -912,7 +912,8 @@ function ScadDashboard() {
               </div>
               <div className="card-body">
                 <div className="company-logo-container">
-                  <img src={selectedCompanyData.logo} alt={selectedCompanyData.name} />
+                  <img src={selectedCompanyData.logo} alt={selectedCompanyData.name} className="company-logo" />
+                  
                 </div>
                 <p><strong>Description:</strong> {selectedCompanyData.description}</p>
                 <p><strong>Employees:</strong> {selectedCompanyData.employees}</p>
