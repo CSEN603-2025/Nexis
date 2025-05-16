@@ -8,11 +8,14 @@ import Applications from './Applications';
 import Interns from './Interns';
 
 import React, { useState } from 'react';
+import techinnovateLogo from './assets/techinnovate-logo.png'; // Adjust path as needed
 import {
  Input, Modal,Layout, Menu, Avatar, Badge, Button, Tag, List, ConfigProvider,Typography, Row, Col, Card, Table,Space,Form,Select,DatePicker
 } from 'antd';
 import {
-  DashboardOutlined, FileTextOutlined, TeamOutlined,
+  DashboardOutlined, FileTextOutlined, TeamOutlined,FileDoneOutlined,
+  StarOutlined,
+  BankOutlined,
   MailOutlined, SettingOutlined,EyeOutlined, EditOutlined, DeleteOutlined,PlusOutlined 
 } from '@ant-design/icons';
 
@@ -32,14 +35,7 @@ const messages = [
 
 const Company = () => {
 
-const handleStatusChange = (key, newStatus) => {
-  console.log('Key:', key, 'New Status:', newStatus);
-  setInternsData((prevData) =>
-    prevData.map((intern) =>
-      intern.key === key ? { ...intern, status: newStatus } : intern
-    )
-  );
-};
+;
    const [showEvaluations, setShowEvaluations] = useState(false);
      const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -608,22 +604,81 @@ case 'evaluations':
       </Header>
 
       <Layout>
-        <Sider width={250} theme="light" className="sidebar">
-          <div className="company-info">
-            <Avatar size={64} />
-            <h3 className="company-name">TechInnovate Solutions</h3>
-            <Tag color="green" className="verified-tag">Verified Company</Tag>
-          </div>
+      <Sider width={280} theme="light" className="sidebar" style={{ background: '#fff' }}>
+<div className="company-info" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+  <div className="logo-placeholder">
+    TI
+  </div>
+  <div>
+    <h3 className="company-name">TechInnovate Solutions</h3>
+    <Tag color="green" className="verified-tag">Verified Company</Tag>
+  </div>
+</div>
 
-          <Menu mode="inline" selectedKeys={[activeTab]} onClick={({ key }) => setActiveTab(key)}>
-            <Menu.Item key="dashboard" icon={<DashboardOutlined />}>Dashboard</Menu.Item>
-            <Menu.Item key="internship-posts" icon={<FileTextOutlined />}>Internship Posts</Menu.Item>
-            <Menu.Item key="applications" icon={<i className="fas fa-clipboard-list" />}>Applications</Menu.Item>
-            <Menu.Item key="interns" icon={<TeamOutlined />}>Interns</Menu.Item>
-            <Menu.Item key="evaluations" icon={<i className="fas fa-star" />}>Evaluations</Menu.Item>
-            <Menu.Item key="other companies" icon={<i className="fas fa-book" />}>Other Companies</Menu.Item>
-          </Menu>
-        </Sider>
+
+  <div className="sidebar-menu">
+    <div 
+      className={`menu-item ${activeTab === 'dashboard' ? 'active' : ''}`}
+      onClick={() => setActiveTab('dashboard')}
+    >
+      <DashboardOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Dashboard</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'internship-posts' ? 'active' : ''}`}
+      onClick={() => setActiveTab('internship-posts')}
+    >
+      <FileTextOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Internship Posts</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'applications' ? 'active' : ''}`}
+      onClick={() => setActiveTab('applications')}
+    >
+        <FileDoneOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Applications</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'interns' ? 'active' : ''}`}
+      onClick={() => setActiveTab('interns')}
+    >
+      <TeamOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Interns</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'evaluations' ? 'active' : ''}`}
+      onClick={() => setActiveTab('evaluations')}
+    >
+   <StarOutlined className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Evaluations</span>
+      </div>
+    </div>
+
+    <div 
+      className={`menu-item ${activeTab === 'other companies' ? 'active' : ''}`}
+      onClick={() => setActiveTab('other companies')}
+    >
+        <  BankOutlined
+ className="menu-icon" />
+      <div className="menu-content">
+        <span className="menu-title">Other Companies</span>
+      </div>
+    </div>
+  </div>
+</Sider>
         <Content className="page-container">
           {renderContent()}
         </Content>
