@@ -36,21 +36,7 @@ export default function MainLayout() {
 
   return (
     <div className="app-container">
-      <header className="top-header">
-        <div className="header-content">
-          <div className="header-left">
-            <button onClick={toggleSidebar} className="sidebar-toggle">
-              <i className="fas fa-bars"></i>
-            </button>
-            <img src="/api/placeholder/120/40" alt="Logo" className="logo" />
-          </div>
-          <div className="header-right">
-            <button className="icon-button"><i className="fas fa-bell"></i></button>
-            <button className="icon-button"><i className="fas fa-moon"></i></button>
-            <div className="avatar">SO</div>
-          </div>
-        </div>
-      </header>
+     
 
       <div className="main-container">
         <aside className={`sidebar ${isSidebarCollapsed ? "collapsed" : ""}`}>

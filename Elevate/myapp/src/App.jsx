@@ -17,22 +17,24 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Routes without MainLayout */}
         <Route path="/" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/student" element={<NormalStudent />} />
-        <Route path='/pro' element={<StudentDashboard />} />
-       <Route element={<MainLayout />}>
-    <Route path="/reports" element={<Reports />} />
-       <Route path="/EvaluationForms" element={<Evaluations />} />
-      <Route path="/scaddashboard" element={<ScadDashboard />} />
-      <Route path="/internships" element={<Internships />} />
-      <Route path="/students" element={<StudentList />} />
-       <Route path="/WorkshopsManagement" element={<Workshops />} />
-      <Route path="/students/:id" element={<Studentscad />} />
-      </Route>
+        <Route path="/pro" element={<StudentDashboard />} />
+
+        {/* Routes with MainLayout */}
+        <Route element={<MainLayout />}>
+          <Route path="/scaddashboard" element={<ScadDashboard />} />
+          <Route path="/internships" element={<Internships />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/EvaluationForms" element={<Evaluations />} />
+          <Route path="/students" element={<StudentList />} />
+          <Route path="/workshopsManagement" element={<Workshops />} />
+          <Route path="/students/:id" element={<Studentscad />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App; 
