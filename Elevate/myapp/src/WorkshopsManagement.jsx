@@ -186,6 +186,12 @@ const WorkshopsManagement = () => {
   return (
     <div className="workshops-management">
       <header className="workshops-header">
+        <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
         <h1><FaBriefcase className="header-icon" /> SCAD Office - Workshops</h1>
         <p>Manage career workshops for PRO students</p>
       </header>

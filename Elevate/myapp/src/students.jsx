@@ -78,9 +78,16 @@ const handleRowClick = (id) => {
 
         {/* Main content */}
         <main className="content">
+         
           <div className="companies-container">
             <div className="card companies-card">
               <div className="card-header">
+                 <button 
+      className="back-to-dashboard"
+      onClick={() => window.location.href = '/scaddashboard'}
+    >
+      Back to Dashboard
+    </button>
                 <h2 className="card-title">Students List</h2>
                 <div className="filter-controls">
                   <select value={statusFilter} onChange={handleStatusFilter} className="industry-filter">
