@@ -405,7 +405,7 @@ const [filters, setFilters] = useState({
     document.body.removeChild(link);
   };
 
-  return (
+  return (<div className="report1">
     <div className="report-submissions-container">
       <div className="submission-header">
         <h1><FaFileUpload /> Report Submissions</h1>
@@ -860,6 +860,7 @@ const [filters, setFilters] = useState({
         </div>
       )}
     </div>
+  </div>
   );
 };
 

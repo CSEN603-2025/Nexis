@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Workshops.css';
+import EmojiPicker from 'emoji-picker-react';
 
 const Workshops = () => {
   const [showVideoConferenceModal, setShowVideoConferenceModal] = useState(false);
@@ -8,6 +9,7 @@ const Workshops = () => {
   const [userRating, setUserRating] = useState(0);
   const [userFeedback, setUserFeedback] = useState('');
   const [showNotification, setShowNotification] = useState(null);
+  
   
   const [workshops, setWorkshops] = useState([
     { 
@@ -19,8 +21,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: true,
       description: 'Learn how to craft a compelling professional brand that showcases your unique skills and value proposition to potential employers.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: '/dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -35,8 +37,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: false,
       description: 'Master the art of technical interviews with hands-on coding exercises and problem-solving strategies from industry experts.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: 'dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -51,8 +53,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: false,
       description: 'Create a standout portfolio that effectively communicates your skills and experience to potential employers.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: '/dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -67,8 +69,8 @@ const Workshops = () => {
       status: 'upcoming',
       registered: true,
       description: 'Develop essential networking skills to build professional relationships and uncover hidden job opportunities.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: '/dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: '',
       rating: 0,
       notes: '',
@@ -83,8 +85,8 @@ const Workshops = () => {
       status: 'completed',
       registered: true,
       description: 'Transform your resume into a powerful marketing tool that gets you noticed by recruiters and hiring managers.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: '/dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: 'Great workshop with practical tips!',
       rating: 5,
       notes: 'Focus on quantifiable achievements\nTailor resume for each application',
@@ -99,8 +101,8 @@ const Workshops = () => {
       status: 'completed',
       registered: true,
       description: 'Improve your communication skills to collaborate effectively with teams and present your ideas clearly.',
-      recordingUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      certificateUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      recordingUrl: '/dummy-video.mp4',
+      certificateUrl: '/sample-certificate.pdf',
       feedback: 'Helpful for improving team collaboration',
       rating: 4,
       notes: 'Active listening techniques\nNon-verbal communication matters',
@@ -130,7 +132,7 @@ const Workshops = () => {
   const handleDownloadCertificate = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.certificateUrl) {
-      window.open(workshop.certificateUrl, '_blank');
+      // In a real app, this would download the actual certificate
       setShowNotification({
         message: 'Certificate Downloaded',
         content: `Certificate for "${workshop.title}" has been downloaded`
@@ -148,7 +150,10 @@ const Workshops = () => {
   const handleViewRecording = (workshopId) => {
     const workshop = workshops.find(w => w.id === workshopId);
     if (workshop && workshop.recordingUrl) {
-      window.open(workshop.recordingUrl, '_blank');
+      // In a real app, this would open the recording
+      setTimeout(() => {
+        window.open(workshop.recordingUrl, '_blank');
+      }, 2000);
     } else {
       setShowNotification({
         message: 'Recording Not Available',
@@ -158,7 +163,7 @@ const Workshops = () => {
     }
   };
 
-  const VideoConferenceModal = () => {
+ const VideoConferenceModal = () => {
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
     const [isScreenSharing, setIsScreenSharing] = useState(false);
@@ -170,16 +175,7 @@ const Workshops = () => {
         sender: activeWorkshop.presenter.split(',')[0], 
         message: 'Welcome everyone to the workshop!', 
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: true,
-        isSystem: false
-      },
-      { 
-        id: 2, 
-        sender: 'System', 
-        message: 'You joined the workshop', 
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: false,
-        isSystem: true
+        isPresenter: true
       }
     ]);
     const [unreadMessages, setUnreadMessages] = useState(0);
@@ -189,7 +185,6 @@ const Workshops = () => {
     const videoRef = useRef(null);
     const localVideoRef = useRef(null);
     const chatContainerRef = useRef(null);
-    const fileInputRef = useRef(null);
 
     // Participants data
     const participants = [
@@ -200,7 +195,7 @@ const Workshops = () => {
       { id: 5, name: 'Emily Wilson', role: 'Student', isSpeaking: false, hasCamera: true, hasMic: true }
     ];
 
-    // Simulate video stream for local video
+    // Simulate video stream
     useEffect(() => {
       const getVideoStream = async () => {
         try {
@@ -214,15 +209,10 @@ const Workshops = () => {
           }
         } catch (err) {
           console.error("Error accessing media devices:", err);
-          if (localVideoRef.current) {
-            localVideoRef.current.src = "https://placehold.co/400x300?text=No+Camera";
-          }
         }
       };
 
-      if (isCameraOn || isMicOn) {
-        getVideoStream();
-      }
+      getVideoStream();
 
       return () => {
         if (localVideoRef.current && localVideoRef.current.srcObject) {
@@ -231,17 +221,17 @@ const Workshops = () => {
       };
     }, [isCameraOn, isMicOn]);
 
-    // Set up main video (simulated presenter video)
+    // Simulate presenter video
     useEffect(() => {
       if (showVideoConferenceModal && videoRef.current) {
-        videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
-        videoRef.current.setAttribute('frameborder', '0');
-        videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-        videoRef.current.setAttribute('allowfullscreen', '');
+        // In a real app, this would be the presenter's video stream
+        videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+        videoRef.current.loop = true;
+        videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
       }
     }, [showVideoConferenceModal]);
 
-    // Auto-scroll chat to bottom when new messages arrive
+    // Auto-scroll chat to bottom
     useEffect(() => {
       if (chatContainerRef.current) {
         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
@@ -255,13 +245,12 @@ const Workshops = () => {
           sender: 'You',
           message: chatInput,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isPresenter: false,
-          isSystem: false
+          isPresenter: false
         };
         setMessages(prev => [...prev, newMessage]);
         setChatInput('');
         
-        // Simulate responses from other participants
+        // Simulate responses
         setTimeout(() => {
           const randomResponses = [
             "That's a great point!",
@@ -275,76 +264,19 @@ const Workshops = () => {
             sender: Math.random() > 0.5 ? activeWorkshop.presenter.split(',')[0] : participants[Math.floor(Math.random() * participants.length)].name,
             message: randomResponses[Math.floor(Math.random() * randomResponses.length)],
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isPresenter: Math.random() > 0.5,
-            isSystem: false
+            isPresenter: Math.random() > 0.5
           };
           setMessages(prev => [...prev, response]);
-          if (activeTab !== 'chat') {
-            setUnreadMessages(prev => prev + 1);
-          }
         }, 1000 + Math.random() * 2000);
-      }
-    };
-
-    const handleFileUpload = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const newMessage = {
-          id: Date.now(),
-          sender: 'You',
-          message: `[File Attachment] ${file.name}`,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isPresenter: false,
-          isSystem: false,
-          isAttachment: true,
-          fileName: file.name,
-          fileType: file.type,
-          fileSize: (file.size / 1024).toFixed(2) + ' KB'
-        };
-        setMessages(prev => [...prev, newMessage]);
-        
-        setTimeout(() => {
-          const response = {
-            id: Date.now(),
-            sender: activeWorkshop.presenter.split(',')[0],
-            message: `Thanks for sharing ${file.name}. It's very helpful!`,
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isPresenter: true,
-            isSystem: false
-          };
-          setMessages(prev => [...prev, response]);
-          if (activeTab !== 'chat') {
-            setUnreadMessages(prev => prev + 1);
-          }
-        }, 1500);
       }
     };
 
     const toggleCamera = async () => {
       setIsCameraOn(!isCameraOn);
-      if (!isCameraOn && localVideoRef.current) {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: isMicOn
-          });
-          localVideoRef.current.srcObject = stream;
-        } catch (err) {
-          console.error("Error re-enabling camera:", err);
-        }
-      } else if (localVideoRef.current && localVideoRef.current.srcObject) {
-        localVideoRef.current.srcObject.getVideoTracks().forEach(track => track.stop());
-        localVideoRef.current.src = "https://placehold.co/400x300?text=Camera+Off";
-      }
     };
 
     const toggleMic = () => {
       setIsMicOn(!isMicOn);
-      if (localVideoRef.current && localVideoRef.current.srcObject) {
-        localVideoRef.current.srcObject.getAudioTracks().forEach(track => {
-          track.enabled = !isMicOn;
-        });
-      }
     };
 
     const toggleScreenShare = async () => {
@@ -357,16 +289,14 @@ const Workshops = () => {
           
           if (videoRef.current) {
             videoRef.current.srcObject = screenStream;
-            videoRef.current.src = null;
           }
           
           screenStream.getVideoTracks()[0].onended = () => {
             setIsScreenSharing(false);
+            // Return to presenter video
             if (videoRef.current) {
-              videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
-              videoRef.current.setAttribute('frameborder', '0');
-              videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-              videoRef.current.setAttribute('allowfullscreen', '');
+              videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+              videoRef.current.play();
             }
           };
           
@@ -377,40 +307,18 @@ const Workshops = () => {
       } else {
         setIsScreenSharing(false);
         if (videoRef.current) {
-          videoRef.current.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1";
-          videoRef.current.setAttribute('frameborder', '0');
-          videoRef.current.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-          videoRef.current.setAttribute('allowfullscreen', '');
+          videoRef.current.src = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4";
+          videoRef.current.play();
         }
       }
     };
 
     const toggleRaiseHand = () => {
       setRaisedHand(!raisedHand);
-      if (!raisedHand) {
-        const newMessage = {
-          id: Date.now(),
-          sender: 'System',
-          message: 'You raised your hand',
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isPresenter: false,
-          isSystem: true
-        };
-        setMessages(prev => [...prev, newMessage]);
-      }
     };
 
     const handlePinMessage = (message) => {
       setPinnedMessage(message);
-      const newMessage = {
-        id: Date.now(),
-        sender: 'System',
-        message: `You pinned a message from ${message.sender}`,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        isPresenter: false,
-        isSystem: true
-      };
-      setMessages(prev => [...prev, newMessage]);
     };
 
     const handleEndMeeting = () => {
@@ -439,21 +347,12 @@ const Workshops = () => {
           <div className="video-content">
             <div className="video-area">
               <div className="main-video">
-                {isScreenSharing ? (
-                  <video 
-                    ref={videoRef} 
-                    autoPlay 
-                    playsInline 
-                    className="video-element"
-                  />
-                ) : (
-                  <iframe
-                    ref={videoRef}
-                    className="video-element"
-                    title="Presenter Video"
-                    allowFullScreen
-                  ></iframe>
-                )}
+                <video 
+                  ref={videoRef} 
+                  autoPlay 
+                  playsInline 
+                  className="video-element"
+                />
                 {isScreenSharing && (
                   <div className="screen-share-indicator">
                     <i className="fas fa-desktop"></i> Screen Sharing
@@ -524,6 +423,7 @@ const Workshops = () => {
                           </div>
                         </div>
                       ))}
+                      {/* Add yourself to participants list */}
                       <div className="participant-item you">
                         <div className="participant-avatar">
                           You
@@ -561,60 +461,31 @@ const Workshops = () => {
                       {messages.map((msg) => (
                         <div 
                           key={msg.id} 
-                          className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} 
-                            ${msg.isPresenter ? 'presenter-message' : ''} ${msg.isSystem ? 'system-message' : ''}`}
+                          className={`chat-message ${msg.sender === 'You' ? 'own-message' : ''} ${msg.isPresenter ? 'presenter-message' : ''}`}
                         >
-                          {!msg.isSystem && (
-                            <div className="message-avatar">
-                              {msg.sender.split(' ').map(n => n[0]).join('')}
-                            </div>
-                          )}
+                          <div className="message-avatar">
+                            {msg.sender.split(' ').map(n => n[0]).join('')}
+                          </div>
                           <div className="message-content">
-                            {!msg.isSystem && (
-                              <div className="message-header">
-                                <span className="message-sender">{msg.sender}</span>
-                                <span className="message-time">{msg.time}</span>
-                                {msg.sender !== 'You' && !msg.isSystem && (
-                                  <button 
-                                    className="pin-button"
-                                    onClick={() => handlePinMessage(msg)}
-                                  >
-                                    <i className="fas fa-thumbtack"></i>
-                                  </button>
-                                )}
-                              </div>
-                            )}
-                            <p className="message-text">
-                              {msg.isAttachment ? (
-                                <div className="file-attachment">
-                                  <i className="fas fa-file"></i>
-                                  <div className="file-info">
-                                    <span className="file-name">{msg.message.replace('[File Attachment] ', '')}</span>
-                                    <span className="file-size">{msg.fileSize}</span>
-                                  </div>
-                                </div>
-                              ) : (
-                                msg.message
+                            <div className="message-header">
+                              <span className="message-sender">{msg.sender}</span>
+                              <span className="message-time">{msg.time}</span>
+                              {msg.sender !== 'You' && (
+                                <button 
+                                  className="pin-button"
+                                  onClick={() => handlePinMessage(msg)}
+                                >
+                                  <i className="fas fa-thumbtack"></i>
+                                </button>
                               )}
-                            </p>
+                            </div>
+                            <p className="message-text">{msg.message}</p>
                           </div>
                         </div>
                       ))}
                     </div>
                     
                     <div className="chat-input-container">
-                      <button 
-                        className="attachment-button"
-                        onClick={() => fileInputRef.current.click()}
-                      >
-                        <i className="fas fa-paperclip"></i>
-                        <input
-                          type="file"
-                          ref={fileInputRef}
-                          style={{ display: 'none' }}
-                          onChange={handleFileUpload}
-                        />
-                      </button>
                       <input
                         type="text"
                         placeholder="Type a message..."
@@ -727,6 +598,7 @@ const Workshops = () => {
     );
   };
 
+  // Simulate workshop notification
   useEffect(() => {
     const timer = setTimeout(() => {
       const upcomingWorkshop = workshops.find(w => w.status === 'upcoming' && w.registered);
@@ -929,7 +801,7 @@ const Workshops = () => {
           </div>
         </main>
       </div>
-      {showVideoConferenceModal && <VideoConferenceModal />}
+        {showVideoConferenceModal && <VideoConferenceModal />}
       {showRatingModal && <RatingModal />}
       {showNotification && (
         <div className="notification-popup">
@@ -943,4 +815,4 @@ const Workshops = () => {
   );
 };
 
-export default Workshops;
+export default Workshops; /* General container styles */

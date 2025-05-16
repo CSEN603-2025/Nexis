@@ -134,7 +134,7 @@ const Registration = () => {
     }, 2000);
   };
 
-  return (
+  return (<div className="registration">
     <div className="registration-container">
       {/* Background elements */}
       <div className="bg-elements">
@@ -418,6 +418,7 @@ const Registration = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

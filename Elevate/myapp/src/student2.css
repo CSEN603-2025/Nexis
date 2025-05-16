@@ -1,4 +1,4 @@
-.normal{
+.student2{
 html, body, #root {
     height: 100vh;
     width: 100vw;
@@ -1120,43 +1120,41 @@ html, body, #root {
 .activity-card:nth-child(2) { animation-delay: 0.25s; }
 .activity-card:nth-child(3) { animation-delay: 0.35s; }
 
-/* Badge styles */
 .user-badge {
-  margin-left: 2rem; /* Spacing from logo */
-  background-color: #d1d5db; /* Grey background (Tailwind gray-300) */
-  color: #374151; /* Darker grey text (Tailwind gray-700) */
-  padding: 0.75rem 1.5rem; /* Large padding for "so big" size */
+  margin-left: 2rem; /* Increased margin for spacing */
+  background-color: #fef3c7; /* Yellow background from Analytics.css */
+  color: #92400e; /* Amber text */
+  padding: 0.75rem 1.5rem; /* Significantly increased padding for larger size */
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
-  font-size: 1.5rem; /* Large font size */
-  font-weight: 700; /* Bolder text */
+  text-decoration: none; /* Ensure no underline for Link */
+  font-size: 1.5rem; /* Much larger font size */
+  font-weight: 700; /* Bolder text for emphasis */
   transition: opacity 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
-  position: relative; /* For tooltip */
-  cursor: not-allowed; /* Indicate disabled state */
+  position: relative; /* For tooltip positioning */
 }
 
 .user-badge:hover {
   opacity: 0.8; /* Hover effect */
-  transform: scale(1.05); /* Slight scale-up */
+  transform: scale(1.05); /* Slight scale-up on hover */
 }
 
 /* Tooltip styles */
 .user-badge:hover::after {
-  content: 'You need to complete your obligatory internship period to access PRO features';
+  content: 'Go to Pro features';
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #1f2937; /* Dark background */
+  background-color: #1f2937; /* Dark background for tooltip */
   color: #fff; /* White text */
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.5rem; /* Increased padding for larger tooltip */
   border-radius: 0.5rem;
-  font-size: 1rem; /* Readable tooltip size */
-  white-space: nowrap; /* Keep horizontal */
-  max-width: 500px; /* Limit width for long text */
+  font-size: 1rem; /* Larger tooltip font size */
+  white-space: nowrap;
   z-index: 10;
-  margin-top: 0.75rem;
+  margin-top: 0.75rem; /* Increased space between badge and tooltip */
   opacity: 0;
   animation: fadeIn 0.2s ease forwards;
 }
@@ -1168,17 +1166,17 @@ html, body, #root {
 }
 
 .crown-icon {
-  color: #6b7280; /* Medium grey icon (Tailwind gray-500) */
-  margin-right: 0.75rem;
-  font-size: 1.8rem; /* Large icon */
+  color: #f59e0b; /* Amber crown icon */
+  margin-right: 0.75rem; /* Increased spacing */
+  font-size: 1.8rem; /* Much larger icon size */
 }
 
 .badge-text {
-  font-size: 1.5rem; /* Match badge size */
+  font-size: 1.5rem; /* Match larger font size */
   font-weight: 700;
 }
 
-/* Logo container */
+/* Ensure logo container supports badge alignment */
 .logo-container {
   display: flex;
   align-items: center;
@@ -1186,15 +1184,16 @@ html, body, #root {
 
 /* Dark mode support */
 .app.dark-mode .user-badge {
-  background-color: #4b5563; /* Darker grey (Tailwind gray-600) */
-  color: #e5e7eb; /* Light grey text (Tailwind gray-200) */
+  background-color: #92400e; /* Darker amber for dark mode */
+  color: #fef3c7; /* Light yellow text for contrast */
 }
 
 .app.dark-mode .user-badge:hover::after {
-  background-color: #e5e7eb; /* Light grey tooltip background */
-  color: #1f2937; /* Dark text */
+  background-color: #fef3c7; /* Light background for tooltip in dark mode */
+  color: #1f2937; /* Dark text for contrast */
 }
 
 .app.dark-mode .crown-icon {
-  color: #9ca3af; /* Lighter grey icon (Tailwind gray-400) */
-}}
+  color: #f59e0b; /* Keep crown icon color consistent */
+}
+}

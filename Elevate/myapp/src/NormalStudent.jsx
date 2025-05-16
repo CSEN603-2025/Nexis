@@ -29,7 +29,8 @@ import {
     FaTrash,
     FaHeart,
     FaGraduationCap,
-    FaUsers
+    FaUsers,
+    FaCrown
   } from 'react-icons/fa';
 import './NormalStudent.css';
 
@@ -250,19 +251,32 @@ const NormalStudent = () => {
     };
   }, []);
 
+   const handleBadgeClick = () => {
+    alert('Please finish your internship period to access these features');
+  };
   return (
-    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
-      <header className="header">
-        <a href=" " className="logo">
-          <span className="logo-icon">↑</span>
-          Elevate
-        </a>
+    <div className={`normal ${darkMode ? 'dark-mode' : ''}`}>
+     <header className="header">
+        <div className="logo-container">
+          <a href=" " className="logo">
+            <span className="logo-icon">↑</span>
+            Elevate
+          </a>
+          <div className="user-badge" onClick={handleBadgeClick}>
+            <FaCrown className="crown-icon" />
+            <span className="badge-text">PRO Student</span>
+          </div>
+        </div>
         
         <div className="header-controls">
           <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
             {darkMode ? <FaSun /> : <FaMoon />}
           </button>
-          <img src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" alt="User" className="user-avatar" />
+          <img 
+            src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" 
+            alt="User" 
+            className="user-avatar" 
+          />
         </div>
       </header>
       

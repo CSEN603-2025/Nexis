@@ -1,6 +1,5 @@
 // src/App.js
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import NormalStudent from './NormalStudent';
 import Search from './Search';
@@ -17,7 +16,7 @@ import FacultyProfile from './faculty';
 
 import Evaluate from './Evaluate';
 import Library from './Library';
-
+import Welcome from './Welcome';
 import StudentDashboard from './StudentDashboard';
 import ScadDashboard from './scaddashboard';
 import Reports from './reports';
@@ -34,7 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/student" element={<NormalStudent />} />
         <Route path='/prol' element={<internship />} />

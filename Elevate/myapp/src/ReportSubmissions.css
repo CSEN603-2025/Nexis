@@ -1,4 +1,5 @@
 /* Base Styles */
+.report1{
 .report-submissions-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1000px;
@@ -694,4 +695,4 @@ tr:hover {
   padding: 30px;
   text-align: center;
   color: #7f8c8d;
-}
+}}

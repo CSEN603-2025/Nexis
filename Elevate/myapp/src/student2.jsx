@@ -29,9 +29,10 @@ import {
     FaTrash,
     FaHeart,
     FaGraduationCap,
-    FaUsers
-  } from 'react-icons/fa';
-import './NormalStudent.css';
+    FaUsers,
+    FaCrown
+} from 'react-icons/fa';
+import './student2.css';
 
 const Student2 = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -251,21 +252,30 @@ const Student2 = () => {
   }, []);
 
   return (
-    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
-      <header className="header">
-        <a href=" " className="logo">
+    <div className={`student2 ${darkMode ? 'dark-mode' : ''}`}>
+<header className="header">
+      <div className="logo-container">
+        <a href="/" className="logo">
           <span className="logo-icon">↑</span>
           Elevate
         </a>
-        
-        <div className="header-controls">
-          <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          <img src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff" alt="User" className="user-avatar" />
-        </div>
-      </header>
-      
+        <Link to="/Analytics" className="user-badge">
+          <FaCrown className="crown-icon" />
+          <span className="badge-text">PRO Student</span>
+        </Link>
+      </div>
+
+      <div className="header-controls">
+        <button id="themeToggle" className="theme-toggle" onClick={toggleTheme}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
+        <img
+          src="https://ui-avatars.com/api/?name=Menna+Elsayed&background=83C5BE&color=fff"
+          alt="User"
+          className="user-avatar"
+        />
+      </div>
+    </header>
       <div className="container">
         <aside className="sidebar">
           <div className="profile-card">
