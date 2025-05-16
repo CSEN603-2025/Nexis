@@ -23,7 +23,7 @@ const LoginForm = () => {
     
     if (email === validCredentials.email && password === validCredentials.password) {
       // Successful login
-      navigate('/dashboard');
+      navigate('/new');
     } else {
       setError('Invalid email or password');
     }

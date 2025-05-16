@@ -33,7 +33,7 @@ import {
   } from 'react-icons/fa';
 import './NormalStudent.css';
 
-const NormalStudent = () => {
+const Student2 = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [activeTab, setActiveTab] = useState('personal');
@@ -1015,4 +1015,4 @@ const NormalStudent = () => {
   );
 };
 
-export default NormalStudent;
+export default Student2;
