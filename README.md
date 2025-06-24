@@ -28,7 +28,7 @@ The system fulfills 94 functional requirements, including but not limited to:
 - PRO Student features such as online assessments, workshop registration, and video call appointments.
 - Responsive UI with reversible navigation, error handling, and consistent design.
 
-For a complete list of requirements, refer to the [MS2 Requirements.xlsx](https://github.com/CSEN603-2025/Nexis/blob/main/docs/MS2_Requirements.xlsx).
+For a complete list of requirements, refer to the [MS2 Requirements.xlsx](User-Requirements.xlsx)
 
 ## Installation and Setup
 To run the project locally:
