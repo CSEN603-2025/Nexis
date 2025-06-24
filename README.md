@@ -84,4 +84,4 @@ Below are some screenshots showcasing the web application's interface:
 - **Product Manager**: For providing guidance on front-end design and UI/UX expectations.
 
 ## Contact
-For questions or clarifications, contact the team through the assigned Product Manager or refer to the course CMS for additional resources.
+For questions or clarifications, contact the team through their emails: lamaadayem1111@gmail.com.
