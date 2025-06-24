@@ -11,7 +11,7 @@ The application serves multiple user roles:
 This repository contains the front-end code, utilizing dummy data to simulate functionalities without a backend or database.
 
 ## Project Details
-- **Team**:Lama Abdeldayem, Menna Ashraf, Alaa, Civine
+- **Team**:Lama Abdeldayem, Menna Ashraf, Alaa, Civine.
 - **Repository**: [https://github.com/CSEN603-2025/Nexis](https://github.com/CSEN603-2025/Nexis)
 - **Technologies Used**:
   - **React.js**: For building dynamic and interactive UI components.
