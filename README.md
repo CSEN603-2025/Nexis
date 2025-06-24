@@ -1,143 +1,89 @@
-GUC Internship System - Milestone 2 Documentation
-German University in Cairo (GUC)
-Media Engineering and Technology Department
-Software Engineering Course - Spring 2025
+# GUC Internship System - Nexis
 
-1. Introduction
-This document provides an overview of the GUC Internship System developed for Milestone 2 (MS2) as part of the Software Engineering course. The system is a React-based web application designed to manage internship processes at GUC, including:
+## Overview
+The GUC Internship System (Nexis) is a front-end web application developed as part of the Software Engineering course (Spring 2025) at the German University in Cairo. This project, built for Milestone 2, focuses on designing and implementing a prototype for managing internship applications, enrollments, assessments, and evaluations. The system is developed using **React.js** and **CSS**, adhering to UI/UX principles outlined in the course and guided by the assigned Product Manager.
 
-Student applications
+The application serves multiple user roles:
+- **Companies**: Register, post internships, review applications, and evaluate interns.
+- **Students/PRO Students**: Apply for internships, submit reports, and manage profiles.
+- **SCAD Office/Faculty Members**: Manage company applications, review reports, and monitor statistics.
 
-Company postings
+This repository contains the front-end code, utilizing dummy data to simulate functionalities without a backend or database.
 
-Faculty evaluations
+## Project Details
+- **Team**: CSEN603-2025
+- **Repository**: [https://github.com/CSEN603-2025/Nexis](https://github.com/CSEN603-2025/Nexis)
+- **Technologies Used**:
+  - **React.js**: For building dynamic and interactive UI components.
+  - **CSS**: For styling and ensuring a coherent, professional design.
+- **Duration**: March 2025 - May 2025
+- **Objective**: Create a user-friendly, intuitive prototype that meets the functional requirements specified in the "MS2 Requirements.xlsx" file and adheres to UI/UX guidelines.
 
-Report submissions
+## Features
+The system fulfills 94 functional requirements, including but not limited to:
+- Company registration and document upload.
+- Internship posting, application management, and intern evaluation.
+- Student profile management, internship applications, and report submissions.
+- SCAD Office functionalities like company approval, report review, and real-time statistics.
+- PRO Student features such as online assessments, workshop registration, and video call appointments.
+- Responsive UI with reversible navigation, error handling, and consistent design.
 
-The focus of MS2 was front-end development, ensuring an intuitive and responsive user interface before backend integration in later milestones.
+For a complete list of requirements, refer to the [MS2 Requirements.xlsx](https://github.com/CSEN603-2025/Nexis/blob/main/docs/MS2_Requirements.xlsx).
 
-2. System Features
-2.1 User Roles & Access
-The system supports three main user roles:
+## Installation and Setup
+To run the project locally:
 
-Students
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/CSEN603-2025/Nexis.git
+   cd Nexis
+   ```
 
-Apply for internships
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Submit reports
+3. **Run the development server**:
+   ```bash
+   npm start
+   ```
 
-Track application status
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-Companies
+## UI/UX Guidelines
+The system follows UI/UX principles emphasized in the course:
+- **Learnability**: Intuitive navigation and clear user journeys.
+- **Efficiency**: Minimal clicks to perform tasks.
+- **Feedback**: Visual cues and notifications for user actions.
+- **Error Handling**: Prevents errors and provides clear error messages.
+- **Consistency**: Unified color palette, typography, and UI elements.
+- **Professionalism**: Clean, symmetric design with a modern aesthetic.
 
-Post internship opportunities
+The UI/UX evaluation is subjective and based on the Product Manager's feedback, as outlined in the project description.
 
-Review student applications
+## Screenshots
+Below are some screenshots showcasing the web application's interface:
 
-Submit evaluations
+![Login Page](screenshots/login-page.png)  
+*Login page with dummy authentication for all user roles.*
 
-Faculty/Admin
+![Company Dashboard](screenshots/company-dashboard.png)  
+*Company dashboard displaying internship posts and applications.*
 
-Approve/reject applications
+![Student Profile](screenshots/student-profile.png)  
+*Student profile page for managing job interests and past internships.*
 
-Monitor submissions
+![SCAD Office Statistics](screenshots/scad-statistics.png)  
+*SCAD Office real-time statistics dashboard.*
 
-Generate reports
 
-2.2 Key Functionalities
-Dashboard Views (Role-based)
 
-Internship Listings & Filters
 
-Application Forms
+## Acknowledgments
+- **Instructors**: Assoc. Prof. Mervat Abuelkheir, Dr. Aya Mohamed.
+- **Teaching Assistants**: Eng. Nada Ibrahim, Eng. Yasmine Elbehairy, Eng. Hager Khaled, Eng. Mariam Tamer, Eng. Heba Hegazy, Eng. Farida Helmy.
+- **Product Manager**: For providing guidance on front-end design and UI/UX expectations.
 
-Document Upload (CVs, Reports)
-
-Notifications & Alerts
-
-Evaluation & Grading Interface
-
-3. Technical Implementation
-3.1 Tech Stack
-Frontend: React.js, JavaScript, HTML/CSS
-
-Styling: CSS Modules (for component-specific styles)
-
-State Management: React Context API
-
-Routing: React Router
-
-Mock Data: JSON files (simulating backend responses)
-
-3.2 Project Structure
-plaintext
-/guc-internship-system  
-├── /public           # Static assets (logos, favicon)  
-├── /src  
-│   ├── /components   # Reusable UI components (Navbar, Cards, Modals)  
-│   ├── /pages        # Role-specific screens (Student, Company, Admin)  
-│   ├── /context      # State management (Auth, Notifications)  
-│   ├── /styles       # CSS modules  
-│   ├── /data         # Mock JSON data  
-│   └── App.js        # Main router  
-└── package.json  
-3.3 Key Components
-Authentication Flow
-
-Login/Logout with role-based redirection.
-
-Protected routes (e.g., /admin accessible only to faculty).
-
-Dynamic Forms
-
-Form validation for applications/report submissions.
-
-File upload handling (PDFs, DOCX).
-
-Responsive Design
-
-Mobile-friendly layouts using CSS Flexbox/Grid.
-
-Media queries for tablets/desktops.
-
-4. Challenges & Solutions
-Challenge	Solution
-Role-based UI variations	Conditional rendering + route guards
-Mock API delays	Loading spinners + error fallbacks
-Form state management	React hooks (useState, useEffect)
-Team Git conflicts	Feature branches + PR reviews
-5. Screenshots (UI Examples)
-(Hypothetical examples – replace with actual screenshots)
-
-Student Dashboard
-Student Dashboard
-
-Lists applied internships with status (Pending/Accepted/Rejected).
-
-Company Internship Posting Form
-Company Posting Form
-
-Fields for job title, description, and requirements.
-
-Admin Evaluation Panel
-Admin Panel
-
-Table view with filters for student submissions.
-
-6. Team Contributions
-Member	Role	Key Contributions
-Ahmed Mohamed	Frontend Developer	Student dashboard, application forms
-Mariam Ali	UI/UX Designer	Color palette, responsive layouts
-Omar Ibrahim	Git Manager	Conflict resolution, branch management
-Fatma Mahmoud	QA Tester	Usability testing, bug reports
-7. Future Improvements
-Backend Integration (Node.js + MongoDB in MS3).
-
-Real-time notifications (WebSockets).
-
-Enhanced search/filters (e.g., by industry, GPA).
-
-8. Conclusion
-Milestone 2 delivered a fully functional frontend prototype for the GUC Internship System, adhering to UI/UX best practices and team collaboration standards. The next phase (MS3) will focus on backend development and database integration.
-
-GitHub Repository: github.com/team-name/guc-internship (example link)
+## Contact
+For questions or clarifications, contact the team through the assigned Product Manager or refer to the course CMS for additional resources.
