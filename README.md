@@ -64,18 +64,16 @@ The UI/UX evaluation is subjective and based on the Product Manager's feedback, 
 
 ## Screenshots
 Below are some screenshots showcasing the web application's interface:
-
-![Login Page](screenshots/login-page.png)  
-*Login page with dummy authentication for all user roles.*
-
-![Company Dashboard](screenshots/company-dashboard.png)  
-*Company dashboard displaying internship posts and applications.*
-
-![Student Profile](screenshots/student-profile.png)  
-*Student profile page for managing job interests and past internships.*
-
-![SCAD Office Statistics](screenshots/scad-statistics.png)  
-*SCAD Office real-time statistics dashboard.*
+## Home Page
+![Home Page](screenshots/Home-Page.png)  
+## Login Page
+![Login Page](screenshots/Login-Page.png)  
+## Student Page
+![Student Page](screenshots/Student.png) 
+## PhoneCall Interface
+![Phone Call Interface](screenshots/Phonecall.png)  
+## Calls Page
+![Calls Page](screenshots/Calls-Page.png)  
 
 
 
